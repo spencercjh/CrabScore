@@ -3,4 +3,5 @@
     <string name="menu_first">查看成绩</string>
     <string name="menu_second">大赛管理</string>
     <string name="menu_third">个人中心</string>
+    <string name="introduce">在线考评服务</string>
 </resources>
