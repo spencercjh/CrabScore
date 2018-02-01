@@ -27,8 +27,8 @@ import com.example.hp.iclass.TeacherCheckActivity.CheckedStudentDetailActivity;
 import java.util.ArrayList;
 
 @SuppressLint("ValidFragment")
-public class CheckedStudentListFragment extends Fragment {
-    private static final String TAG = "CheckedStudentListFragment";
+public class HighQualityPrizeFragment extends Fragment {
+    private static final String TAG = "HighQualityPrizeFragment";
     protected View mView;
     protected Context mContext;
     private TeacherOBJ teacherOBJ = new TeacherOBJ();
@@ -37,11 +37,11 @@ public class CheckedStudentListFragment extends Fragment {
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
-    CheckedStudentListFragment() {
+    HighQualityPrizeFragment() {
     }
 
 
-    CheckedStudentListFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
+    HighQualityPrizeFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
         this.subjectOBJ = subjectOBJ;
         this.teacherOBJ = teacherOBJ;
     }

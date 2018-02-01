@@ -2,16 +2,20 @@ package spencercjh.crabscore.CheckScorePart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hp.iclass.HttpFunction.Function.Common_Function.Fun_QuaryStudentScore;
 import com.example.hp.iclass.HttpFunction.Function.Common_Function.Fun_QuarySubjectTh;
@@ -19,9 +23,11 @@ import com.example.hp.iclass.HttpFunction.Function.Student_Fuction.Fun_GetStuden
 import com.example.hp.iclass.HttpFunction.Function.Teacher_Function.Fun_CountOneStudentCheckNum;
 import com.example.hp.iclass.HttpFunction.Function.Teacher_Function.Fun_GetAllStudent;
 import com.example.hp.iclass.HttpFunction.Function.Teacher_Function.Fun_GetCheckStudent;
+import com.example.hp.iclass.HttpFunction.Function.Teacher_Function.Fun_InsertCheckInfo_Teacher_Help;
 import com.example.hp.iclass.HttpFunction.Json.Json_AllStudentList;
 import com.example.hp.iclass.HttpFunction.Json.Json_CheckedStudentList;
 import com.example.hp.iclass.HttpFunction.Json.Json_StudentProperty;
+import com.example.hp.iclass.OBJ.CheckOBJ;
 import com.example.hp.iclass.OBJ.StudentOBJ;
 import com.example.hp.iclass.OBJ.SubjectOBJ;
 import com.example.hp.iclass.OBJ.TeacherOBJ;
@@ -32,8 +38,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 @SuppressLint("ValidFragment")
-public class AllStudentListFragment extends Fragment {
-    private static final String TAG = "UnCheckedStudentListFragment";
+public class BestGermplasmPrizeFragment extends Fragment {
+    private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
     private ListView lv;
@@ -42,10 +48,11 @@ public class AllStudentListFragment extends Fragment {
     private StudentOBJ studentOBJ = new StudentOBJ();
     private SwipeRefreshLayout srl_simple;
 
-    AllStudentListFragment() {
+
+    BestGermplasmPrizeFragment() {
     }
 
-    AllStudentListFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
+    BestGermplasmPrizeFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
         this.subjectOBJ = subjectOBJ;
         this.teacherOBJ = teacherOBJ;
     }
@@ -53,15 +60,17 @@ public class AllStudentListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
-        mView = inflater.inflate(R.layout.fragment_all_students, container, false);
+        mView = inflater.inflate(R.layout.fragment_unchecked_students, container, false);
+        lv = mView.findViewById(R.id.unchecked_student_list);
         srl_simple = mView.findViewById(R.id.srl_simple);
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 try {
-                    Teacher_FillAllStudentList();
+                    Teacher_FillUncheckedStudentList();
                 } catch (InterruptedException | JSONException e) {
                     e.printStackTrace();
+                    srl_simple.setRefreshing(false);
                 }
                 srl_simple.setRefreshing(false);
             }
@@ -88,24 +97,22 @@ public class AllStudentListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            Teacher_FillAllStudentList();
+            Teacher_FillUncheckedStudentList();
         } catch (InterruptedException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void Teacher_FillAllStudentList() throws InterruptedException, JSONException {
-        lv = mView.findViewById(R.id.all_studnet_list);
+
+    private void Teacher_FillUncheckedStudentList() throws InterruptedException, JSONException {
+        final ArrayList<StudentOBJ> CheckInfoList = Json_CheckedStudentList.parserJson3(Fun_GetCheckStudent.http_GetCheckStudent(subjectOBJ));
         final ArrayList<StudentOBJ> AllStudentList = Json_AllStudentList.parserJson(Fun_GetAllStudent.http_GetAllStudent(subjectOBJ));
         init_student_property(AllStudentList);
-        final ArrayList<String> CheckInfoList = Json_CheckedStudentList.parserJson4(Fun_GetCheckStudent.http_GetCheckStudent(subjectOBJ));
-
-        //获取ListView,并通过Adapter把studentlist的信息显示到ListView
-        //为ListView设置一个适配器,getCount()返回数据个数;getView()为每一行设置一个条目
+        final ArrayList<StudentOBJ> UnCheckedStudentList = GetUnCheckedStudnetList(CheckInfoList, AllStudentList);
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
-                return AllStudentList.size();
+                return UnCheckedStudentList.size();
             }
 
             @Override
@@ -125,12 +132,12 @@ public class AllStudentListFragment extends Fragment {
                 //对ListView的优化，convertView为空时，创建一个新视图；convertView不为空时，代表它是滚出
                 //屏幕，放入Recycler中的视图,若需要用到其他layout，则用inflate(),同一视图，用fiindViewBy()
                 if (convertView == null) {
-                    view = View.inflate(getActivity(), R.layout.item_all_student, null);
+                    view = View.inflate(getActivity(), R.layout.item_unchecked_student, null);
                 } else {
                     view = convertView;
                 }
                 //从subjectlist中取出一行数据，position相当于数组下标,可以实现逐行取数据
-                StudentOBJ studentOBJ = AllStudentList.get(position);
+                StudentOBJ studentOBJ = UnCheckedStudentList.get(position);
                 TextView Tstudent_name = view.findViewById(R.id.tv_name);
                 Tstudent_name.setText(studentOBJ.getStudent_name());
                 TextView Tstudent_id = view.findViewById(R.id.tv_studentID);
@@ -165,52 +172,19 @@ public class AllStudentListFragment extends Fragment {
                     score = -1;
                 }
                 Tscore.setText(String.valueOf(score));
-                /*if (!CheckInfoList.contains(studentOBJ.getStudent_id())) { bug
-                    Tstudent_name.setTextColor(Color.parseColor("#ffffff"));
-                    Tstudent_id.setTextColor(Color.parseColor("#ffffff"));
-                    Tstudent_college.setTextColor(Color.parseColor("#ffffff"));
-                    Tstudent_class.setTextColor(Color.parseColor("#ffffff"));
-                    Tischeck.setTextColor(Color.parseColor("#ffffff"));
-                    Tscore.setTextColor(Color.parseColor("#ffffff"));
-                    Tstudent_name.setTextColor(Color.parseColor("#ff0000"));
-                    Tstudent_id.setTextColor(Color.parseColor("#ff0000"));
-                    Tstudent_college.setTextColor(Color.parseColor("#ff0000"));
-                    Tstudent_class.setTextColor(Color.parseColor("#ff0000"));
-                    Tischeck.setTextColor(Color.parseColor("#ff0000"));
-                    Tscore.setTextColor(Color.parseColor("#ff0000"));
-                    RelativeLayout relativeLayout=view.findViewById(R.id.back);
-                    relativeLayout.setBackgroundColor(Color.parseColor("#ff0000"));
-                }*/
                 return view;
             }
         });
-     /*   lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-//                RelativeLayout item = (RelativeLayout) view;
                 TextView Tstudent_name = view.findViewById(R.id.tv_name);
                 TextView Tstudent_id = view.findViewById(R.id.tv_studentID);
-                TextView Tstudent_college = view.findViewById(R.id.tv_college);
-                TextView Tstudent_class = view.findViewById(R.id.tv_class);
-                TextView Tischeck = view.findViewById(R.id.tv_ischeck);
-                TextView Tscore = view.findViewById(R.id.tv_stuscore);
                 String student_name = Tstudent_name.getText().toString().trim();
                 String student_id = Tstudent_id.getText().toString().trim();
-                String student_college = Tstudent_college.getText().toString().trim();
-                String student_class = Tstudent_class.getText().toString().trim();
-                String ischeck = Tischeck.getText().toString().trim();
-                String score = Tscore.getText().toString().trim();
-                studentOBJ = new StudentOBJ(student_id, student_name, student_college, student_class);
-               *//* Intent intent = new Intent(AllStudentListActivity.this, #.class);
-                intent.putExtra("subjectOBJ", subjectOBJ);
-                intent.putExtra("teacherOBJ", teacherOBJ);
-                intent.putExtra("studentOBJ", studentOBJ);
-                intent.putExtra("ischeck",ischeck);
-                intent.putExtra("score",score);
-                intent.putExtra("user", "teacher");
-                startActivity(intent);*//*
+               dialog1(student_name,student_id);
             }
-        });*/
+        });
 /*        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
@@ -239,6 +213,55 @@ public class AllStudentListFragment extends Fragment {
         });*/
     }
 
+    private void dialog1(String student_name, final String student_id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("你要为吗"+student_name+"签到吗？");
+        builder.setTitle("注意");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();//关闭对话框
+                CheckOBJ checkOBJ=new CheckOBJ(subjectOBJ.getSubject_id(),subjectOBJ.getSubject_th(),student_id,5,999);
+                try {
+                    if(Fun_InsertCheckInfo_Teacher_Help.http_InsertCheckInfo_Teacher_Help(checkOBJ)){
+                        Toast.makeText(getContext(),"代签成功！",Toast.LENGTH_SHORT).show();
+                        Teacher_FillUncheckedStudentList();
+                    }else{
+                        Toast.makeText(getContext(),"代签失败！",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (InterruptedException | JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(),"代签失败！",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();////显示对话框
+    }
+
+    private ArrayList<StudentOBJ> GetUnCheckedStudnetList(ArrayList<StudentOBJ> CheckInfoList, ArrayList<StudentOBJ> AllStudentList) {
+        ArrayList<StudentOBJ> UnCheckedStudentList = new ArrayList<>();
+        for (StudentOBJ i : AllStudentList) {
+            boolean checked = false;
+            for (StudentOBJ j : CheckInfoList) {
+                if (j.getStudent_id().equals(i.getStudent_id())) {
+                    checked = true;
+                    break;
+                }
+            }
+            if (!checked) {
+                UnCheckedStudentList.add(i);
+            }
+        }
+        return UnCheckedStudentList;
+    }
     void init_student_property(ArrayList<StudentOBJ> AllStudentList) throws InterruptedException, JSONException {
         for (int i = 0; i < AllStudentList.size(); i++) {
             AllStudentList.set(i, Json_StudentProperty.pareJson(
@@ -246,3 +269,4 @@ public class AllStudentListFragment extends Fragment {
         }
     }
 }
+

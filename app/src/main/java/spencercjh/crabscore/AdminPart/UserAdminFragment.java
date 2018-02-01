@@ -38,8 +38,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 @SuppressLint("ValidFragment")
-public class UnCheckedStudentListFragment extends Fragment {
-    private static final String TAG = "UnCheckedStudentListFragment";
+public class UserAdminFragment extends Fragment {
+    private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
     private ListView lv;
@@ -49,10 +49,10 @@ public class UnCheckedStudentListFragment extends Fragment {
     private SwipeRefreshLayout srl_simple;
 
 
-    UnCheckedStudentListFragment() {
+    UserAdminFragment() {
     }
 
-    UnCheckedStudentListFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
+    UserAdminFragment(SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
         this.subjectOBJ = subjectOBJ;
         this.teacherOBJ = teacherOBJ;
     }

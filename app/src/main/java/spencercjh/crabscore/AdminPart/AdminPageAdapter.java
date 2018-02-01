@@ -9,11 +9,11 @@ import com.example.hp.iclass.OBJ.TeacherOBJ;
 
 import java.util.ArrayList;
 
-public class StudentListAdapter extends FragmentPagerAdapter {
+public class AdminPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private TeacherOBJ teacherOBJ = new TeacherOBJ();
 	private SubjectOBJ subjectOBJ = new SubjectOBJ();
-	public StudentListAdapter(FragmentManager fm, ArrayList<String> titleArray, SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
+	public AdminPageAdapter(FragmentManager fm, ArrayList<String> titleArray, SubjectOBJ subjectOBJ, TeacherOBJ teacherOBJ) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.teacherOBJ=teacherOBJ;
@@ -23,13 +23,13 @@ public class StudentListAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int position) {
 		if (position == 0) {
-			return new CheckedStudentListFragment(subjectOBJ,teacherOBJ);
+			return new SignInAssessmentFragment(subjectOBJ,teacherOBJ);
 		} else if (position == 1) {
-			return new UnCheckedStudentListFragment(subjectOBJ,teacherOBJ);
+			return new EntryUnitAdminFragment(subjectOBJ,teacherOBJ);
 		}else if(position== 2){
-            return new AllStudentListFragment(subjectOBJ,teacherOBJ);
+            return new CompetitionAdminFragment(subjectOBJ,teacherOBJ);
         }
-		return new CheckedStudentListFragment(subjectOBJ,teacherOBJ);
+		return new SignInAssessmentFragment(subjectOBJ,teacherOBJ);
 	}
 
 	@Override

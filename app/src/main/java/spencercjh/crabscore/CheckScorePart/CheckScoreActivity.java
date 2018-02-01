@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
 import android.view.Window;
 
 import java.lang.reflect.Method;
@@ -52,7 +51,7 @@ public class CheckScoreActivity extends AppCompatActivity implements TabLayout.O
     }
 
     private void initTabViewPager() {
-        StudentListAdapter adapter = new StudentListAdapter(
+        CheckScorePageAdapter adapter = new CheckScorePageAdapter(
                 getSupportFragmentManager(), mTitleArray, subjectOBJ, teacherOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
