@@ -1,7 +1,9 @@
-package spencercjh.crabscore;
+package spencercjh.crabscore.PersonCenterPart;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import spencercjh.crabscore.R;
 
 public class PersonCenterActivity extends AppCompatActivity {
 

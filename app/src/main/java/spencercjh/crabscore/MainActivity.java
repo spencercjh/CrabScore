@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import spencercjh.crabscore.AdminPart.AdminActivity;
+import spencercjh.crabscore.CheckScorePart.CheckScoreActivity;
+import spencercjh.crabscore.PersonCenterPart.PersonCenterActivity;
+
 public class MainActivity extends ActivityGroup implements View.OnClickListener {
     private static final String TAG = "QQChatActivity";
     private Bundle mBundle = new Bundle();

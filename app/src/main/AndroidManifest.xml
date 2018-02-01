@@ -26,9 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".CheckScoreActivity" />
-        <activity android:name=".AdminActivity" />
-        <activity android:name=".PersonCenterActivity" />
+        <activity android:name=".CheckScorePart.CheckScoreActivity" />
+        <activity android:name=".AdminPart.AdminActivity" />
+        <activity android:name=".PersonCenterPart.PersonCenterActivity" />
         <activity android:name=".BeginningActivity.LoginActivity" />
         <activity android:name=".BeginningActivity.GetPasswordActivity"></activity>
     </application>
