@@ -81,9 +81,11 @@ public class OpenappActivity extends AppCompatActivity implements OnClickListene
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void setFullScreen() {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.wholeview) {

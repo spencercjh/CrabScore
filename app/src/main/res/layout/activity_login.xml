@@ -4,6 +4,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="spencercjh.crabscore.BeginningActivity.LoginActivity">
+    tools:context=".BeginningActivity.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/button_forget_password"
+        android:layout_width="77sp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="33dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/loginPanel"
+        android:layout_width="300sp"
+        android:layout_height="400sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8sp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="8sp"
+
+        android:layout_marginTop="8sp"
+        android:background="@drawable/background_login_div"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.417">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15sp"
+            android:text="@string/welcome_to_crabscore"
+            android:textColor="@color/textcolor"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18sp"
+            android:text="@string/please_login_first"
+            android:textColor="@color/textcolor" />
+
+        <EditText
+            android:id="@+id/edit_id"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/qq_edit_login"
+            android:ems="10"
+            android:hint="@string/请输入您的用户名"
+            android:inputType="none"
+            android:maxLines="1"
+            android:selectAllOnFocus="false"
+            android:textSize="17sp">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/qq_edit_login"
+            android:ems="10"
+            android:hint="@string/请输入您的密码"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:password="true"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90sp"
+
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_weight="0.05">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <CheckBox
+                    android:id="@+id/remember_password"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:text="@string/记住密码" />
+
+                <CheckBox
+                    android:id="@+id/auto_login"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:text="@string/自动登录" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_weight="0.43"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <RadioButton
+                    android:id="@+id/user1"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:text="用户组1" />
+
+                <RadioButton
+                    android:id="@+id/user2"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:text="用户组2" />
+
+                <RadioButton
+                    android:id="@+id/user3"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:text="用户组3" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/background_button_div"
+            android:text="登  陆"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

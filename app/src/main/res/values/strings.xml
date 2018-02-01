@@ -4,4 +4,14 @@
     <string name="menu_second">大赛管理</string>
     <string name="menu_third">个人中心</string>
     <string name="introduce">在线考评服务</string>
+    <string name="请输入您的用户名">请输入您的用户名</string>
+    <string name="确认">确 认</string>
+    <string name="请输入您的姓名">请输入您的姓名</string>
+    <string name="您的密码是">您的密码是:</string>
+    <string name="welcome_to_crabscore">Welcome To CrabScore </string>
+    <string name="please_login_first">Please login first</string>
+    <string name="请输入您的密码">请输入您的密码</string>
+    <string name="记住密码">记住密码</string>
+    <string name="自动登录">自动登录</string>
+
 </resources>
