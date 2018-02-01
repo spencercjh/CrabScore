@@ -21,6 +21,7 @@
         <activity android:name=".BeginningActivity.OpenappActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,7 +29,8 @@
         <activity android:name=".CheckScoreActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".PersonCenterActivity" />
-        <activity android:name=".BeginningActivity.LoginActivity"></activity>
+        <activity android:name=".BeginningActivity.LoginActivity" />
+        <activity android:name=".BeginningActivity.GetPasswordActivity"></activity>
     </application>
 
 </manifest>
