@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="spencercjh.crabscore.CommonPart.RegisterActivity">
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/background_button_div"
+        android:text="注  册"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.836" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Please fill the form first"
+        android:textColor="@color/textcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/welcome_to_crabscore"
+        android:textColor="@color/textcolor"
+        android:textSize="22sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.099" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="请输入您的邮箱"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:password="true"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="@string/请输入您的密码"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:password="true"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_id"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="@string/请输入您的用户名"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.235">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="@string/请输入您的姓名"
+        android:maxLines="1"
+        android:password="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.724">
+
+        <requestFocus />
+    </EditText>
+
+    <RadioGroup
+        android:layout_width="344dp"
+        android:layout_height="40dp"
+        android:layout_weight="0.43"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605">
+
+        <RadioButton
+            android:id="@+id/user3_judge"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="我是评委" />
+
+        <RadioButton
+            android:id="@+id/user2_staff"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:text="我是工作人员"
+            android:textSize="11sp" />
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>

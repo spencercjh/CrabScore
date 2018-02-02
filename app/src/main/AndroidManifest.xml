@@ -18,19 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BeginningActivity.OpenappActivity">
+        <activity android:name=".CommonPart.OpenappActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".CheckScorePart.CheckScoreActivity" />
-        <activity android:name=".AdminPart.AdminActivity" />
+        <activity android:name=".CommonPart.MainActivity" />
+        <activity android:name=".CheckScore_Ranking_Part.CheckScore_Ranking_Activity" />
+        <activity android:name=".AdministratorPart.AdministratorActivity" />
         <activity android:name=".PersonCenterPart.PersonCenterActivity" />
-        <activity android:name=".BeginningActivity.LoginActivity" />
-        <activity android:name=".BeginningActivity.GetPasswordActivity"></activity>
+        <activity android:name=".CommonPart.LoginActivity" />
+        <activity android:name=".CommonPart.GetPasswordActivity" />
+        <activity android:name=".CommonPart.RegisterActivity" />
+        <activity android:name=".JudgePart.JudgeActivity" />
+        <activity android:name=".StaffPart.StaffActivity" />
+        <activity android:name=".CheckScore_Ranking_Part.WelecomeUnitActivity"></activity>
     </application>
 
 </manifest>

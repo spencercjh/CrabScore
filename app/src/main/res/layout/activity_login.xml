@@ -4,8 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BeginningActivity.LoginActivity">
+    tools:context=".CommonPart.LoginActivity">
 
+
+    <TextView
+        android:id="@+id/button_register"
+        android:layout_width="77sp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="33dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/button_forget_password"
@@ -74,6 +88,7 @@
             android:maxLines="1"
             android:selectAllOnFocus="false"
             android:textSize="17sp">
+
             <requestFocus />
         </EditText>
 
@@ -91,14 +106,15 @@
             android:maxLines="1"
             android:password="true"
             android:textSize="17sp">
+
             <requestFocus />
         </EditText>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="90sp"
+            android:layout_height="100sp"
 
-            android:layout_weight="0.05"
+            android:layout_weight="0.25"
             android:orientation="vertical"
             android:weightSum="1">
 
@@ -122,32 +138,41 @@
                     android:text="@string/自动登录" />
             </RadioGroup>
 
-            <RadioGroup
+            <spencercjh.crabscore.CommonPart.FlowRadioGroup
+                android:id="@+id/frg_radio_group"
                 android:layout_width="match_parent"
-                android:layout_height="40sp"
-                android:layout_weight="0.43"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_height="wrap_content">
 
                 <RadioButton
-                    android:id="@+id/user1"
+                    android:id="@+id/user4_unit"
                     android:layout_width="100sp"
                     android:layout_height="40sp"
-                    android:text="用户组1" />
+                    android:layout_weight="1"
+                    android:text="我是参选单位"
+                    android:textSize="11sp" />
 
                 <RadioButton
-                    android:id="@+id/user2"
+                    android:id="@+id/user1_administrator"
                     android:layout_width="100sp"
                     android:layout_height="40sp"
-                    android:text="用户组2" />
+                    android:text="我是管理员"
+                    android:textSize="12sp" />
 
                 <RadioButton
-                    android:id="@+id/user3"
+                    android:id="@+id/user2_staff"
                     android:layout_width="100sp"
                     android:layout_height="40sp"
-                    android:text="用户组3" />
-            </RadioGroup>
+                    android:text="我是工作人员"
+                    android:textSize="11sp" />
+
+                <RadioButton
+                    android:id="@+id/user3_judge"
+                    android:layout_width="100sp"
+                    android:layout_height="40sp"
+                    android:layout_weight="1"
+                    android:text="我是评委" />
+            </spencercjh.crabscore.CommonPart.FlowRadioGroup>
+
         </LinearLayout>
 
         <Button
