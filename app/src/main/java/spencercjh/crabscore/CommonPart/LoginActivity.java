@@ -119,24 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 /**
                  * 自动登陆
                  */
-                UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), pwd.getText().toString().trim(), choice);
-                int result = -1;
-                try {
-                    result = Fun_TeacherLogin.http_LoginTeacher(teacherOBJ.getTeacher_id(), teacherOBJ.getTeacher_password());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (result == 1) {  //登陆成功
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);    //跳转界面
-                    intent.putExtra("USEROBJ", userOBJ);
-                    intent.putExtra("USER", choice);
-                    startActivity(intent);
-                    finish();
-                } else if (result == 0) {   //登陆失败
-                    Toast.makeText(getApplicationContext(), "用户名不存在或密码错误", Toast.LENGTH_SHORT).show();
-                } else if (result == -1) {  //连接服务器失败
-                    Toast.makeText(getApplicationContext(), "连接服务器失败", Toast.LENGTH_SHORT).show();
-                }
+
             }
         }
         //监听自动登录多选框按钮事件
@@ -281,26 +264,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             /**
              * 登陆
              */
-            UserOBJ userOBJ = new UserOBJ(Eid, Epassword, choice);
-            int result = ;//网络登录请求
-            if (result == 1) {
-                if (rem_pw.isChecked()) {
-                    //记住用户名、密码、
-                    SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("USER_ID", userOBJ.getUser_name());
-                    editor.putString("PASSWORD", userOBJ.getPassword());
-                    editor.apply();
-                }
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
-                LoginActivity.this.startActivity(intent);
-                finish();
-            } else if (result == 0) {
-                Toast.makeText(getApplicationContext(), "用户名不存在或密码错误", Toast.LENGTH_SHORT).show();
-            } else if (result == -1) {
-                Toast.makeText(getApplicationContext(), "连接服务器失败", Toast.LENGTH_SHORT).show();
-            }
+            UserOBJ userOBJ = new UserOBJ("123", "123", 1);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("USEROBJ", userOBJ);
+            intent.putExtra("USER", choice);
+            LoginActivity.this.startActivity(intent);
+            finish();
         }
     }
 
