@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,14 +11,15 @@ import java.net.URLDecoder;
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
+ * 注册审核RegisterAssessmentFragment中查找所有没有启用的账号
  */
 
-public class QueryAllCompetition extends Thread {
+public class QueryAllUncheckedUser extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
 
-    public QueryAllCompetition(String url) {
+    public QueryAllUncheckedUser(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
     }

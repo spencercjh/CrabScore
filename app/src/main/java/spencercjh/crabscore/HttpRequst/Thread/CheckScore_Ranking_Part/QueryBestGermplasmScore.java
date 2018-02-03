@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,35 +7,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
+ * 查找最佳种质奖
  */
 
-public class UpdateUserProperty extends Thread {
+public class QueryBestGermplasmScore extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
-    private String user_name;
-    private String display_name;
-    private String email;
-    private int choice;
 
-    public UpdateUserProperty(String url, String user_name, String display_name, String email, int choice) {
+    public QueryBestGermplasmScore(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
-        this.display_name = display_name;
-        this.email = email;
-        this.choice = choice;
     }
 
     private void doGet() throws IOException {
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice;
         /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);
@@ -70,6 +59,7 @@ public class UpdateUserProperty extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public boolean getFlag() {

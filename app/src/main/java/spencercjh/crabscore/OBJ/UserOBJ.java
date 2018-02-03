@@ -14,7 +14,7 @@ import java.io.Serializable;
  * 用户组4 参选单位 unit
  */
 public class UserOBJ implements Serializable {
-    private String user_id; //***没用***
+    private int user_id; //***没用***
     private String user_name;   //真正的用户名
     private String password;    //密码
     private String display_name;    //姓名
@@ -26,9 +26,22 @@ public class UserOBJ implements Serializable {
 
     }
 
-    //注册用
-    public UserOBJ(String user_id, String user_name, String password, String display_name, int role_id, String email) {
-        this.user_id = user_id;
+    //    管理员参赛单位列表
+    public UserOBJ(String user_name) {
+        this.user_name = user_name;
+    }
+
+    //    管理员用户列表
+    public UserOBJ(String user_name, String display_name, int role_id, int status, String email) {
+        this.user_name = user_name;
+        this.display_name = display_name;
+        this.role_id = role_id;
+        this.status = status;
+        this.email = email;
+    }
+
+    //    注册用
+    public UserOBJ(String user_name, String password, String display_name, int role_id, String email) {
         this.user_name = user_name;
         this.password = password;
         this.display_name = display_name;
@@ -36,7 +49,7 @@ public class UserOBJ implements Serializable {
         this.email = email;
     }
 
-    //登陆用
+    //    登陆用
     public UserOBJ(String user_name, String password, int role_id) {
         this.user_name = user_name;
         this.password = password;
@@ -83,11 +96,11 @@ public class UserOBJ implements Serializable {
         this.password = password;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

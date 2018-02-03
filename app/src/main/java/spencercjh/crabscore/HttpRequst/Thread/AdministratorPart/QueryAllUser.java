@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.CheckScore_Ranking_Part;
+package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,15 +11,15 @@ import java.net.URLDecoder;
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
- * 查找最佳种质奖
+ * 用户列表UserAdminFragment中查找所有用户
  */
 
-public class QueryBestGermplasmScore extends Thread {
+public class QueryAllUser extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
 
-    public QueryBestGermplasmScore(String url) {
+    public QueryAllUser(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
     }
@@ -59,7 +59,6 @@ public class QueryBestGermplasmScore extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean getFlag() {

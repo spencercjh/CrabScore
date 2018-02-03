@@ -21,6 +21,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.OBJ.GermplasmScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -91,7 +93,7 @@ public class BestGermplasmPrizeFragment extends Fragment {
 
 
     private void Fill_BestGermplasmPrizeList() throws InterruptedException, JSONException {
-        final ArrayList<StudentOBJ> CheckInfoList = Json_CheckedStudentList.parserJson3(Fun_GetCheckStudent.http_GetCheckStudent(subjectOBJ));
+        final ArrayList<GermplasmScoreOBJ> CheckInfoList = JsonConvert.con(Fun_GetCheckStudent.http_GetCheckStudent(subjectOBJ));
         final ArrayList<StudentOBJ> AllStudentList = Json_AllStudentList.parserJson(Fun_GetAllStudent.http_GetAllStudent(subjectOBJ));
         init_student_property(AllStudentList);
         final ArrayList<StudentOBJ> UnCheckedStudentList = GetUnCheckedStudnetList(CheckInfoList, AllStudentList);

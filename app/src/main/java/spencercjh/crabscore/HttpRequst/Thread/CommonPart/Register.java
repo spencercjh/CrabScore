@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.CommonPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,29 +7,38 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
  */
 
-public class UpdateUserStatus extends Thread {
+public class Register extends Thread {
     private boolean flag;
     private String url;
     private String user_name;
-    private int status;
-    private String update_state;
+    private String password;
+    private String display_name;
+    private int choice;
+    private String email;
+    private String register_state;
 
-    public UpdateUserStatus(String url, String user_name, int status) {
+    public Register(String url, String user_name, String password, String display_name, String email, int choice) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
-        this.status = status;
+        this.password = password;
+        this.display_name = display_name;
+        this.email = email;
+        this.choice = choice;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
-        url = url + "?user_name=" + user_name + "&status=" + status;
+        display_name = URLEncoder.encode(display_name, "utf-8");
+        display_name = URLEncoder.encode(display_name, "utf-8");
+        url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice;
         try {
             URL httpUrl = new URL(url);
             /*获取网络连接*/
@@ -49,12 +58,12 @@ public class UpdateUserStatus extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                update_state = buffer.toString();
-                update_state = URLDecoder.decode(update_state, "UTF-8");
+                register_state = buffer.toString();
+                register_state = URLDecoder.decode(register_state, "UTF-8");
             }
             //把服务端返回的数据打印出来
-            System.out.println("result:" + update_state);
-            if (update_state.equals("student login failed")) {
+            System.out.println("result:" + register_state);
+            if (register_state.equals("student login failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -73,12 +82,12 @@ public class UpdateUserStatus extends Thread {
         this.flag = flag;
     }
 
-    public String getUpdate_state() {
-        return update_state;
+    public String getRegister_state() {
+        return register_state;
     }
 
-    private void setUpdate_state(String update_state) {
-        this.update_state = update_state;
+    private void setRegister_state(String register_state) {
+        this.register_state = register_state;
     }
 
     /*在run中调用doGet*/

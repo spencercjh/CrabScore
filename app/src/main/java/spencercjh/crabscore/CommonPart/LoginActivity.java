@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-import spencercjh.crabscore.HttpRequest.Function.Fun_isNetworkAvailable;
+import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_isNetworkAvailable;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 

@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.CommonPart;
+package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,33 +14,26 @@ import java.net.URLEncoder;
  * iClass
  */
 
-public class Register extends Thread {
+public class InsertUnitInfo extends Thread{
     private boolean flag;
     private String url;
-    private String user_name;
-    private String password;
-    private String display_name;
-    private int choice;
-    private String email;
-    private String register_state;
+    private String company_name;
+    private String jsonstr;
 
-    public Register(String url, String user_name, String password, String display_name, String email, int choice) {
+    public InsertUnitInfo(String url,String company_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
-        this.password = password;
-        this.display_name = display_name;
-        this.email = email;
-        this.choice = choice;
+        this.company_name=company_name;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice;
+        company_name= URLEncoder.encode(company_name,"utf-8");
+        company_name=URLEncoder.encode(company_name,"utf-8");
+        url=url+"?company_name="+company_name;
         try {
             URL httpUrl = new URL(url);
+//            URLEncoder.encode(url);
             /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
             /*设置请求方法为GET方法*/
@@ -58,12 +51,12 @@ public class Register extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                register_state = buffer.toString();
-                register_state = URLDecoder.decode(register_state, "UTF-8");
+                jsonstr = buffer.toString();
+                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
             }
             //把服务端返回的数据打印出来
-            System.out.println("result:" + register_state);
-            if (register_state.equals("student login failed")) {
+            System.out.println("result:" + jsonstr);
+            if (jsonstr.equals("get student subject list failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -82,12 +75,8 @@ public class Register extends Thread {
         this.flag = flag;
     }
 
-    public String getRegister_state() {
-        return register_state;
-    }
-
-    private void setRegister_state(String register_state) {
-        this.register_state = register_state;
+    public String getJsonstr() {
+        return jsonstr;
     }
 
     /*在run中调用doGet*/

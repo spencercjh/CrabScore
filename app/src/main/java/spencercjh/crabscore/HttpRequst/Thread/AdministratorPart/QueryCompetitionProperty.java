@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,20 +13,20 @@ import java.net.URLDecoder;
  * iClass
  */
 
-public class QueryUserProperty extends Thread {
+public class QueryCompetitionProperty extends Thread {
     private boolean flag;
     private String url;
-    private String user_name;
     private String jsonstr;
+    private int competition_year;
 
-    public QueryUserProperty(String url, String user_name) {
+    public QueryCompetitionProperty(String url, int competition_year) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
+        this.competition_year = competition_year;
     }
 
     private void doGet() throws IOException {
-        url = url + "?user_name=" + user_name;
+        url = url + "?competition_year=" + competition_year;
         /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);

@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.CheckScore_Ranking_Part;
+package spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part;
 
 import java.io.BufferedReader;
 import java.io.IOException;

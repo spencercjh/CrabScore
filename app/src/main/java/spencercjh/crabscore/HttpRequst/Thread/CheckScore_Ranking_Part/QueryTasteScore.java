@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,15 +11,15 @@ import java.net.URLDecoder;
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
- * 查找所有的参赛单位
+ * 查找口感奖
  */
 
-public class QueryAllUnit extends Thread {
+public class QueryTasteScore extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
 
-    public QueryAllUnit(String url) {
+    public QueryTasteScore(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
     }

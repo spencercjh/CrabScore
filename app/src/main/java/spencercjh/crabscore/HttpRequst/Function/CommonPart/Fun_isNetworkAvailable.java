@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequest.Function;
+package spencercjh.crabscore.HttpRequst.Function.CommonPart;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
