@@ -1,16 +1,13 @@
 package spencercjh.crabscore.CompanyPart;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.Window;
 import android.widget.Toast;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,7 +15,7 @@ import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScorePageAdapter;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-public class CheckOwnGroupScore extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class CompanyActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
@@ -30,7 +27,7 @@ public class CheckOwnGroupScore extends AppCompatActivity implements TabLayout.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_own_group_score);
+        setContentView(R.layout.activity_company);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         choice = (int) intent.getSerializableExtra("USER");
@@ -59,24 +56,6 @@ public class CheckOwnGroupScore extends AppCompatActivity implements TabLayout.O
                 tab_title.getTabAt(position).select();
             }
         });
-    }
-
-    @Override
-    public boolean onMenuOpened(int featureId, Menu menu) {
-        // 显示菜单项左侧的图标
-        // ActionBar的featureId是8，Toolbar的featureId是108
-        if (featureId % 100 == Window.FEATURE_ACTION_BAR && menu != null) {
-            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
-                try {
-                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu, true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return super.onMenuOpened(featureId, menu);
     }
 
     @Override

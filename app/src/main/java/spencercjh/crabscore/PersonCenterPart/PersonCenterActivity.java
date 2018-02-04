@@ -32,10 +32,8 @@ public class PersonCenterActivity extends AppCompatActivity {
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         choice = (int) intent.getSerializableExtra("USER");
         toolbar = (Toolbar) findViewById(R.id.tl_head);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setTitle("       个人中心");
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
     }
 

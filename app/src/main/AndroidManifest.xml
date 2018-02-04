@@ -34,7 +34,7 @@
         <activity android:name=".CommonPart.RegisterActivity" />
         <activity android:name=".JudgePart.JudgeActivity" />
         <activity android:name=".StaffPart.StaffActivity" />
-        <activity android:name=".CompanyPart.CheckOwnGroupScore"></activity>
+        <activity android:name=".CompanyPart.CompanyActivity"></activity>
     </application>
 
 </manifest>
