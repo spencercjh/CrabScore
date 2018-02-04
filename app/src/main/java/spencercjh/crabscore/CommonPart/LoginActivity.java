@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else if (pos == 3) {
                     sp.edit().putBoolean("JUDGE", true).apply();
                 } else if (pos == 4) {
-                    sp.edit().putBoolean("UNIT", true).apply();
+                    sp.edit().putBoolean("COMPANY", true).apply();
                 }
             }
 
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sp.edit().putBoolean("ADMINISTRATOR", false).apply();
                 sp.edit().putBoolean("STAFF", false).apply();
                 sp.edit().putBoolean("JUDGE", false).apply();
-                sp.edit().putBoolean("UNIT", false).apply();
+                sp.edit().putBoolean("COMPANY", false).apply();
             }
         });
         Button bt_login = (Button) findViewById(R.id.button_search);
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sp.edit().putBoolean("ADMINISTRATOR", false).apply();
                 sp.edit().putBoolean("STAFF", false).apply();
                 sp.edit().putBoolean("JUDGE", false).apply();
-                sp.edit().putBoolean("UNIT", false).apply();
+                sp.edit().putBoolean("COMPANY", false).apply();
                 spinner.setSelection(0);    //spinner恢复默认第0项
             }
         } catch (RuntimeException ignored) {
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else if (sp.getBoolean("JUDGE", false)) { //设置默认是用户组3状态
             spinner.setSelection(3);
             choice = 3;
-        } else if (sp.getBoolean("UNIT", false)) {  //设置默认是用户组4状态
+        } else if (sp.getBoolean("COMPANY", false)) {  //设置默认是用户组4状态
             spinner.setSelection(4);
             choice = 4;
         }
@@ -215,10 +215,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (choice_user4.isChecked()) {
                     System.out.println("用户组4已选中");
-                    sp.edit().putBoolean("UNIT", true).apply();
+                    sp.edit().putBoolean("COMPANY", true).apply();
                 } else {
                     System.out.println("用户组4没有选中");
-                    sp.edit().putBoolean("UNIT", false).apply();
+                    sp.edit().putBoolean("COMPANY", false).apply();
                 }
             }
         });*/

@@ -12,7 +12,7 @@ import java.util.Date;
 
 import spencercjh.crabscore.AdministratorPart.AdministratorActivity;
 import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScore_Ranking_Activity;
-import spencercjh.crabscore.CheckScore_Ranking_Part.WelecomeUnitActivity;
+import spencercjh.crabscore.CompanyPart.CheckOwnGroupScore;
 import spencercjh.crabscore.JudgePart.JudgeActivity;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.PersonCenterPart.PersonCenterActivity;
@@ -70,7 +70,7 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
             } else if (choice == 3) {
                 toActivity("second", JudgeActivity.class);
             } else if (choice == 4) {
-                toActivity("second", WelecomeUnitActivity.class);
+                toActivity("second", CheckOwnGroupScore.class);
             }
         } else if (v == ll_third) {
             toActivity("third", PersonCenterActivity.class);

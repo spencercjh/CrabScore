@@ -14,12 +14,12 @@ import java.net.URLDecoder;
  * 查找所有的参赛单位
  */
 
-public class QueryAllUnit extends Thread {
+public class QueryAllCompany extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
 
-    public QueryAllUnit(String url) {
+    public QueryAllCompany(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
     }

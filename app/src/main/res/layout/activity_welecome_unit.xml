@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="spencercjh.crabscore.CheckScore_Ranking_Part.WelecomeUnitActivity">
+    tools:context="spencercjh.crabscore.CompanyPart.CheckOwnGroupScore">
 
 </android.support.constraint.ConstraintLayout>

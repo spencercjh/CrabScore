@@ -1,7 +1,7 @@
 package spencercjh.crabscore.HttpRequst.Function.AdministratorPart;
 
 import spencercjh.crabscore.HttpRequst.Function.ServerURL;
-import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.InsertUnitInfo;
+import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.InsertCompanyInfo;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
@@ -10,10 +10,10 @@ import spencercjh.crabscore.OBJ.UserOBJ;
  * 这里的userOBJ是参赛单位
  */
 
-public class Fun_InsertUnitInfo {
+public class Fun_InsertCompanyInfo {
     public static boolean http_InsertUnitInfo(UserOBJ userOBJ) throws InterruptedException {
-        String url= ServerURL.sever_url+ServerURL.servlet_InsertUnitInfo;
-        InsertUnitInfo thread=new InsertUnitInfo(url,userOBJ.getUser_name());
+        String url= ServerURL.sever_url+ServerURL.servlet_InsertCompanyInfo;
+        InsertCompanyInfo thread=new InsertCompanyInfo(url,userOBJ.getUser_name());
         thread.start();
         thread.join();
         return thread.getFlag();

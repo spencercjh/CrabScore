@@ -15,7 +15,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
-public class UnitAdminFragment extends Fragment {
+public class CompanyAdminFragment extends Fragment {
     private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
@@ -25,10 +25,10 @@ public class UnitAdminFragment extends Fragment {
     private SwipeRefreshLayout srl_simple;
 
 
-    UnitAdminFragment() {
+    CompanyAdminFragment() {
     }
 
-    UnitAdminFragment(UserOBJ userOBJ, int choice) {
+    CompanyAdminFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

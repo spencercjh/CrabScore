@@ -14,13 +14,13 @@ import java.net.URLEncoder;
  * iClass
  */
 
-public class InsertUnitInfo extends Thread{
+public class InsertCompanyInfo extends Thread{
     private boolean flag;
     private String url;
     private String company_name;
     private String jsonstr;
 
-    public InsertUnitInfo(String url,String company_name) {
+    public InsertCompanyInfo(String url, String company_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.company_name=company_name;

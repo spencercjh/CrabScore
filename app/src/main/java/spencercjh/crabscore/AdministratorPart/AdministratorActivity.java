@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.Window;
+import android.widget.Toast;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -23,6 +25,7 @@ public class AdministratorActivity extends AppCompatActivity implements TabLayou
     private ArrayList<String> mTitleArray = new ArrayList<String>();
     private UserOBJ userOBJ = new UserOBJ();
     private int choice;
+    private long lastPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,5 +104,15 @@ public class AdministratorActivity extends AppCompatActivity implements TabLayou
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    public void onBackPressed() {
+        if (new Date().getTime() - lastPressTime < 1000) {
+            finish();
+            Runtime.getRuntime().exit(0);//结束程序
+        } else {
+            lastPressTime = new Date().getTime();//重置lastPressTime
+            Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
+        }
     }
 }

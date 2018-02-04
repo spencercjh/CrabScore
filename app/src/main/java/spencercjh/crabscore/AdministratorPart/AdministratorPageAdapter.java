@@ -27,7 +27,7 @@ public class AdministratorPageAdapter extends FragmentPagerAdapter {
         } else if (position == 1) {
             return new RegisterAssessmentFragment(userOBJ, choice);
         } else if (position == 2) {
-            return new UnitAdminFragment(userOBJ, choice);
+            return new CompanyAdminFragment(userOBJ, choice);
         }else if(position==3){
             return new CompetitionAdminFragment(userOBJ,choice);
         }
