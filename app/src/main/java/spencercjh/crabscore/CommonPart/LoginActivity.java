@@ -15,11 +15,13 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,11 +45,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText pwd;
     private CheckBox rem_pw, auto_login;
     private SharedPreferences sp;
-    private RadioButton choice_user1;
-    private RadioButton choice_user2;
-    private RadioButton choice_user3;
-    private RadioButton choice_user4;
-    private int choice;
+    private int choice = 0;
+    private Spinner spinner;
 
     @SuppressLint("WorldReadableFiles")
     @Override
@@ -61,10 +60,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pwd = (EditText) findViewById(R.id.edit_password);
         rem_pw = (CheckBox) findViewById(R.id.remember_password);
         auto_login = (CheckBox) findViewById(R.id.auto_login);
-        choice_user1 = (RadioButton) findViewById(R.id.user1_administrator);
-        choice_user2 = (RadioButton) findViewById(R.id.user2_staff);
-        choice_user3 = (RadioButton) findViewById(R.id.user3_judge);
-        choice_user4 = (RadioButton) findViewById(R.id.user4_unit);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        String[] Items = getResources().getStringArray(R.array.roles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        //        监听spinner下拉框事件
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                choice = pos;
+                if (pos == 1) {
+                    sp.edit().putBoolean("ADMINISTRATOR", true).apply();
+                } else if (pos == 2) {
+                    sp.edit().putBoolean("STAFF", true).apply();
+                } else if (pos == 3) {
+                    sp.edit().putBoolean("JUDGE", true).apply();
+                } else if (pos == 4) {
+                    sp.edit().putBoolean("UNIT", true).apply();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+                sp.edit().putBoolean("ADMINISTRATOR", false).apply();
+                sp.edit().putBoolean("STAFF", false).apply();
+                sp.edit().putBoolean("JUDGE", false).apply();
+                sp.edit().putBoolean("UNIT", false).apply();
+            }
+        });
         Button bt_login = (Button) findViewById(R.id.button_search);
         bt_login.setOnClickListener(this);
         setFullScreen();
@@ -79,14 +104,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sp.edit().putBoolean("AUTO_ISCHECK", false).apply();
                 rem_pw.setChecked(false);
                 sp.edit().putBoolean("ISCHECK", false).apply();
-                choice_user1.setChecked(false);
                 sp.edit().putBoolean("ADMINISTRATOR", false).apply();
-                choice_user2.setChecked(false);
                 sp.edit().putBoolean("STAFF", false).apply();
-                choice_user3.setChecked(false);
                 sp.edit().putBoolean("JUDGE", false).apply();
-                choice_user4.setChecked(false);
                 sp.edit().putBoolean("UNIT", false).apply();
+                spinner.setSelection(0);    //spinner恢复默认第0项
             }
         } catch (RuntimeException ignored) {
             ignored.printStackTrace();
@@ -98,17 +120,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     setIcon(android.R.drawable.ic_dialog_alert).setTitle("警告").setPositiveButton("确认", null).show();
         }
         if (sp.getBoolean("ADMINISTRATOR", false)) {  //设置默认是用户组1状态
-            choice_user1.setChecked(true);
+            spinner.setSelection(1);
             choice = 1;
+        } else if (sp.getBoolean("STAFF", false)) {     //设置默认是用户组2状态
+            spinner.setSelection(2);
+            choice = 2;
         } else if (sp.getBoolean("JUDGE", false)) { //设置默认是用户组3状态
-            choice_user3.setChecked(true);
+            spinner.setSelection(3);
             choice = 3;
         } else if (sp.getBoolean("UNIT", false)) {  //设置默认是用户组4状态
-            choice_user4.setChecked(true);
+            spinner.setSelection(4);
             choice = 4;
-        } else if (sp.getBoolean("STAFF", false)) {     //设置默认是用户组2状态
-            choice_user2.setChecked(true);
-            choice = 2;
         }
         if (sp.getBoolean("ISCHECK", false)) {  //设置默认是记录密码状态
             rem_pw.setChecked(true);
@@ -119,7 +141,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 /**
                  * 自动登陆
                  */
-
             }
         }
         //监听自动登录多选框按钮事件
@@ -148,8 +169,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
+
         //监听用户组1多选框按钮事件
-        choice_user1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+/*        choice_user1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (choice_user1.isChecked()) {
@@ -160,9 +182,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     sp.edit().putBoolean("ADMINISTRATOR", false).apply();
                 }
             }
-        });
+        });*/
         //监听用户组2多选框按钮事件
-        choice_user2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+/*        choice_user2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (choice_user2.isChecked()) {
@@ -173,9 +195,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     sp.edit().putBoolean("STAFF", false).apply();
                 }
             }
-        });
+        });*/
         //监听用户组3多选框按钮事件
-        choice_user3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+ /*       choice_user3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (choice_user3.isChecked()) {
@@ -186,9 +208,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     sp.edit().putBoolean("JUDGE", false).apply();
                 }
             }
-        });
+        });*/
         //监听用户组4多选框按钮事件
-        choice_user4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+/*        choice_user4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (choice_user4.isChecked()) {
@@ -199,7 +221,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     sp.edit().putBoolean("UNIT", false).apply();
                 }
             }
-        });
+        });*/
     }
 
     //忘记密码按钮
@@ -244,7 +266,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             new AlertDialog.Builder(this).setMessage("帐号或密码不可为空！").setCancelable(false).
                     setIcon(android.R.drawable.ic_dialog_alert).setTitle("注意").setPositiveButton("关闭", null).show();
         } else {
-            if (!choice_user1.isChecked() && !choice_user2.isChecked() && !choice_user3.isChecked() && !choice_user4.isChecked()) {
+            if (choice == 0) {
                 new AlertDialog.Builder(this)
                         .setMessage("请选择你的用户组")
                         .setCancelable(false)
@@ -252,19 +274,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .setTitle("注意")
                         .setPositiveButton("关闭", null)
                         .show();
-            } else if (choice_user1.isChecked()) {//用户组1登录
-                choice = 1;
-            } else if (choice_user2.isChecked()) {//用户组2登录
-                choice = 2;
-            } else if (choice_user3.isChecked()) {//用户组3登陆
-                choice = 3;
-            } else if (choice_user4.isChecked()) {//用户组4登陆
-                choice = 4;
             }
             /**
              * 登陆
              */
-            UserOBJ userOBJ = new UserOBJ("123", "123", 1);
+            UserOBJ userOBJ = new UserOBJ("123", "123", choice);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
             intent.putExtra("USER", choice);

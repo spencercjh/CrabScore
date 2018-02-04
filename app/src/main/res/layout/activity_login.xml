@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/button_register"
         android:layout_width="77sp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="33dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
@@ -38,7 +38,7 @@
     <LinearLayout
         android:id="@+id/loginPanel"
         android:layout_width="300sp"
-        android:layout_height="400sp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8sp"
         android:layout_marginLeft="8sp"
@@ -138,40 +138,12 @@
                     android:text="@string/自动登录" />
             </RadioGroup>
 
-            <spencercjh.crabscore.CommonPart.FlowRadioGroup
-                android:id="@+id/frg_radio_group"
+            <Spinner
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/user4_unit"
-                    android:layout_width="100sp"
-                    android:layout_height="40sp"
-                    android:layout_weight="1"
-                    android:text="我是参选单位"
-                    android:textSize="11sp" />
-
-                <RadioButton
-                    android:id="@+id/user1_administrator"
-                    android:layout_width="100sp"
-                    android:layout_height="40sp"
-                    android:text="我是管理员"
-                    android:textSize="12sp" />
-
-                <RadioButton
-                    android:id="@+id/user2_staff"
-                    android:layout_width="100sp"
-                    android:layout_height="40sp"
-                    android:text="我是工作人员"
-                    android:textSize="11sp" />
-
-                <RadioButton
-                    android:id="@+id/user3_judge"
-                    android:layout_width="100sp"
-                    android:layout_height="40sp"
-                    android:layout_weight="1"
-                    android:text="我是评委" />
-            </spencercjh.crabscore.CommonPart.FlowRadioGroup>
+                android:layout_height="wrap_content"
+                android:layout_weight="0.39"
+                android:autofillHints="sd" />
 
         </LinearLayout>
 
