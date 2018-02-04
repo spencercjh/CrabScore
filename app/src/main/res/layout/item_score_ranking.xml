@@ -21,25 +21,25 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="64dp"
                 android:layout_height="match_parent"
                 android:text="名次:" />
 
             <TextView
-                android:id="@+id/tv_ranking"
-                android:layout_width="150sp"
+                android:id="@+id/tv_order"
+                android:layout_width="158dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:text="组号: " />
 
             <TextView
-                android:id="@+id/tv_group"
+                android:id="@+id/tv_group_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -60,8 +60,8 @@
                 android:text="参赛单位: " />
 
             <TextView
-                android:id="@+id/tv_unit"
-                android:layout_width="119dp"
+                android:id="@+id/tv_company"
+                android:layout_width="159dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1" />

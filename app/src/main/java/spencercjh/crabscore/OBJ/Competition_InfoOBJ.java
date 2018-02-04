@@ -1,13 +1,15 @@
 package spencercjh.crabscore.OBJ;
 
+import java.io.Serializable;
+
 /**
  * Created by spencercjh on 2018/2/4.
  * iClass
  */
 
-public class Competition_Info_OBJ {
-    private String competition_id;  //比赛id
-    private int competition_year;   //年份
+public class Competition_InfoOBJ implements Serializable{
+    private int competition_id;  //比赛id
+    private String competition_year;   //年份
     private String note;    //备注
     private double var_fatness_m;    //雄蟹肥满度参数
     private double var_weight_m; //雄蟹体重参数
@@ -21,20 +23,20 @@ public class Competition_Info_OBJ {
     private int result_quality; //种质评比排名
     private int result_taste;   //口感评比排名
 
-    public Competition_Info_OBJ() {
+    public Competition_InfoOBJ() {
 
     }
 
     //    大赛列表中 年份-备注 构造函数
-    public Competition_Info_OBJ(int competition_year, String note) {
+    public Competition_InfoOBJ(String competition_year, String note) {
         this.competition_year = competition_year;
         this.note = note;
     }
 
-    public Competition_Info_OBJ(int competition_year, String note, double var_fatness_m, double var_fatness_f,
-                                double var_weight_m, double var_mfatness_sd, double var_mweight_sd,
-                                double var_weight_f, double var_ffatness_sd, double var_fweight_sd,
-                                int result_fatness, int result_quality, int result_taste) {
+    public Competition_InfoOBJ(String competition_year, String note, double var_fatness_m, double var_fatness_f,
+                               double var_weight_m, double var_mfatness_sd, double var_mweight_sd,
+                               double var_weight_f, double var_ffatness_sd, double var_fweight_sd,
+                               int result_fatness, int result_quality, int result_taste) {
         this.competition_year = competition_year;
         this.var_fatness_m = var_fatness_m;
         this.var_fatness_f = var_fatness_f;
@@ -114,11 +116,11 @@ public class Competition_Info_OBJ {
         this.var_weight_m = var_weight_m;
     }
 
-    public int getCompetition_year() {
+    public String getCompetition_year() {
         return competition_year;
     }
 
-    public void setCompetition_year(int competition_year) {
+    public void setCompetition_year(String competition_year) {
         this.competition_year = competition_year;
     }
 

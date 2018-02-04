@@ -19,17 +19,19 @@ public class UpdateUserStatus extends Thread {
     private String user_name;
     private int status;
     private String update_state;
+    private String update_user;
 
-    public UpdateUserStatus(String url, String user_name, int status) {
+    public UpdateUserStatus(String url, String user_name, int status, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
         this.status = status;
+        this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
-        url = url + "?user_name=" + user_name + "&status=" + status;
+        url = url + "?user_name=" + user_name + "&status=" + status + "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             /*获取网络连接*/

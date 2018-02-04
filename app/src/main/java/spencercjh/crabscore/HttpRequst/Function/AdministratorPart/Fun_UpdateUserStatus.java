@@ -10,9 +10,9 @@ import spencercjh.crabscore.OBJ.UserOBJ;
  */
 
 public class Fun_UpdateUserStatus {
-    public static boolean http_UpdateUserStatus(UserOBJ userOBJ) throws InterruptedException {
+    public static boolean http_UpdateUserStatus(UserOBJ userOBJ, UserOBJ update_user) throws InterruptedException {
         String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserStatus;
-        UpdateUserStatus thread = new UpdateUserStatus(url, userOBJ.getUser_name(), userOBJ.getStatus());
+        UpdateUserStatus thread = new UpdateUserStatus(url, userOBJ.getUser_name(), userOBJ.getStatus(), update_user.getUser_name());
         thread.start();
         thread.join();
         return thread.getFlag();

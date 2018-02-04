@@ -1,11 +1,14 @@
 package spencercjh.crabscore.OBJ;
 
+import java.io.Serializable;
+
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
  */
 
-public class GermplasmScoreOBJ {
+public class QualityScoreOBJ implements Serializable {
+    private int crab_id;    //螃蟹序号
     private int group_id;   //组号
     private int crab_sex;   //螃蟹性别
     private int user_id;    //评委用户ID
@@ -16,21 +19,19 @@ public class GermplasmScoreOBJ {
     private double score_dscc;  //第4侧齿
     private double score_bbyzt; //背部疣状突
     private int competition_id; //比赛id
-    private String company_name;    //参选单位
 
-    public GermplasmScoreOBJ() {
+    public QualityScoreOBJ() {
 
     }
 
     //查看成绩界面
-    public GermplasmScoreOBJ(int group_id, String company_name, double score_fin) {
+    public QualityScoreOBJ(int group_id, String company_name, double score_fin) {
         this.group_id = group_id;
-        this.company_name = company_name;
         this.score_fin = score_fin;
     }
 
-    public GermplasmScoreOBJ(int group_id, int crab_sex, int user_id, double score_fin, double score_bts,
-                             double score_fts, double score_ec, double score_dscc, double score_bbyzt, int competition_id) {
+    public QualityScoreOBJ(int group_id, int crab_sex, int user_id, double score_fin, double score_bts,
+                           double score_fts, double score_ec, double score_dscc, double score_bbyzt, int competition_id) {
         this.group_id = group_id;
         this.crab_sex = crab_sex;
         this.user_id = user_id;
@@ -122,14 +123,6 @@ public class GermplasmScoreOBJ {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public String getCompany_name() {
-        return company_name;
-    }
-
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
     }
 
 }

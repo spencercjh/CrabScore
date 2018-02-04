@@ -26,7 +26,7 @@
                 android:text="用户名:" />
 
             <TextView
-                android:id="@+id/tv_ranking"
+                android:id="@+id/tv_user_name"
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -39,7 +39,7 @@
                 android:text="显示名: " />
 
             <TextView
-                android:id="@+id/tv_group"
+                android:id="@+id/tv_display_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -60,7 +60,7 @@
                 android:text="用户组:" />
 
             <TextView
-                android:id="@+id/tv_unit"
+                android:id="@+id/tv_role"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -68,12 +68,12 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="51dp"
                 android:layout_height="match_parent"
                 android:text="状态:" />
 
             <TextView
-                android:id="@+id/tv_score"
+                android:id="@+id/tv_conpetition_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tl_head"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@color/bgc"
@@ -40,7 +40,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="12dp"
-            android:background="@mipmap/ic_launcher"
             android:src="@drawable/default_useravatar" />
 
         <TextView
@@ -62,12 +61,12 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/re_name"
+        android:id="@+id/re_user_name"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/re_fxid"
+        app:layout_constraintBottom_toTopOf="@+id/re_password"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -86,7 +85,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/text_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -110,7 +109,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/re_fxid"
+        android:id="@+id/re_password"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@drawable/btn_list_item_bg"
@@ -143,7 +142,55 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/re_college"
+        android:id="@+id/re_display_name"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true"
+        android:onClick="resetsex"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62">
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="显示名"
+            android:textColor="#353535"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv3"
+            android:layout_marginRight="20dp"
+            android:layout_toEndOf="@+id/tv3"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="123"
+            android:textColor="#AAAAAA"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="#dadada" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/re_email"
         android:layout_width="0dp"
         android:layout_height="48dp"
 
@@ -170,7 +217,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_college"
+            android:id="@+id/text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -187,53 +234,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_sex"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="@drawable/btn_list_item_bg"
-        android:clickable="true"
-        android:onClick="resetsex"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62">
-
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="显示名"
-            android:textColor="#353535"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_sex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv3"
-            android:layout_marginRight="20dp"
-            android:layout_toEndOf="@+id/tv3"
-            android:ellipsize="end"
-            android:gravity="right"
-            android:singleLine="true"
-            android:text="123"
-            android:textColor="#AAAAAA"
-            android:textSize="14sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="#dadada" />
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 
 

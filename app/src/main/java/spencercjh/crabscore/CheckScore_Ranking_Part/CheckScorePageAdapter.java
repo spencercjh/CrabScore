@@ -22,13 +22,13 @@ public class CheckScorePageAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int position) {
 		if (position == 0) {
-			return new HighQualityPrizeFragment(userOBJ,choice);
+			return new FatnessPrizeFragment(userOBJ,choice);
 		} else if (position == 1) {
-			return new BestGermplasmPrizeFragment(userOBJ,choice);
+			return new QualityPrizeFragment(userOBJ,choice);
 		}else if(position== 2){
             return new TastePrizeFragment(userOBJ,choice);
         }
-		return new HighQualityPrizeFragment(userOBJ,choice);
+		return new FatnessPrizeFragment(userOBJ,choice);
 	}
 
 	@Override

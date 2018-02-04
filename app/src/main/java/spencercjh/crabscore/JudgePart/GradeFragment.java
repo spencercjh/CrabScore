@@ -16,7 +16,7 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class GradeFragment extends Fragment {
-    private static final String TAG = "HighQualityPrizeFragment";
+    private static final String TAG = "FatnessPrizeFragment";
     protected View mView;
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();

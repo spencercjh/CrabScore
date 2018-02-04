@@ -35,7 +35,7 @@ import spencercjh.crabscore.R;
  * 用户组1 管理员 administrator
  * 用户组2 工作人员 staff
  * 用户组3 评委 judge
- * 用户组4 参选单位 unit
+ * 用户组4 参选单位 company
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private long lastPressTime = 0;

@@ -14,23 +14,25 @@ import java.net.URLEncoder;
  * iClass
  */
 
-public class InsertCompanyInfo extends Thread{
+public class InsertCompanyInfo extends Thread {
     private boolean flag;
     private String url;
     private String company_name;
+    private String user_name;
     private String jsonstr;
 
-    public InsertCompanyInfo(String url, String company_name) {
+    public InsertCompanyInfo(String url, String company_name, String user_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.company_name=company_name;
+        this.company_name = company_name;
+        this.user_name = user_name;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
-        company_name= URLEncoder.encode(company_name,"utf-8");
-        company_name=URLEncoder.encode(company_name,"utf-8");
-        url=url+"?company_name="+company_name;
+        company_name = URLEncoder.encode(company_name, "utf-8");
+        company_name = URLEncoder.encode(company_name, "utf-8");
+        url = url + "?company_name=" + company_name + "&user_name=" + user_name;
         try {
             URL httpUrl = new URL(url);
 //            URLEncoder.encode(url);

@@ -11,16 +11,17 @@ import java.io.Serializable;
  * 用户组1 管理员 administrator
  * 用户组2 工作人员 staff
  * 用户组3 评委 judge
- * 用户组4 参选单位 unit
+ * 用户组4 参选单位 company
  */
 public class UserOBJ implements Serializable {
-    private int user_id; //***没用***
+    private int user_id;
     private String user_name;   //真正的用户名
     private String password;    //密码
     private String display_name;    //姓名
     private int role_id;    //用户组
     private int status; //账号可用状态
     private String email;   //邮箱
+    private int competition_id; //参与的比赛id
 
     public UserOBJ() {
 
@@ -31,13 +32,31 @@ public class UserOBJ implements Serializable {
         this.user_name = user_name;
     }
 
-    //    管理员用户列表
-    public UserOBJ(String user_name, String display_name, int role_id, int status, String email) {
+    //    管理员注册审核列表1
+    public UserOBJ(String user_name, String display_name, int role_id, int status) {
+        this.user_name = user_name;
+        this.display_name = display_name;
+        this.role_id = role_id;
+        this.status = status;
+    }
+
+    //    管理员用户列表1
+    public UserOBJ(String user_name, String display_name, int role_id, int status, int competition_id) {
+        this.user_name = user_name;
+        this.display_name = display_name;
+        this.role_id = role_id;
+        this.status = status;
+        this.competition_id = competition_id;
+    }
+
+    //    管理员用户列表2
+    public UserOBJ(String user_name, String display_name, int role_id, int status, String email, int competition_id) {
         this.user_name = user_name;
         this.display_name = display_name;
         this.role_id = role_id;
         this.status = status;
         this.email = email;
+        this.competition_id = competition_id;
     }
 
     //    注册用
@@ -110,5 +129,13 @@ public class UserOBJ implements Serializable {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public int getCompetition_id() {
+        return competition_id;
+    }
+
+    public void setCompetition_id(int competition_id) {
+        this.competition_id = competition_id;
     }
 }

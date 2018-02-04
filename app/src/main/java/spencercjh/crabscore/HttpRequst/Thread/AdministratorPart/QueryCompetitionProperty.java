@@ -17,9 +17,9 @@ public class QueryCompetitionProperty extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
-    private int competition_year;
+    private String competition_year;
 
-    public QueryCompetitionProperty(String url, int competition_year) {
+    public QueryCompetitionProperty(String url, String competition_year) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.competition_year = competition_year;

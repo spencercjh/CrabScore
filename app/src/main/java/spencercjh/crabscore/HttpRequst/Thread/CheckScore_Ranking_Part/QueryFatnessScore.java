@@ -14,12 +14,12 @@ import java.net.URLDecoder;
  * 查找品质奖
  */
 
-public class QueryHighQualityScore extends Thread{
+public class QueryFatnessScore extends Thread{
     private boolean flag;
     private String url;
     private String jsonstr;
 
-    public QueryHighQualityScore(String url) {
+    public QueryFatnessScore(String url) {
         // TODO Auto-generated constructor stub
         this.url = url;
     }

@@ -21,21 +21,23 @@ public class UpdateUserProperty extends Thread {
     private String user_name;
     private String display_name;
     private String email;
+    private String update_user;
     private int choice;
 
-    public UpdateUserProperty(String url, String user_name, String display_name, String email, int choice) {
+    public UpdateUserProperty(String url, String user_name, String display_name, String email, int choice, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
         this.display_name = display_name;
         this.email = email;
         this.choice = choice;
+        this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
         display_name = URLEncoder.encode(display_name, "utf-8");
         display_name = URLEncoder.encode(display_name, "utf-8");
-        url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice;
+        url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice + "&update_user=" + update_user;
         /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);

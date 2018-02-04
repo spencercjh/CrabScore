@@ -34,7 +34,15 @@
         <activity android:name=".CommonPart.RegisterActivity" />
         <activity android:name=".JudgePart.JudgeActivity" />
         <activity android:name=".StaffPart.StaffActivity" />
-        <activity android:name=".CompanyPart.CompanyActivity"></activity>
+        <activity android:name=".CompanyPart.CompanyActivity" />
+        <activity android:name=".AdministratorPart.UpdateMoreSettingActivity" />
+        <activity android:name=".AdministratorPart.UpdateYear_NoteActivity" />
+        <activity android:name=".AdministratorPart.UpdateUserInfoActivity" />
+        <activity android:name=".AdministratorPart.CheckCompanyScoreActivity" />
+        <activity android:name=".PersonCenterPart.UpdateUserPasswordActivity" />
+        <activity android:name=".PersonCenterPart.UpdateUserUserNameActivity" />
+        <activity android:name=".PersonCenterPart.UpdateUserDisplayNameActivity" />
+        <activity android:name=".PersonCenterPart.UpdateUserEmailActivity"></activity>
     </application>
 
 </manifest>

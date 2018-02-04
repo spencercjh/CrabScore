@@ -10,8 +10,8 @@ public class ServerURL {
     public static String sign_fail = "200";
     public static String servlet_Login = "Login";
     public static String servlet_Register = "Register";
-    public static String servlet_QueryBestGermplasmScore = "QueryBestGermplasmScore";
-    public static String servlet_QueryHighQualityScore = "QueryHighQualityScore";
+    public static String servlet_QueryQualityScore = "QueryQualityScore";
+    public static String servlet_QueryFatnessScore = "QueryFatnessScore";
     public static String servlet_QueryTasteScore = "QueryTasteScore";
     public static String servlet_InsertCompanyInfo = "InsertCompanyInfo";
     public static String servlet_QueryUserProperty = "QueryUserProperty";
@@ -25,4 +25,5 @@ public class ServerURL {
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";
+    public static String servlet_QueryUserStatus="QueryUserStatus";
 }

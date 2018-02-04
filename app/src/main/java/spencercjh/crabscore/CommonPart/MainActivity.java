@@ -23,7 +23,7 @@ import spencercjh.crabscore.StaffPart.StaffActivity;
  * 用户组1 管理员 administrator
  * 用户组2 工作人员 staff
  * 用户组3 评委 judge
- * 用户组4 参选单位 unit
+ * 用户组4 参选单位 company
  */
 public class MainActivity extends ActivityGroup implements View.OnClickListener {
     private LinearLayout ll_container, ll_first, ll_second, ll_third;
