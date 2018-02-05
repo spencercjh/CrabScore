@@ -111,11 +111,7 @@ public class CompanyAdminFragment extends Fragment {
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
-                TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
-                TextView Tcompany_name = view.findViewById(R.id.tv_company);
-                int group_id = Integer.parseInt(Tgroup_id.getText().toString().trim());
-                String company_name = Tcompany_name.getText().toString().trim();
-                final CompanyOBJ companyOBJ = new CompanyOBJ(group_id, company_name);
+                final CompanyOBJ companyOBJ = CompanyList.get(position);
                 if (userOBJ.getUser_name() != null) {
                     PopupMenu popup = new PopupMenu(getContext(), view);
                     final MenuInflater inflater = popup.getMenuInflater();
@@ -133,7 +129,6 @@ public class CompanyAdminFragment extends Fragment {
                                         intent.putExtra("COMPANYOBJ", companyOBJ);
                                         intent.putExtra("USER", choice);
                                         startActivity(intent);
-                                        getActivity().finish();
                                         break;
                                     case R.id.menu_edit_info:
 //前往编辑活动

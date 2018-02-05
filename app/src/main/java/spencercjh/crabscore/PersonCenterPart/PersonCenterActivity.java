@@ -28,7 +28,6 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
     private int choice;
     private long lastPressTime = 0;
     private RelativeLayout Rpassword;
-    private RelativeLayout Ruser_name;
     private RelativeLayout Rdisplay_name;
     private RelativeLayout Remail;
     private TextView Tuser_name;
@@ -47,8 +46,6 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
         Temail = (TextView) findViewById(R.id.text_email);
         Rpassword = (RelativeLayout) findViewById(R.id.re_password);
         Rpassword.setOnClickListener(this);
-        Ruser_name = (RelativeLayout) findViewById(R.id.re_user_name);
-        Ruser_name.setOnClickListener(this);
         Rdisplay_name = (RelativeLayout) findViewById(R.id.re_display_name);
         Rdisplay_name.setOnClickListener(this);
         Remail = (RelativeLayout) findViewById(R.id.re_email);
@@ -76,13 +73,6 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
         switch (view.getId()) {
             case R.id.re_password:
                 intent = new Intent(this, UpdateUserPasswordActivity.class);
-                intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.re_user_name:
-                intent = new Intent(this, UpdateUserUserNameActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 intent.putExtra("USER", choice);
                 startActivity(intent);

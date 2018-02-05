@@ -2,7 +2,7 @@ package spencercjh.crabscore.HttpRequst.Function.AdministratorPart;
 
 import spencercjh.crabscore.HttpRequst.Function.ServerURL;
 import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryCompetitionProperty;
-import spencercjh.crabscore.OBJ.Competition_InfoOBJ;
+import spencercjh.crabscore.OBJ.CompetitionOBJ;
 
 /**
  * Created by spencercjh on 2018/2/4.
@@ -10,7 +10,7 @@ import spencercjh.crabscore.OBJ.Competition_InfoOBJ;
  */
 
 public class Fun_QueryCompetitionProperty {
-    public static String http_QueryCompetitionProperty(Competition_InfoOBJ competition_info_obj) throws InterruptedException {
+    public static String http_QueryCompetitionProperty(CompetitionOBJ competition_info_obj) throws InterruptedException {
         String url = ServerURL.sever_url + ServerURL.servlet_QueryCompetitionProperty;
         QueryCompetitionProperty thread = new QueryCompetitionProperty(url, competition_info_obj.getCompetition_year());
         thread.start();

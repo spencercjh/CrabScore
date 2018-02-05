@@ -7,7 +7,7 @@ import java.io.Serializable;
  * iClass
  */
 
-public class Competition_InfoOBJ implements Serializable{
+public class CompetitionOBJ implements Serializable{
     private int competition_id;  //比赛id
     private String competition_year;   //年份
     private String note;    //备注
@@ -23,20 +23,20 @@ public class Competition_InfoOBJ implements Serializable{
     private int result_quality; //种质评比排名
     private int result_taste;   //口感评比排名
 
-    public Competition_InfoOBJ() {
+    public CompetitionOBJ() {
 
     }
 
     //    大赛列表中 年份-备注 构造函数
-    public Competition_InfoOBJ(String competition_year, String note) {
+    public CompetitionOBJ(String competition_year, String note) {
         this.competition_year = competition_year;
         this.note = note;
     }
 
-    public Competition_InfoOBJ(String competition_year, String note, double var_fatness_m, double var_fatness_f,
-                               double var_weight_m, double var_mfatness_sd, double var_mweight_sd,
-                               double var_weight_f, double var_ffatness_sd, double var_fweight_sd,
-                               int result_fatness, int result_quality, int result_taste) {
+    public CompetitionOBJ(String competition_year, String note, double var_fatness_m, double var_fatness_f,
+                          double var_weight_m, double var_mfatness_sd, double var_mweight_sd,
+                          double var_weight_f, double var_ffatness_sd, double var_fweight_sd,
+                          int result_fatness, int result_quality, int result_taste) {
         this.competition_year = competition_year;
         this.var_fatness_m = var_fatness_m;
         this.var_fatness_f = var_fatness_f;

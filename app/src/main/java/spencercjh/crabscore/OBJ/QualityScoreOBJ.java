@@ -24,6 +24,11 @@ public class QualityScoreOBJ implements Serializable {
 
     }
 
+    //    评委评分界面
+    public QualityScoreOBJ(int group_id) {
+        this.group_id = group_id;
+    }
+
     //查看成绩界面
     public QualityScoreOBJ(int group_id, String company_name, double score_fin) {
         this.group_id = group_id;

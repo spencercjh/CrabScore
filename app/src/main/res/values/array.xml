@@ -7,4 +7,11 @@
         <item>评委</item>
         <item>参选单位</item>
     </string-array>
+
+    <string-array name="roles2">
+        <item>请选择您的用户组</item>
+        <item>管理员</item>
+        <item>工作人员</item>
+        <item>评委</item>
+    </string-array>
 </resources>

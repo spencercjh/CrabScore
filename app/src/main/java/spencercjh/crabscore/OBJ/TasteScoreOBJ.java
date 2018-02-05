@@ -25,6 +25,11 @@ public class TasteScoreOBJ implements Serializable {
 
     }
 
+    //    评委评分界面
+    public TasteScoreOBJ(int group_id) {
+        this.group_id = group_id;
+    }
+
     //    查看成绩页面
     public TasteScoreOBJ(int group_id, double score_fin) {
         this.group_id = group_id;

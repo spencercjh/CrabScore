@@ -123,25 +123,7 @@ public class RegisterAssessmentFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, final long id) {
-                TextView Tuser_name = view.findViewById(R.id.tv_user_name);
-                TextView Tdisplay_name = view.findViewById(R.id.tv_display_name);
-                TextView Trole = view.findViewById(R.id.tv_role);
-                TextView Tstatus = view.findViewById(R.id.tv_conpetition_status);
-                final String user_name = Tuser_name.getText().toString().trim();
-                String display_name = Tdisplay_name.getText().toString().trim();
-                String role = Trole.getText().toString().trim();
-                int role_id = 0;
-                if (role.equals("管理员")) {
-                    role_id = 1;
-                } else if (role.equals("工作人员")) {
-                    role_id = 2;
-                } else if (role.equals("评委")) {
-                    role_id = 3;
-                } else if (role.equals("参选评委")) {
-                    role_id = 4;
-                }
-                int status = 0;
-                final UserOBJ userOBJ = new UserOBJ(user_name, display_name, role_id, status);
+                final UserOBJ userOBJ = UserList.get(position);
                 if (userOBJ.getUser_name() != null) {
                     PopupMenu popup = new PopupMenu(getContext(), view);
                     final MenuInflater inflater = popup.getMenuInflater();
@@ -159,7 +141,6 @@ public class RegisterAssessmentFragment extends Fragment {
                                         intent.putExtra("USEROBJ", userOBJ);
                                         intent.putExtra("USER", choice);
                                         startActivity(intent);
-                                        getActivity().finish();
                                         break;
                                     case R.id.menu_ban:
 //修改用户status并刷新

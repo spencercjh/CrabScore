@@ -7,7 +7,7 @@ import java.io.Serializable;
  * iClass
  */
 
-public class Crab_InfoOBJ implements Serializable {
+public class CrabOBJ implements Serializable {
     private int crab_id;
     private int group_id;
     private int crab_sex;
@@ -16,11 +16,15 @@ public class Crab_InfoOBJ implements Serializable {
     private double crab_length;
     private double crab_fatness;
 
-    public Crab_InfoOBJ() {
+    public CrabOBJ() {
 
     }
 
-    public Crab_InfoOBJ(int crab_id, int group_id, int crab_sex, String crab_label, double crab_weight, double crab_length, double crab_fatness) {
+    public CrabOBJ(int group_id) {
+        this.group_id = group_id;
+    }
+
+    public CrabOBJ(int crab_id, int group_id, int crab_sex, String crab_label, double crab_weight, double crab_length, double crab_fatness) {
         this.crab_id = crab_id;
         this.group_id = group_id;
         this.crab_sex = crab_sex;

@@ -48,7 +48,7 @@ public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabS
     }
 
     private void initTabViewPager() {
-        AdministratorPageAdapter adapter = new AdministratorPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        JudgePageAdapter adapter = new JudgePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

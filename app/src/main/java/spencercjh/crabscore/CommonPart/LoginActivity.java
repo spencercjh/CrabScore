@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        //        监听spinner下拉框事件
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -83,7 +82,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
                 sp.edit().putBoolean("ADMINISTRATOR", false).apply();
                 sp.edit().putBoolean("STAFF", false).apply();
                 sp.edit().putBoolean("JUDGE", false).apply();
@@ -93,7 +91,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Button bt_login = (Button) findViewById(R.id.button_search);
         bt_login.setOnClickListener(this);
         setFullScreen();
-        //退出登录后回到login界面清空输入过的id和pwd
         try {
             Intent it_exit = getIntent();
             String exit = (String) it_exit.getSerializableExtra("EXIT");
@@ -169,59 +166,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
-
-        //监听用户组1多选框按钮事件
-/*        choice_user1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (choice_user1.isChecked()) {
-                    System.out.println("用户组1已选中");
-                    sp.edit().putBoolean("ADMINISTRATOR", true).apply();
-                } else {
-                    System.out.println("用户组1没有选中");
-                    sp.edit().putBoolean("ADMINISTRATOR", false).apply();
-                }
-            }
-        });*/
-        //监听用户组2多选框按钮事件
-/*        choice_user2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (choice_user2.isChecked()) {
-                    System.out.println("用户组2已选中");
-                    sp.edit().putBoolean("STAFF", true).apply();
-                } else {
-                    System.out.println("用户组2没有选中");
-                    sp.edit().putBoolean("STAFF", false).apply();
-                }
-            }
-        });*/
-        //监听用户组3多选框按钮事件
- /*       choice_user3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (choice_user3.isChecked()) {
-                    System.out.println("用户组3已选中");
-                    sp.edit().putBoolean("JUDGE", true).apply();
-                } else {
-                    System.out.println("用户组3没有选中");
-                    sp.edit().putBoolean("JUDGE", false).apply();
-                }
-            }
-        });*/
-        //监听用户组4多选框按钮事件
-/*        choice_user4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (choice_user4.isChecked()) {
-                    System.out.println("用户组4已选中");
-                    sp.edit().putBoolean("COMPANY", true).apply();
-                } else {
-                    System.out.println("用户组4没有选中");
-                    sp.edit().putBoolean("COMPANY", false).apply();
-                }
-            }
-        });*/
     }
 
     //忘记密码按钮

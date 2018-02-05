@@ -1,22 +1,77 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    tools:context="spencercjh.crabscore.StaffPart.DataEntryActivity">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_simple"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/background_button_div"
+        android:text="查  找"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
 
-        <!--<ScrollView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+    <EditText
+        android:id="@+id/edit_identification"
+        android:layout_width="344dp"
+        android:layout_height="50dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:hint="请输入标识号"
+        android:inputType="none"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433">
 
-            <ListView
-                android:id="@+id/fatness_score_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        <!--</ScrollView>-->
-    </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="查找标识所在组"
+        android:textColor="@color/textcolor"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
+
+    <TextView
+        android:id="@+id/text_group_id"
+        android:layout_width="344dp"
+        android:layout_height="50dp"
+        android:background="@drawable/qq_edit_login"
+        android:ems="10"
+        android:inputType="none"
+        android:maxLines="1"
+        android:selectAllOnFocus="false"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812">
+
+        <requestFocus />
+    </TextView>
+
+</android.support.constraint.ConstraintLayout>

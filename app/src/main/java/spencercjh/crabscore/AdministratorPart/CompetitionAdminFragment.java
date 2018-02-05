@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import spencercjh.crabscore.OBJ.Competition_InfoOBJ;
+import spencercjh.crabscore.OBJ.CompetitionOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -40,7 +40,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     private RelativeLayout Ryear_note;
     private RelativeLayout Rmore_setting;
     private Button button;
-    private Competition_InfoOBJ competition_infoOBJ = new Competition_InfoOBJ();
+    private CompetitionOBJ competition_OBJ = new CompetitionOBJ();
 
     CompetitionAdminFragment() {
     }
@@ -54,7 +54,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         mContext = getActivity();
         Intent intent = getActivity().getIntent();
         try {    //接收从修改年份备注活动传回的年份备注信息 接收从更多设置传回的数据
-            competition_infoOBJ = (Competition_InfoOBJ) intent.getSerializableExtra("COMPETITIONINFOOBJ");
+            competition_OBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -112,20 +112,18 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
             case R.id.re_year_note:
                 intent = new Intent(getContext(), UpdateYear_NoteActivity.class);
                 getActivity().startActivity(intent);
-                intent.putExtra("COMPETITIONINFOOBJ", competition_infoOBJ);
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
                 intent.putExtra("USER", choice);
                 startActivity(intent);
-                getActivity().finish();
                 break;
             case R.id.re_more_setting:
                 intent = new Intent(getContext(), UpdateMoreSettingActivity.class);
                 getActivity().startActivity(intent);
-                intent.putExtra("COMPETITIONINFOOBJ", competition_infoOBJ);
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
                 intent.putExtra("USER", choice);
                 startActivity(intent);
-                getActivity().finish();
                 break;
             case R.id.button:
                 updateCompetition_info();
@@ -137,8 +135,8 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
 
 
     private void updateCompetition_info() {
-        String year = competition_infoOBJ.getCompetition_year();
-        String note = competition_infoOBJ.getNote();
+        String year = competition_OBJ.getCompetition_year();
+        String note = competition_OBJ.getNote();
         double var_fatness_m = Double.parseDouble(Tvar_fatness_m.getText().toString().trim());
         double var_weight_m = Double.parseDouble(Tvar_weight_m.getText().toString().trim());
         double var_mfatness_sd = Double.parseDouble(Tvar_mfatness_sd.getText().toString().trim());
@@ -147,10 +145,10 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         double var_weight_f = Double.parseDouble(Tvar_weight_f.getText().toString().trim());
         double var_ffatness_sd = Double.parseDouble(Tvar_ffatness_sd.getText().toString().trim());
         double var_fweight_sd = Double.parseDouble(Tvar_fweight_sd.getText().toString().trim());
-        int result_fatness = competition_infoOBJ.getResult_fatness();
-        int result_quality = competition_infoOBJ.getResult_quality();
-        int result_taste = competition_infoOBJ.getResult_taste();
-        competition_infoOBJ = new Competition_InfoOBJ(year, note, var_fatness_m, var_fatness_f,
+        int result_fatness = competition_OBJ.getResult_fatness();
+        int result_quality = competition_OBJ.getResult_quality();
+        int result_taste = competition_OBJ.getResult_taste();
+        competition_OBJ = new CompetitionOBJ(year, note, var_fatness_m, var_fatness_f,
                 var_weight_m, var_mfatness_sd, var_mweight_sd, var_weight_f, var_ffatness_sd,
                 var_fweight_sd, result_fatness, result_quality, result_taste);
         /**

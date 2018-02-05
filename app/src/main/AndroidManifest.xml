@@ -40,9 +40,17 @@
         <activity android:name=".AdministratorPart.UpdateUserInfoActivity" />
         <activity android:name=".AdministratorPart.CheckCompanyScoreActivity" />
         <activity android:name=".PersonCenterPart.UpdateUserPasswordActivity" />
-        <activity android:name=".PersonCenterPart.UpdateUserUserNameActivity" />
         <activity android:name=".PersonCenterPart.UpdateUserDisplayNameActivity" />
-        <activity android:name=".PersonCenterPart.UpdateUserEmailActivity"></activity>
+        <activity android:name=".PersonCenterPart.UpdateUserEmailActivity" />
+        <activity android:name=".JudgePart.QualityGradeActivity" />
+        <activity android:name=".JudgePart.TasteGradeActivity" />
+        <activity android:name=".StaffPart.DataEntryActivity" />
+        <activity android:name=".CompanyPart.OverallScoreActivity" />
+        <activity android:name=".CompanyPart.QualityScoreActivity" />
+        <activity android:name=".CompanyPart.TasteScoreActivity" />
+        <activity android:name=".StaffPart.CrabList_M_Activity" />
+        <activity android:name=".StaffPart.CrabList_F_Activity" />
+        <activity android:name=".StaffPart.UpdateCrabInfoActivity"></activity>
     </application>
 
 </manifest>

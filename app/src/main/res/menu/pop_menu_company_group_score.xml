@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_overall_score"
+        android:title="整体分数" />
+    <item
+        android:id="@+id/menu_detail_quality_score"
+        android:title="种质小分" />
+    <item
+        android:id="@+id/menu_detail_taste_score"
+        android:title="口感小分" />
+</menu>

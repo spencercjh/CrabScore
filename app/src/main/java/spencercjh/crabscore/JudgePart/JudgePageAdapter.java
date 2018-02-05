@@ -23,6 +23,8 @@ public class JudgePageAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int position) {
 		if (position == 0) {
 			return new GradeFragment(userOBJ,choice);
+		}else if(position==1){
+
 		}
 		return new GradeFragment(userOBJ,choice);
 	}
