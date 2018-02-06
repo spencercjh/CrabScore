@@ -27,13 +27,13 @@
 
             <TextView
                 android:id="@+id/tv_user_name"
-                android:layout_width="150sp"
+                android:layout_width="133dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="68dp"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:text="显示名: " />
@@ -61,16 +61,16 @@
 
             <TextView
                 android:id="@+id/tv_role"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="51dp"
+                android:layout_width="68dp"
                 android:layout_height="match_parent"
-                android:text="状态:" />
+                android:text="比赛状态:" />
 
             <TextView
                 android:id="@+id/tv_conpetition_status"

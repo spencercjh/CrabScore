@@ -11,34 +11,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateCompetitionProperty;
-import spencercjh.crabscore.OBJ.CompetitionOBJ;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateCompanyName;
+import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-public class UpdateYear_NoteActivity extends AppCompatActivity implements View.OnClickListener {
-    private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
+public class UpdateCompanyInfoActivity extends AppCompatActivity implements View.OnClickListener {
+    private EditText text_company_name;
+    private Button button;
+    private CompanyOBJ companyOBJ = new CompanyOBJ();
     private UserOBJ userOBJ = new UserOBJ();
     private int choice;
-    private EditText Eyear;
-    private EditText Enote;
-    private Button button;
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_year__note);
+        setContentView(R.layout.activity_update_company_info);
         Intent intent = getIntent();
-        competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
+        companyOBJ = (CompanyOBJ) intent.getSerializableExtra("COMPANYOBJ");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         choice = (int) intent.getSerializableExtra("USER");
-        Eyear = (EditText) findViewById(R.id.text_year);
-        Enote = (EditText) findViewById(R.id.text_note);
+        text_company_name = (EditText) findViewById(R.id.text_company_name);
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
         toolbar = (Toolbar) findViewById(R.id.tl_head);
-        toolbar.setTitle("修改年份以及备注信息");
+        toolbar.setTitle("修改参选单位信息");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
@@ -51,29 +49,33 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
         InitialInfo();
     }
 
-    private void InitialInfo() {
-        Eyear.setText(competitionOBJ.getCompetition_year());
-        Enote.setText(competitionOBJ.getNote());
+    private void goback() {
+        finish();
     }
-
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button) {
-            updateCompetition_info();
+            try {
+                updatecompanyinfo();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void updateCompetition_info() {
-        String year = Eyear.getText().toString().trim();
-        competitionOBJ.setCompetition_year(year);
-        String note = Enote.getText().toString();
-        competitionOBJ.setNote(note);
+    private void InitialInfo() {
+        text_company_name.setText(companyOBJ.getCompany_name());
+    }
+
+    private void updatecompanyinfo() throws InterruptedException {
+        String company_name = text_company_name.getText().toString().trim();
+        companyOBJ.setCompany_name(company_name);
         dialog();
     }
 
     private void dialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateYear_NoteActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCompanyInfoActivity.this);
         builder.setMessage("确认修改？");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
@@ -83,7 +85,7 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competitionOBJ, userOBJ)) {
+                            if (Fun_UpdateCompanyName.http_UpdateCompanyName(companyOBJ, userOBJ)) {
                                 dialog_update_success();
                             } else {
                                 dialog_update_fail();
@@ -104,7 +106,7 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
     }
 
     private void dialog_update_success() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateYear_NoteActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCompanyInfoActivity.this);
         builder.setMessage("修改成功！");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
@@ -121,7 +123,7 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
     }
 
     private void dialog_update_fail() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateYear_NoteActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCompanyInfoActivity.this);
         builder.setMessage("修改失败！");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
@@ -136,7 +138,7 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
         builder.create().show();////显示对话框
     }
 
-    private void goback() {
-        finish();
+    public void onBackPressed() {
+        goback();
     }
 }

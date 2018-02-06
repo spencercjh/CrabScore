@@ -97,7 +97,7 @@ public class DataEntryFragment extends Fragment {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view;
                 if (convertView == null) {
-                    view = View.inflate(getActivity(), R.layout.item_data_entry, null);
+                    view = View.inflate(getActivity(), R.layout.item_group, null);
                 } else {
                     view = convertView;
                 }

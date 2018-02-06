@@ -6,7 +6,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.CompetitionOBJ;
+import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
@@ -56,15 +58,15 @@ public class JsonConvert {
     }
 
     //    参赛单位：参选单位
-    public static ArrayList<UserOBJ> convert_unit_user_name(String jsonstr) {
-        ArrayList<UserOBJ> list = new ArrayList<>();
+    public static ArrayList<CompanyOBJ> convert_company_user_name(String jsonstr) {
+        ArrayList<CompanyOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(jsonstr);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
-                String user_name = list_item.getString("user_name");
-                UserOBJ userOBJ = new UserOBJ(user_name);
-                list.add(userOBJ);
+                String company_name = list_item.getString("company_name");
+                CompanyOBJ companyOBJ = new CompanyOBJ(company_name);
+                list.add(companyOBJ);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -74,8 +76,7 @@ public class JsonConvert {
 
     //    大赛管理：年份-备注-雄蟹肥满度参数-雄蟹体重参数-雄蟹肥满度标准差参数-雄蟹体重标准差参数-雄蟹肥满度参数
     //    -雌蟹体重参数-雌蟹肥满度标准差参数-雌蟹体重标准差参数-肥满度及蟹王蟹后结果-种质评比排名-口感评比排名
-    public static ArrayList<CompetitionOBJ> convert_competition_property(String jsonstr) {
-        ArrayList<CompetitionOBJ> list = new ArrayList<>();
+    public static CompetitionOBJ convert_competition_property(String jsonstr) {
         try {
             JSONArray jsonArray = new JSONArray(jsonstr);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -96,12 +97,28 @@ public class JsonConvert {
                 CompetitionOBJ competition_info_obj = new CompetitionOBJ(competition_year,
                         note, var_fatness_m, var_weight_m, var_mfatness_sd, var_mweight_sd, var_fatness_f,
                         var_weight_f, var_ffatness_sd, var_fweight_sd, result_fatness, result_quality, result_taste);
-                list.add(competition_info_obj);
+                return competition_info_obj;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new CompetitionOBJ();
+    }
+
+    //    小组
+    public static ArrayList<GroupOBJ> convert_group_id(String jsonstr) {
+        ArrayList<GroupOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(jsonstr);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                GroupOBJ groupOBJ = new GroupOBJ(group_id);
+                list.add(groupOBJ);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return list;
     }
-//
 }

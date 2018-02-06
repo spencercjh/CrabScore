@@ -2,11 +2,13 @@ package spencercjh.crabscore.AdministratorPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +22,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryAllUser;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateUserCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateUserStatus;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -51,7 +58,11 @@ public class UserAdminFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_AllUserList();
+                try {
+                    Fill_AllUserList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -69,14 +80,18 @@ public class UserAdminFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_AllUserList();
+        try {
+            Fill_AllUserList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_AllUserList() {
+    private void Fill_AllUserList() throws InterruptedException {
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          **/
-        final ArrayList<UserOBJ> UserList = new ArrayList<>();
+        final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUser.http_QueryAllUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -147,14 +162,43 @@ public class UserAdminFragment extends Fragment {
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_ban:
-//修改用户status并刷新
-                                        Fill_AllUserList();
+                                        userOBJ.setStatus(0);
+                                        try {
+                                            if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
+                                                dialog_ban_success();
+                                                Fill_AllUserList();
+                                            } else {
+                                                dialog_fail();
+                                            }
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         break;
                                     case R.id.menu_all_competition:
-//修改用户competition_id
+                                        userOBJ.setCompetition_id(0);
+                                        try {
+                                            if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
+                                                dialog_updatecompetition_success();
+                                                Fill_AllUserList();
+                                            } else {
+                                                dialog_fail();
+                                            }
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         break;
                                     case R.id.menu_only_present_competition:
-//修改用户competition_id
+                                        try {
+                                            userOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
+                                            if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
+                                                dialog_updatecompetition_success();
+                                                Fill_AllUserList();
+                                            } else {
+                                                dialog_fail();
+                                            }
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         break;
                                     default:
                                         break;
@@ -167,5 +211,53 @@ public class UserAdminFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void dialog_ban_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("禁用成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_updatecompetition_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("修改比赛状态成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("操作失败");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
     }
 }

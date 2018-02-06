@@ -35,8 +35,8 @@ public class AdministratorActivity extends AppCompatActivity implements OnTabSel
         tl_head = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
+        tl_head.setTitle("查看成绩");
         tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
         setSupportActionBar(tl_head);
         mTitleArray.add("用户列表");
         mTitleArray.add("注册审核");

@@ -1,12 +1,17 @@
 package spencercjh.crabscore.AdministratorPart;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateCompetitionProperty;
 import spencercjh.crabscore.OBJ.CompetitionOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -22,6 +27,7 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
     private RadioButton Renable3;
     private RadioButton Runable3;
     private Button button;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,22 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
         Runable3 = (RadioButton) findViewById(R.id.radio_unable3);
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
+        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        toolbar.setTitle("修改其他比赛设置");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
         InitialInfo();
+    }
+
+    private void goback() {
+        finish();
     }
 
     @Override
@@ -50,9 +71,21 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
     }
 
     private void InitialInfo() {
-        /**
-         * 数据初始化 网络线程
-         */
+        if (competitionOBJ.getResult_fatness() == 1) {
+            Renable1.setChecked(true);
+        } else {
+            Runable1.setChecked(true);
+        }
+        if (competitionOBJ.getResult_quality() == 1) {
+            Renable2.setChecked(true);
+        } else {
+            Runable2.setChecked(true);
+        }
+        if (competitionOBJ.getResult_taste() == 1) {
+            Renable3.setChecked(true);
+        } else {
+            Runable3.setChecked(true);
+        }
     }
 
     private void updateCompetition_info() {
@@ -74,6 +107,74 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
         if (Runable3.isChecked()) {
             competitionOBJ.setResult_taste(0);
         }
-        finish();
+        dialog();
+    }
+
+    private void dialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateMoreSettingActivity.this);
+        builder.setMessage("确认修改？");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                        try {
+                            if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competitionOBJ, userOBJ)) {
+                                dialog_update_success();
+                            } else {
+                                dialog_update_fail();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_update_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateMoreSettingActivity.this);
+        builder.setMessage("修改成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                        goback();
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_update_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateMoreSettingActivity.this);
+        builder.setMessage("修改失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    public void onBackPressed() {
+        goback();
     }
 }

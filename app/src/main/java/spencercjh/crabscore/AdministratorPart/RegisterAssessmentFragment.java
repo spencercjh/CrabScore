@@ -2,11 +2,13 @@ package spencercjh.crabscore.AdministratorPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +22,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_DeleteUserInfo;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryAllUncheckedUser;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateUserStatus;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -50,7 +56,11 @@ public class RegisterAssessmentFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_RegisterList();
+                try {
+                    Fill_RegisterList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -67,15 +77,19 @@ public class RegisterAssessmentFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_RegisterList();
+        try {
+            Fill_RegisterList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_RegisterList() {
+    private void Fill_RegisterList() throws InterruptedException {
         lv = mView.findViewById(R.id.all_register_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          **/
-        final ArrayList<UserOBJ> UserList = new ArrayList<>();
+        final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUncheckedUser.http_QueryAllUncheckedUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -142,13 +156,31 @@ public class RegisterAssessmentFragment extends Fragment {
                                         intent.putExtra("USER", choice);
                                         startActivity(intent);
                                         break;
-                                    case R.id.menu_ban:
-//修改用户status并刷新
-                                        Fill_RegisterList();
+                                    case R.id.menu_enable:
+                                        userOBJ.setStatus(1);
+                                        try {
+                                            if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
+                                                dialog_enable_success();
+                                                Fill_RegisterList();
+                                            } else {
+                                                dialog_fail();
+                                            }
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         break;
                                     case R.id.menu_delete:
-//删除用户信息
-                                        break;
+                                        try {
+                                            if (Fun_DeleteUserInfo.http_DeleteUserInfo(userOBJ, admin)) {
+                                                dialog_delete_success();
+                                                Fill_RegisterList();
+                                            } else {
+                                                dialog_fail();
+                                            }
+                                            break;
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     default:
                                         break;
                                 }
@@ -160,5 +192,53 @@ public class RegisterAssessmentFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void dialog_enable_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("启用成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_delete_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("删除成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("操作失败");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
     }
 }

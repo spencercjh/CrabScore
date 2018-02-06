@@ -2,11 +2,13 @@ package spencercjh.crabscore.AdministratorPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -20,6 +22,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_DeleteCompanyInfo;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryAllCompany;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompanyID;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -51,7 +57,11 @@ public class CompanyAdminFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_CompanyList();
+                try {
+                    Fill_CompanyList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -68,15 +78,19 @@ public class CompanyAdminFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_CompanyList();
+        try {
+            Fill_CompanyList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_CompanyList() {
+    private void Fill_CompanyList() throws InterruptedException {
         lv = mView.findViewById(R.id.all_company_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */
-        final ArrayList<CompanyOBJ> CompanyList = new ArrayList<>();
+        final ArrayList<CompanyOBJ> CompanyList = JsonConvert.convert_company_user_name(Fun_QueryAllCompany.http_QueryAllUnit());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -102,9 +116,9 @@ public class CompanyAdminFragment extends Fragment {
                     view = convertView;
                 }
                 CompanyOBJ companyOBJ = CompanyList.get(position);
-                TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
+                TextView Tindex = view.findViewById(R.id.tv_index);
                 TextView Tcompany_name = view.findViewById(R.id.tv_display_name);
-                Tgroup_id.setText(companyOBJ.getGroup_id());
+                Tindex.setText(position);
                 Tcompany_name.setText(companyOBJ.getCompany_name());
                 return view;
             }
@@ -124,6 +138,11 @@ public class CompanyAdminFragment extends Fragment {
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
                                     case R.id.menu_check_score:
+                                        try {
+                                            companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                         intent = new Intent(getContext(), CheckCompanyScoreActivity.class);
                                         intent.putExtra("USEROBJ", userOBJ);
                                         intent.putExtra("COMPANYOBJ", companyOBJ);
@@ -131,12 +150,29 @@ public class CompanyAdminFragment extends Fragment {
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_edit_info:
-//前往编辑活动
-                                        Fill_CompanyList();
+                                        try {
+                                            companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        Intent intent = new Intent(getContext(), UpdateCompanyInfoActivity.class);
+                                        intent.putExtra("COMPANYOBJ", companyOBJ);
+                                        intent.putExtra("USEROBJ", userOBJ);
+                                        intent.putExtra("USER", choice);
+                                        startActivity(intent);
                                         break;
                                     case R.id.menu_delete:
-//删除用户信息
-                                        break;
+                                        try {
+                                            if (Fun_DeleteCompanyInfo.http_DeleteCompanyInfo(userOBJ, companyOBJ)) {
+                                                dialog_delete_success();
+                                                Fill_CompanyList();
+                                            } else {
+                                                dialog_delete_fail();
+                                            }
+                                            break;
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     default:
                                         break;
                                 }
@@ -149,4 +185,37 @@ public class CompanyAdminFragment extends Fragment {
             }
         });
     }
+
+    private void dialog_delete_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("删除成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_delete_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("删除失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
 }

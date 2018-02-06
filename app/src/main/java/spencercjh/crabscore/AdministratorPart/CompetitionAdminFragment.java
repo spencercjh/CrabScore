@@ -2,11 +2,13 @@ package spencercjh.crabscore.AdministratorPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,11 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionProperty;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionYear;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateCompetitionProperty;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.CompetitionOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -52,12 +59,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
-        Intent intent = getActivity().getIntent();
-        try {    //接收从修改年份备注活动传回的年份备注信息 接收从更多设置传回的数据
-            competition_OBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
         mView = inflater.inflate(R.layout.fragment_competition_admin, container, false);
         Ryear_note = mView.findViewById(R.id.re_year_note);
         Ryear_note.setOnClickListener(this);
@@ -86,13 +87,29 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        InitialInfo();
+        try {
+            InitialInfo(competition_OBJ);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void InitialInfo() {
+    private void InitialInfo(CompetitionOBJ competitionOBJ) throws InterruptedException {
         /**
          * 数据初始化 网络线程
          */
+        int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
+        competitionOBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
+        competitionOBJ = JsonConvert.convert_competition_property(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competitionOBJ.getCompetition_year()));
+        Tyear_note.setText(competitionOBJ.getCompetition_year() + " " + competition_OBJ.getNote().substring(0, 4));
+        Tvar_fatness_m.setText(String.valueOf(competitionOBJ.getVar_fatness_m()));
+        Tvar_weight_m.setText(String.valueOf(competitionOBJ.getVar_weight_m()));
+        Tvar_mfatness_sd.setText(String.valueOf(competitionOBJ.getVar_mfatness_sd()));
+        Tvar_mweight_sd.setText(String.valueOf(competitionOBJ.getVar_mweight_sd()));
+        Tvar_fatness_f.setText(String.valueOf(competitionOBJ.getVar_fatness_f()));
+        Tvar_weight_f.setText(String.valueOf(competitionOBJ.getVar_weight_f()));
+        Tvar_ffatness_sd.setText(String.valueOf(competitionOBJ.getVar_ffatness_sd()));
+        Tvar_fweight_sd.setText(String.valueOf(competitionOBJ.getVar_fweight_sd()));
     }
 
 
@@ -117,7 +134,11 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.button:
-                updateCompetition_info();
+                try {
+                    updateCompetition_info();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;
@@ -125,7 +146,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     }
 
 
-    private void updateCompetition_info() {
+    private void updateCompetition_info() throws InterruptedException {
         String year = competition_OBJ.getCompetition_year();
         String note = competition_OBJ.getNote();
         double var_fatness_m = Double.parseDouble(Tvar_fatness_m.getText().toString().trim());
@@ -145,6 +166,43 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         /**
          * 更新数据网络线程
          */
+        if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competition_OBJ, userOBJ)) {
+            dialog_update_success();
+            InitialInfo(competition_OBJ);
+        } else {
+            dialog_update_fail();
+        }
+    }
 
+    private void dialog_update_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("修改成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_update_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("修改失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
     }
 }

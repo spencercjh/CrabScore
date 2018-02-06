@@ -1,8 +1,12 @@
 package spencercjh.crabscore.AdministratorPart;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateUserProperty;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -23,6 +28,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
     private UserOBJ admin = new UserOBJ();
     private UserOBJ userOBJ = new UserOBJ();
     private int choice;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,17 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
 
             }
         });
+        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        toolbar.setTitle("修改用户信息");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
         InitialInfo();
     }
 
@@ -65,9 +82,10 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
     }
 
     private void InitialInfo() {
-        /**
-         * 数据初始化 网络线程
-         */
+        Tuser_name.setText(userOBJ.getUser_name());
+        Tdisplay_name.setText(userOBJ.getDisplay_name());
+        Temail.setText(userOBJ.getEmail());
+        spinner.setSelection(userOBJ.getRole_id());
     }
 
     private void updateCompetition_info() {
@@ -75,5 +93,75 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
         String email = Temail.getText().toString().trim();
         userOBJ.setDisplay_name(display_name);
         userOBJ.setEmail(email);
+        dialog();
+    }
+
+    private void dialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserInfoActivity.this);
+        builder.setMessage("确认修改？");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                        try {
+                            if (Fun_UpdateUserProperty.http_UpdateUserProperty(userOBJ, admin)) {
+                                dialog_update_success();
+                            } else {
+                                dialog_update_fail();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_update_success() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserInfoActivity.this);
+        builder.setMessage("修改成功！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                        goback();
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_update_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserInfoActivity.this);
+        builder.setMessage("修改失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void goback() {
+        finish();
     }
 }
+
