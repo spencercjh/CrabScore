@@ -71,7 +71,7 @@ public class RegisterAssessmentFragment extends Fragment {
     }
 
     private void Fill_RegisterList() {
-        lv = mView.findViewById(R.id.all_user_list);
+        lv = mView.findViewById(R.id.all_register_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */

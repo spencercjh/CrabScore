@@ -50,7 +50,7 @@ public class TasteGradeActivity extends AppCompatActivity implements TabLayout.O
     }
 
     private void initTabViewPager() {
-        TasteScorePageAdapter adapter = new TasteScorePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, tasteScoreOBJ);
+        TasteGradePageAdapter adapter = new TasteGradePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, tasteScoreOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

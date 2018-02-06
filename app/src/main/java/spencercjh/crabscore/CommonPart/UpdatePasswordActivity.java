@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-public class GetPasswordActivity extends AppCompatActivity implements OnClickListener {
+public class UpdatePasswordActivity extends AppCompatActivity implements OnClickListener {
     private EditText Euser_name;
     private EditText Edisplay_name;
     private EditText Eemail;

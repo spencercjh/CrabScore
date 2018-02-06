@@ -14,7 +14,7 @@ import java.util.Date;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-public class CheckScore_Ranking_Activity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class CheckScoreRankingActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
@@ -51,7 +51,7 @@ public class CheckScore_Ranking_Activity extends AppCompatActivity implements Ta
     }
 
     private void initTabViewPager() {
-        CheckScorePageAdapter adapter = new CheckScorePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        CheckScoreRankingPageAdapter adapter = new CheckScoreRankingPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

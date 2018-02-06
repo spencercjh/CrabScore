@@ -18,39 +18,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommonPart.OpenappActivity">
+        <activity android:name=".CommonPart.OpenAppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CommonPart.MainActivity" />
-        <activity android:name=".CheckScore_Ranking_Part.CheckScore_Ranking_Activity" />
-        <activity android:name=".AdministratorPart.AdministratorActivity" />
-        <activity android:name=".PersonCenterPart.PersonCenterActivity" />
-        <activity android:name=".CommonPart.LoginActivity" />
-        <activity android:name=".CommonPart.GetPasswordActivity" />
-        <activity android:name=".CommonPart.RegisterActivity" />
-        <activity android:name=".JudgePart.JudgeActivity" />
-        <activity android:name=".StaffPart.StaffActivity" />
-        <activity android:name=".CompanyPart.CompanyActivity" />
-        <activity android:name=".AdministratorPart.UpdateMoreSettingActivity" />
-        <activity android:name=".AdministratorPart.UpdateYear_NoteActivity" />
-        <activity android:name=".AdministratorPart.UpdateUserInfoActivity" />
-        <activity android:name=".AdministratorPart.CheckCompanyScoreActivity" />
-        <activity android:name=".PersonCenterPart.UpdateUserPasswordActivity" />
-        <activity android:name=".PersonCenterPart.UpdateUserDisplayNameActivity" />
-        <activity android:name=".PersonCenterPart.UpdateUserEmailActivity" />
-        <activity android:name=".JudgePart.QualityGradeActivity" />
-        <activity android:name=".JudgePart.TasteGradeActivity" />
-        <activity android:name=".StaffPart.DataEntryActivity" />
-        <activity android:name=".CompanyPart.OverallScoreActivity" />
-        <activity android:name=".CompanyPart.QualityScoreActivity" />
-        <activity android:name=".CompanyPart.TasteScoreActivity" />
-        <activity android:name=".StaffPart.CrabList_M_Activity" />
-        <activity android:name=".StaffPart.CrabList_F_Activity" />
-        <activity android:name=".StaffPart.UpdateCrabInfoActivity"></activity>
+
+        <activity android:name=".AdministratorPart$AdministratorActivity" />
+        <activity android:name=".AdministratorPart$UpdateMoreSettingActivity" />
+        <activity android:name=".AdministratorPart$UpdateYear_NoteActivity" />
+        <activity android:name=".AdministratorPart$UpdateUserInfoActivity" />
+        <activity android:name=".AdministratorPart$CheckCompanyScoreActivity" />
+        <activity android:name=".CheckScore_Ranking_Part$CheckScoreRankingActivity" />
+        <activity android:name=".CommonPart$MainActivity" />
+        <activity android:name=".CommonPart$RegisterActivity" />
+        <activity android:name=".CommonPart$LoginActivity" />
+        <activity android:name=".CompanyPart$CompanyActivity" />
+        <activity android:name=".CommonPart$UpdatePasswordActivity" />
+        <activity android:name=".CompanyPart$OverallScoreActivity" />
+        <activity android:name=".CompanyPart$QualityScoreActivity" />
+        <activity android:name=".CompanyPart$TasteScoreActivity" />
+        <activity android:name=".JudgePart$JudgeActivity" />
+        <activity android:name=".JudgePart$QualityGradeActivity" />
+        <activity android:name=".JudgePart$TasteGradeActivity" />
+        <activity android:name=".PersonCenterPart$PersonCenterActivity" />
+        <activity android:name=".PersonCenterPart$UpdateUserPasswordActivity" />
+        <activity android:name=".PersonCenterPart$UpdateUserDisplayNameActivity" />
+        <activity android:name=".PersonCenterPart$UpdateUserEmailActivity" />
+        <activity android:name=".StaffPart$DataEntryActivity" />
+        <activity android:name=".StaffPart$StaffActivity" />
+        <activity android:name=".StaffPart$CrabList_M_Activity" />
+        <activity android:name=".StaffPart$CrabList_F_Activity" />
+        <activity android:name=".StaffPart$UpdateCrabInfoActivity" />
     </application>
 
 </manifest>

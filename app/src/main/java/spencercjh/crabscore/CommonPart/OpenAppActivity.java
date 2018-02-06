@@ -19,7 +19,7 @@ import java.util.TimerTask;
 
 import spencercjh.crabscore.R;
 
-public class OpenappActivity extends AppCompatActivity implements OnClickListener {
+public class OpenAppActivity extends AppCompatActivity implements OnClickListener {
 
     private long lastPressTime = 0;
 
@@ -42,9 +42,9 @@ public class OpenappActivity extends AppCompatActivity implements OnClickListene
             @Override
             public void onAnimationEnd(Animation animation) {
                 //第一个动画执行完后执行第二个动画就是那个字体显示那部分
-                animation = AnimationUtils.loadAnimation(OpenappActivity.this, R.anim.text_splash_position);
+                animation = AnimationUtils.loadAnimation(OpenAppActivity.this, R.anim.text_splash_position);
                 tv_lin.startAnimation(animation);
-                animation = AnimationUtils.loadAnimation(OpenappActivity.this, R.anim.text_canvas);
+                animation = AnimationUtils.loadAnimation(OpenAppActivity.this, R.anim.text_canvas);
                 tv_hide_lin.startAnimation(animation);
                 gotonextactivity();
             }
@@ -64,7 +64,7 @@ public class OpenappActivity extends AppCompatActivity implements OnClickListene
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                OpenappActivity.this.startActivity(it);
+                OpenAppActivity.this.startActivity(it);
                 finish();
             }
         };
@@ -87,7 +87,7 @@ public class OpenappActivity extends AppCompatActivity implements OnClickListene
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.wholeview) {
-            Intent intent = new Intent(OpenappActivity.this, LoginActivity.class);
+            Intent intent = new Intent(OpenAppActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

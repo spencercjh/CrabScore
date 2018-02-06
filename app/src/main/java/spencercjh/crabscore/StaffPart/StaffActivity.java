@@ -50,7 +50,7 @@ public class StaffActivity extends AppCompatActivity implements TabLayout.OnTabS
     }
 
     private void initTabViewPager() {
-        AdministratorPageAdapter adapter = new AdministratorPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        StaffPageAdapter adapter = new StaffPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

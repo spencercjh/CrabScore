@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
-import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScorePageAdapter;
+import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScoreRankingPageAdapter;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -48,7 +48,7 @@ public class CompanyActivity extends AppCompatActivity implements TabLayout.OnTa
     }
 
     private void initTabViewPager() {
-        CheckScorePageAdapter adapter = new CheckScorePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        CompanyPageAdapter adapter = new CompanyPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

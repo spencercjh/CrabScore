@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.Date;
 
 import spencercjh.crabscore.AdministratorPart.AdministratorActivity;
-import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScore_Ranking_Activity;
+import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScoreRankingActivity;
 import spencercjh.crabscore.CompanyPart.CompanyActivity;
 import spencercjh.crabscore.JudgePart.JudgeActivity;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -61,7 +61,7 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
         ll_third.setSelected(false);
         v.setSelected(true);
         if (v == ll_first) {
-            toActivity("first", CheckScore_Ranking_Activity.class);
+            toActivity("first", CheckScoreRankingActivity.class);
         } else if (v == ll_second) {
             if (choice == 1) {
                 toActivity("second", AdministratorActivity.class);

@@ -72,7 +72,7 @@ public class CompanyAdminFragment extends Fragment {
     }
 
     private void Fill_CompanyList() {
-        lv = mView.findViewById(R.id.all_user_list);
+        lv = mView.findViewById(R.id.all_company_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */

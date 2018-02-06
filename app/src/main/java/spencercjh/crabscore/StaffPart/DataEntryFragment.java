@@ -72,7 +72,7 @@ public class DataEntryFragment extends Fragment {
     }
 
     private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.all_user_list);
+        lv = mView.findViewById(R.id.data_entry_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */

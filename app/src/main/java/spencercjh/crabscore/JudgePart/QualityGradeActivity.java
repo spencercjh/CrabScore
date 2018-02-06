@@ -49,7 +49,7 @@ public class QualityGradeActivity extends AppCompatActivity implements TabLayout
     }
 
     private void initTabViewPager() {
-        QualityScorePageAdapter adapter = new QualityScorePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, qualityScoreOBJ);
+        QualityGradePageAdapter adapter = new QualityGradePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, qualityScoreOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

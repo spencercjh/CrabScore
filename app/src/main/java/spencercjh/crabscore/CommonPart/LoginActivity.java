@@ -177,7 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         spannableString2.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, GetPasswordActivity.class);
+                Intent intent = new Intent(LoginActivity.this, UpdatePasswordActivity.class);
                 startActivity(intent);
             }
         }, 0, text2.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
