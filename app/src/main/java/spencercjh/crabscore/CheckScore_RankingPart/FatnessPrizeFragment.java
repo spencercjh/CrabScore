@@ -1,4 +1,4 @@
-package spencercjh.crabscore.CheckScore_Ranking_Part;
+package spencercjh.crabscore.CheckScore_RankingPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

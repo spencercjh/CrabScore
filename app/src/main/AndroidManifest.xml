@@ -30,7 +30,7 @@
         <activity android:name=".AdministratorPart.UpdateYear_NoteActivity" />
         <activity android:name=".AdministratorPart.UpdateUserInfoActivity" />
         <activity android:name=".AdministratorPart.CheckCompanyScoreActivity" />
-        <activity android:name=".CheckScore_Ranking_Part.CheckScoreRankingActivity" />
+        <activity android:name=".CheckScore_RankingPart.CheckScoreRankingActivity" />
         <activity android:name=".CommonPart.MainActivity" />
         <activity android:name=".CommonPart.RegisterActivity" />
         <activity android:name=".CommonPart.LoginActivity" />

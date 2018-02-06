@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.Date;
 
 import spencercjh.crabscore.AdministratorPart.AdministratorActivity;
-import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScoreRankingActivity;
+import spencercjh.crabscore.CheckScore_RankingPart.CheckScoreRankingActivity;
 import spencercjh.crabscore.CompanyPart.CompanyActivity;
 import spencercjh.crabscore.JudgePart.JudgeActivity;
 import spencercjh.crabscore.OBJ.UserOBJ;

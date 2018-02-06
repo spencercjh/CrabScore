@@ -1,4 +1,4 @@
-package spencercjh.crabscore.CheckScore_Ranking_Part;
+package spencercjh.crabscore.CheckScore_RankingPart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,7 +24,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
-public class QualityPrizeFragment extends Fragment {
+public class TastePrizeFragment extends Fragment {
     private static final String TAG = "QualityPrizeFragment";
     protected View mView;
     protected Context mContext;
@@ -33,11 +33,10 @@ public class QualityPrizeFragment extends Fragment {
     private int choice;
     private SwipeRefreshLayout srl_simple;
 
-
-    QualityPrizeFragment() {
+    TastePrizeFragment() {
     }
 
-    QualityPrizeFragment(UserOBJ userOBJ, int choice) {
+    TastePrizeFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }
@@ -45,13 +44,13 @@ public class QualityPrizeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
-        mView = inflater.inflate(R.layout.fragment_quality_prize, container, false);
+        mView = inflater.inflate(R.layout.fragment_taste_prize, container, false);
         srl_simple = mView.findViewById(R.id.srl_simple);
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 try {
-                    Fill_QualityPrizeList();
+                    Fill_TastePrizeList();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -72,14 +71,14 @@ public class QualityPrizeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            Fill_QualityPrizeList();
+            Fill_TastePrizeList();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void Fill_QualityPrizeList() throws InterruptedException {
-        lv = mView.findViewById(R.id.quality_score_list);
+    private void Fill_TastePrizeList() throws InterruptedException {
+        lv = mView.findViewById(R.id.taste_score_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */
