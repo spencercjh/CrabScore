@@ -1,7 +1,7 @@
-package spencercjh.crabscore.HttpRequst.Function.PersonCenterPart;
+package spencercjh.crabscore.HttpRequst.Function.CommonPart;
 
 import spencercjh.crabscore.HttpRequst.Function.ServerURL;
-import spencercjh.crabscore.HttpRequst.Thread.PersonCenterPart.QueryUserProperty;
+import spencercjh.crabscore.HttpRequst.Thread.CommonPart.QueryUserProperty;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**

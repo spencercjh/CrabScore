@@ -75,6 +75,14 @@ public class UserOBJ implements Serializable {
         this.role_id = role_id;
     }
 
+    //    找回密码用
+    public UserOBJ(String user_name, String display_name, String email, int role_id) {
+        this.user_name = user_name;
+        this.display_name = display_name;
+        this.email = email;
+        this.role_id = role_id;
+    }
+
     public int getRole_id() {
         return role_id;
     }

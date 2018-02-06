@@ -138,6 +138,39 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 /**
                  * 自动登陆
                  */
+/*                UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), MD5andKL.MD5(pwd.getText().toString().trim()), choice);
+                int user_status ;
+                try {
+                    user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    user_status=-1;
+                }
+                if (user_status == 1) {
+                    int login_status ;
+                    try {
+                        login_status = Fun_Login.http_login(userOBJ);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        login_status=-1;
+                    }
+                    if (login_status == 1) {
+                        Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("USEROBJ", userOBJ);
+                        intent.putExtra("USER", choice);
+                        LoginActivity.this.startActivity(intent);
+                        finish();
+                    } else if (login_status == 0) {
+                        Toast.makeText(LoginActivity.this, "账号或密码错误或用户组选择不正确！", Toast.LENGTH_SHORT).show();
+                    } else if (login_status == -1) {
+                        Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (user_status == 0) {
+                    Toast.makeText(LoginActivity.this, "账号被禁用！", Toast.LENGTH_SHORT).show();
+                } else if (user_status == -1) {
+                    Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
+                }*/
             }
         }
         //监听自动登录多选框按钮事件
@@ -204,9 +237,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //登陆按钮
     public void Login(View view) throws InterruptedException {
-        String Eid = id.getText().toString().trim();
-        String Epassword = pwd.getText().toString().trim();
-        if (Eid.length() == 0 || Epassword.length() == 0) {
+        String user_name = id.getText().toString().trim();
+        String passowrd = pwd.getText().toString().trim();
+        if (user_name.length() == 0 || passowrd.length() == 0) {
             new AlertDialog.Builder(this).setMessage("帐号或密码不可为空！").setCancelable(false).
                     setIcon(android.R.drawable.ic_dialog_alert).setTitle("注意").setPositiveButton("关闭", null).show();
         } else {
@@ -222,17 +255,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             /**
              * 登陆
              */
-
-            UserOBJ userOBJ = new UserOBJ("123", "123", choice);
+/*            UserOBJ userOBJ = new UserOBJ(user_name, MD5andKL.MD5(passowrd), choice);
+            int user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
+            if (user_status == 1) {
+                int login_status = Fun_Login.http_login(userOBJ);
+                if (login_status == 1) {
+                    Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
+                    if (rem_pw.isChecked()) {
+                        //记住用户名、密码、
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("USER_ID", userOBJ.getUser_name());
+                        editor.putString("PASSWORD", userOBJ.getPassword());
+                        editor.apply();
+                    }
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("USEROBJ", userOBJ);
+                    intent.putExtra("USER", choice);
+                    LoginActivity.this.startActivity(intent);
+                    finish();
+                } else if (login_status == 0) {
+                    Toast.makeText(LoginActivity.this, "账号或密码错误或用户组选择不正确！", Toast.LENGTH_SHORT).show();
+                } else if (login_status == -1) {
+                    Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
+                }
+            } else if (user_status == 0) {
+                Toast.makeText(LoginActivity.this, "账号被禁用！", Toast.LENGTH_SHORT).show();
+            } else if (user_status == -1) {
+                Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
+            }*/
+            /**
+             * 测试登陆 直接进入
+             */
+            UserOBJ userOBJ_test = new UserOBJ("123", "123", choice);
             if (rem_pw.isChecked()) {
                 //记住用户名、密码、
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString("USER_ID", userOBJ.getUser_name());
-                editor.putString("PASSWORD", userOBJ.getPassword());
+                editor.putString("USER_ID", userOBJ_test.getUser_name());
+                editor.putString("PASSWORD", userOBJ_test.getPassword());
                 editor.apply();
             }
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("USEROBJ", userOBJ);
+            intent.putExtra("USEROBJ", userOBJ_test);
             intent.putExtra("USER", choice);
             LoginActivity.this.startActivity(intent);
             finish();

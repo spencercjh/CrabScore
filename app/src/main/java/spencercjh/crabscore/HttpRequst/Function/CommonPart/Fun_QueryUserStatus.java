@@ -17,12 +17,12 @@ public class Fun_QueryUserStatus {
         thread.join();
         if (thread.getFlag()) {
             if (thread.getUser_status().contains("1")) {
-                return 1;
+                return 1;   //账户开启 能登陆
             } else {
-                return 0;
+                return 0;   //账户被禁用
             }
         } else {
-            return -1;
+            return -1;  //与服务器连接不正常
         }
     }
 }

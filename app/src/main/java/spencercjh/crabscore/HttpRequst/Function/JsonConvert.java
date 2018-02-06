@@ -36,7 +36,7 @@ public class JsonConvert {
         return list;
     }
 
-    //    用户：用户名-显示名-用户组-状态-email-比赛id
+    //    用户：用户名-显示名-用户组-状态-email-比赛id 多用户
     public static ArrayList<UserOBJ> convert_user_name_display_name_role_id_status(String jsonstr) {
         ArrayList<UserOBJ> list = new ArrayList<>();
         try {
@@ -56,6 +56,26 @@ public class JsonConvert {
             e.printStackTrace();
         }
         return list;
+    }
+
+    //    用户：用户名-显示名-用户组-状态-email-比赛id 单用户
+    public static UserOBJ convert_user_name_display_name_role_id_status_one(String jsonstr) {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonstr);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                String user_name = list_item.getString("user_name");
+                String display_name = list_item.getString("display_name");
+                int role_id = list_item.getInt("role_id");
+                int status = list_item.getInt("status");
+                String email = list_item.getString("email");
+                int competition_id = list_item.getInt("competition_id");
+                return new UserOBJ(user_name, display_name, role_id, status, email, competition_id);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new UserOBJ();
     }
 
     //    参赛单位：参选单位

@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequst.Thread.PersonCenterPart;
+package spencercjh.crabscore.HttpRequst.Thread.CommonPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * Created by spencercjh on 2018/2/2.
+ * Created by spencercjh on 2018/2/7.
  * iClass
  */
 
