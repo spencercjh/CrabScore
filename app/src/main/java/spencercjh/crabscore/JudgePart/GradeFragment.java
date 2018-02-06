@@ -105,6 +105,8 @@ public class GradeFragment extends Fragment {
                 }
                 QualityScoreOBJ qualityScoreOBJ = QualityScoreList.get(position);
                 TasteScoreOBJ tasteScoreOBJ = TasteScoreList.get(position);
+                TextView Tindex = view.findViewById(R.id.text_index);
+                Tindex.setText(position);
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
                 Tgroup_id.setText("第 " + qualityScoreOBJ.getGroup_id() + " 组");
                 TextView Tgrade_status = view.findViewById(R.id.text_grade_status);

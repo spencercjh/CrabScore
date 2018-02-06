@@ -18,14 +18,17 @@ public class QueryTasteScore extends Thread {
     private boolean flag;
     private String url;
     private String jsonstr;
+    private int competition_id;
 
-    public QueryTasteScore(String url) {
+    public QueryTasteScore(String url, int competition_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
+        this.competition_id = competition_id;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
+        url = url + "?competition_id=" + competition_id;
         try {
             URL httpUrl = new URL(url);
 //            URLEncoder.encode(url);

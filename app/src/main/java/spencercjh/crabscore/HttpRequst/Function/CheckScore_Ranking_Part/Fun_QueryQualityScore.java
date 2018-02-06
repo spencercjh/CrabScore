@@ -9,14 +9,14 @@ import spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part.QueryQuali
  */
 
 public class Fun_QueryQualityScore {
-    public static String http_QueryBestGermplasmScore() throws InterruptedException {
-        String url= ServerURL.sever_url+ServerURL.servlet_QueryQualityScore;
-        QueryQualityScore thread=new QueryQualityScore(url);
+    public static String http_QueryBestGermplasmScore(int competition_id) throws InterruptedException {
+        String url = ServerURL.sever_url + ServerURL.servlet_QueryQualityScore;
+        QueryQualityScore thread = new QueryQualityScore(url, competition_id);
         thread.start();
         thread.join();
-        if(thread.getFlag()){
+        if (thread.getFlag()) {
             return thread.getJsonstr();
-        }else{
+        } else {
             return ServerURL.sign_fail;
         }
     }

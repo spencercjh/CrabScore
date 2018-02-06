@@ -105,7 +105,7 @@ public class JsonConvert {
         return new CompetitionOBJ();
     }
 
-    //    小组
+    //    小组号列表
     public static ArrayList<GroupOBJ> convert_group_id(String jsonstr) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
@@ -114,6 +114,25 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
                 GroupOBJ groupOBJ = new GroupOBJ(group_id);
+                list.add(groupOBJ);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+//    优质奖：小组号-参选单位号-比赛号-雄蟹肥满度评分-雌蟹肥满度评分
+    public static ArrayList<GroupOBJ> convert_fatness_score(String jsonstr){
+        ArrayList<GroupOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(jsonstr);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int company_id=list_item.getInt("company_id");
+                double fatness_score_m=list_item.getDouble("fatness_score_m");
+                double fatness_score_f=list_item.getDouble("fatness_score_f");
+                GroupOBJ groupOBJ = new GroupOBJ(group_id,company_id,fatness_score_m,fatness_score_f);
                 list.add(groupOBJ);
             }
         } catch (JSONException e) {

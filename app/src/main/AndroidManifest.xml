@@ -50,7 +50,8 @@
         <activity android:name=".StaffPart.CrabList_M_Activity" />
         <activity android:name=".StaffPart.CrabList_F_Activity" />
         <activity android:name=".StaffPart.UpdateCrabInfoActivity" />
-        <activity android:name=".AdministratorPart.UpdateCompanyInfoActivity"></activity>
+        <activity android:name=".AdministratorPart.UpdateCompanyInfoActivity" />
+        <activity android:name=".AdministratorPart.UpdatePresentCompetitionActivity"></activity>
     </application>
 
 </manifest>

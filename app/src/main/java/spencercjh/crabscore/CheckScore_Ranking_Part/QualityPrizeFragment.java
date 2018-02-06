@@ -15,7 +15,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import spencercjh.crabscore.OBJ.Score_RankingOBJ;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryCompanyName;
+import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryFatnessScore;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -46,7 +50,11 @@ public class QualityPrizeFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_QualityPrizeList();
+                try {
+                    Fill_QualityPrizeList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -63,15 +71,20 @@ public class QualityPrizeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_QualityPrizeList();
+        try {
+            Fill_QualityPrizeList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_QualityPrizeList() {
+    private void Fill_QualityPrizeList() throws InterruptedException {
         lv = mView.findViewById(R.id.quality_score_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */
-        final ArrayList<Score_RankingOBJ> ScoreList = new ArrayList<>();
+        int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
+        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -96,15 +109,22 @@ public class QualityPrizeFragment extends Fragment {
                 } else {
                     view = convertView;
                 }
-                Score_RankingOBJ score_rankingOBJ = ScoreList.get(position);
-                TextView Torder = view.findViewById(R.id.tv_order);
+                GroupOBJ groupOBJ = ScoreList.get(position);
+                TextView Tindex = view.findViewById(R.id.tv_index);
+                Tindex.setText(position);
                 TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
-                TextView Tcompany = view.findViewById(R.id.tv_company);
+                Tgroup_id.setText(groupOBJ.getGroup_id());
+                TextView Tcompany_name = view.findViewById(R.id.tv_company_name);
+                try {
+                    Tcompany_name.setText(Fun_QueryCompanyName.http_QueryCompanyName(groupOBJ.getCompany_id()));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 TextView Tscore = view.findViewById(R.id.tv_score);
-                Torder.setText(score_rankingOBJ.getOrder());
-                Tgroup_id.setText(score_rankingOBJ.getGroup_id());
-                Tcompany.setText(score_rankingOBJ.getCompany_name().trim());
-                Tscore.setText(String.valueOf(score_rankingOBJ.getScore()));
+                /**
+                 * 计算不完善！
+                 */
+//                Tscore.setText(String.valueOf((groupOBJ.getFatness_score_f() + groupOBJ.getFatness_score_m()) / 2.0));
                 return view;
             }
         });

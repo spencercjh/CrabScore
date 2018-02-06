@@ -9,26 +9,25 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Created by spencercjh on 2018/2/2.
+ * Created by spencercjh on 2018/2/6.
  * iClass
- * 查找最佳种质奖
  */
 
-public class QueryQualityScore extends Thread {
+public class QueryCompanyName extends Thread {
     private boolean flag;
     private String url;
-    private String jsonstr;
-    private int competition_id;
+    private int company_id;
+    private String company_name;
 
-    public QueryQualityScore(String url, int competition_id) {
+    public QueryCompanyName(String url, int company_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.competition_id = competition_id;
+        this.company_id = company_id;
     }
 
     private void doGet() throws IOException {
+        url = url + "?company_id=" + company_id;
         /*将username和password传给Tomcat服务器*/
-        url = url + "?competition_id=" + competition_id;
         try {
             URL httpUrl = new URL(url);
 //            URLEncoder.encode(url);
@@ -49,12 +48,12 @@ public class QueryQualityScore extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                jsonstr = buffer.toString();
-                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
+                company_name = buffer.toString();
+                company_name = URLDecoder.decode(company_name, "UTF-8");
             }
             //把服务端返回的数据打印出来
-            System.out.println("result:" + jsonstr);
-            if (jsonstr.equals("get student subject list failed")) {
+            System.out.println("result:" + company_name);
+            if (company_name.equals("get student subject list failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -62,7 +61,6 @@ public class QueryQualityScore extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean getFlag() {
@@ -73,8 +71,8 @@ public class QueryQualityScore extends Thread {
         this.flag = flag;
     }
 
-    public String getJsonstr() {
-        return jsonstr;
+    public String getCompanyName() {
+        return company_name;
     }
 
     /*在run中调用doGet*/
@@ -88,3 +86,4 @@ public class QueryQualityScore extends Thread {
         }
     }
 }
+

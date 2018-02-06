@@ -23,6 +23,13 @@ public class GroupOBJ implements Serializable {
     public GroupOBJ(int group_id) {
         this.group_id = group_id;
     }
+//  优质奖
+    public GroupOBJ(int group_id, int company_id, double fatness_score_m, double fatness_score_f) {
+        this.group_id = group_id;
+        this.company_id = company_id;
+        this.fatness_score_m = fatness_score_m;
+        this.fatness_score_f = fatness_score_f;
+    }
 
     public GroupOBJ(int group_id, int company_id, double fatness_score_m, double quality_score_m,
                     double taste_score_m, double fatness_score_f, double quality_score_f, double taste_score_f) {

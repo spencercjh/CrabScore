@@ -35,4 +35,5 @@ public class ServerURL {
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";
+    public static String servlet_QueryCompanyName="QueryCompanyName";
 }

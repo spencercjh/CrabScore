@@ -48,7 +48,7 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
         choice = (int) intent.getSerializableExtra("USER");
         lv = (ListView) findViewById(R.id.group_list);
         toolbar = (Toolbar) findViewById(R.id.tl_head);
-        toolbar.setTitle("修改其他比赛设置");
+        toolbar.setTitle("选择小组");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         setSupportActionBar(toolbar);
