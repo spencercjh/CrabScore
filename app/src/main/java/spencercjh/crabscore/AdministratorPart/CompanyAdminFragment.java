@@ -63,12 +63,12 @@ public class CompanyAdminFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_CompanyList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Fill_CompanyList();
     }
 
     private void Fill_CompanyList() {

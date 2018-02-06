@@ -58,12 +58,12 @@ public class QualityPrizeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_QualityPrizeList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Fill_QualityPrizeList();
     }
 
     private void Fill_QualityPrizeList() {

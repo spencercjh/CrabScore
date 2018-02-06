@@ -20,6 +20,7 @@ import spencercjh.crabscore.R;
  * iClass
  */
 
+@SuppressWarnings("deprecation")
 public class QualityScoreActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
     private Toolbar tl_head;
@@ -74,7 +75,7 @@ public class QualityScoreActivity extends AppCompatActivity implements TabLayout
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

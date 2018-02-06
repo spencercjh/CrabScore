@@ -70,11 +70,11 @@ public class OwnGroupScoreFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Fill_GroupList();
     }
 
     private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.taste_score_list);
+        lv = mView.findViewById(R.id.group_score_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */

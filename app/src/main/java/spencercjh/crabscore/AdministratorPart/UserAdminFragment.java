@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,8 +45,9 @@ public class UserAdminFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
-        mView = inflater.inflate(R.layout.fragment_user_admin, container, false);
-        srl_simple = mView.findViewById(R.id.srl_simple);
+        View view = inflater.inflate(R.layout.fragment_user_admin, container, false);
+        lv = view.findViewById(R.id.all_user_list);
+        srl_simple = view.findViewById(R.id.srl_simple);
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -55,6 +56,7 @@ public class UserAdminFragment extends Fragment {
             }
         });
         srl_simple.setColorSchemeResources(R.color.red, R.color.orange, R.color.green, R.color.blue);
+        mView = view;
         return mView;
     }
 
@@ -62,19 +64,18 @@ public class UserAdminFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_AllUserList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Fill_AllUserList();
     }
 
     private void Fill_AllUserList() {
-        lv = mView.findViewById(R.id.all_user_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
+         **/
         final ArrayList<UserOBJ> UserList = new ArrayList<>();
         lv.setAdapter(new BaseAdapter() {
             @Override

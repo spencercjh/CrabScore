@@ -18,6 +18,7 @@ import spencercjh.crabscore.R;
  * iClass
  */
 
+@SuppressWarnings("deprecation")
 public class TasteScoreActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
     private Toolbar tl_head;
@@ -72,7 +73,7 @@ public class TasteScoreActivity extends AppCompatActivity implements TabLayout.O
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

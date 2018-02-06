@@ -58,13 +58,12 @@ public class FatnessPrizeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_FatnessPrizeList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Fill_FatnessPrizeList();
     }
 
     private void Fill_FatnessPrizeList() {

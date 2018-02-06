@@ -11,10 +11,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
-import spencercjh.crabscore.AdministratorPart.AdministratorPageAdapter;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
+@SuppressWarnings("deprecation")
 public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
@@ -65,7 +65,7 @@ public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabS
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

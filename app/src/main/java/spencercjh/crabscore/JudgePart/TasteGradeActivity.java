@@ -1,19 +1,19 @@
 package spencercjh.crabscore.JudgePart;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
-import spencercjh.crabscore.CompanyPart.TasteScorePageAdapter;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
+@SuppressWarnings("deprecation")
 public class TasteGradeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
     private Toolbar tl_head;
@@ -68,7 +68,7 @@ public class TasteGradeActivity extends AppCompatActivity implements TabLayout.O
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

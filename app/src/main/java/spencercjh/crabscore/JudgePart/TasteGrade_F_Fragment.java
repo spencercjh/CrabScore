@@ -62,12 +62,12 @@ public class TasteGrade_F_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        InitialInfo();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        InitialInfo();
     }
 
     private void InitialInfo() {

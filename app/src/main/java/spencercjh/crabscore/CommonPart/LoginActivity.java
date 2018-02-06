@@ -222,7 +222,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             /**
              * 登陆
              */
+
             UserOBJ userOBJ = new UserOBJ("123", "123", choice);
+            if (rem_pw.isChecked()) {
+                //记住用户名、密码、
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("USER_ID", userOBJ.getUser_name());
+                editor.putString("PASSWORD", userOBJ.getPassword());
+                editor.apply();
+            }
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
             intent.putExtra("USER", choice);

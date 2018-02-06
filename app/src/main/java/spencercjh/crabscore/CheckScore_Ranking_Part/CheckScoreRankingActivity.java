@@ -68,7 +68,7 @@ public class CheckScoreRankingActivity extends AppCompatActivity implements TabL
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

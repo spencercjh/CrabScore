@@ -9,11 +9,11 @@ import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
-import spencercjh.crabscore.CompanyPart.QualityScorePageAdapter;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
+@SuppressWarnings("deprecation")
 public class QualityGradeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
     private Toolbar tl_head;
@@ -67,7 +67,7 @@ public class QualityGradeActivity extends AppCompatActivity implements TabLayout
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

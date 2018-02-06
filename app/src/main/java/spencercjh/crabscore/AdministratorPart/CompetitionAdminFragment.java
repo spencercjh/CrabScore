@@ -74,15 +74,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         Tvar_fweight_sd = mView.findViewById(R.id.text_var_fweight_sd);
         button = mView.findViewById(R.id.button);
         button.setOnClickListener(this);
-        srl_simple = mView.findViewById(R.id.srl_simple);
-        srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                InitialInfo();
-                srl_simple.setRefreshing(false);
-            }
-        });
-        srl_simple.setColorSchemeResources(R.color.red, R.color.orange, R.color.green, R.color.blue);
         return mView;
     }
 
@@ -95,7 +86,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        InitialInfo();
     }
 
     private void InitialInfo() {

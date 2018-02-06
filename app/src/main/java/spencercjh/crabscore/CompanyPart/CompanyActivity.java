@@ -11,10 +11,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
-import spencercjh.crabscore.CheckScore_Ranking_Part.CheckScoreRankingPageAdapter;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
+@SuppressWarnings("deprecation")
 public class CompanyActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
@@ -65,7 +65,7 @@ public class CompanyActivity extends AppCompatActivity implements TabLayout.OnTa
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

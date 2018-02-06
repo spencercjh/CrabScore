@@ -3,6 +3,7 @@ package spencercjh.crabscore.AdministratorPart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressWarnings({"deprecation", "ConstantConditions"})
-public class AdministratorActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class AdministratorActivity extends AppCompatActivity implements OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
@@ -72,7 +73,7 @@ public class AdministratorActivity extends AppCompatActivity implements TabLayou
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
+        vp_content.setCurrentItem(tab.getPosition());
     }
 
     @Override

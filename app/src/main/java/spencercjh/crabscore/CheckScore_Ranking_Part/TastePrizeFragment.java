@@ -57,13 +57,12 @@ public class TastePrizeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_TastePrizeList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Fill_TastePrizeList();
     }
 
     private void Fill_TastePrizeList() {

@@ -64,17 +64,16 @@ public class GradeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Fill_GroupList();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Fill_GroupList();
     }
 
     private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.all_user_list);
+        lv = mView.findViewById(R.id.grade_list);
         /**
          * 涉及多表多数据的计算 此处网络线程后面再完善
          */

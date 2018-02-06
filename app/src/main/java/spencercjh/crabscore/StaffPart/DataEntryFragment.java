@@ -68,7 +68,7 @@ public class DataEntryFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Fill_GroupList();
     }
 
     private void Fill_GroupList() {
