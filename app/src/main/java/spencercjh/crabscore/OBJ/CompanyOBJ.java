@@ -12,7 +12,6 @@ public class CompanyOBJ implements Serializable {
     private int company_id;
     private String company_name;
     private int competition_id;
-
     public CompanyOBJ() {
 
     }

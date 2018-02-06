@@ -51,7 +51,10 @@
         <activity android:name=".StaffPart.CrabList_F_Activity" />
         <activity android:name=".StaffPart.UpdateCrabInfoActivity" />
         <activity android:name=".AdministratorPart.UpdateCompanyInfoActivity" />
-        <activity android:name=".AdministratorPart.UpdatePresentCompetitionActivity"></activity>
+        <activity android:name=".AdministratorPart.UpdatePresentCompetitionActivity" />
+        <activity android:name=".AdministratorPart.UpdateCompetitionPropertyActivity" />
+        <activity android:name=".AdministratorPart.CalculateScoreActivity" />
+        <activity android:name=".AdministratorPart.GenerateExcelActivity"></activity>
     </application>
 
 </manifest>

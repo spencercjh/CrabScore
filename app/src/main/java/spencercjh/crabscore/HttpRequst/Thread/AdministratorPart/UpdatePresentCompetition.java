@@ -7,35 +7,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 
 /**
- * Created by spencercjh on 2018/2/6.
+ * Created by spencercjh on 2018/2/7.
  * iClass
- * 真删除
  */
 
-public class DeleteUserInfo extends Thread {
+public class UpdatePresentCompetition extends Thread{
     private boolean flag;
     private String url;
-    private String user_name;
-    private String display_name;
+    private int competition_id;
     private String update_state;
     private String update_user;
 
-    public DeleteUserInfo(String url, String user_name, String display_name, String update_user) {
+    public UpdatePresentCompetition(String url, int competition_id, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
-        this.display_name = display_name;
+        this.competition_id = competition_id;
         this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
-        update_user = URLEncoder.encode(update_user, "utf-8");
-        update_user = URLEncoder.encode(update_user, "utf-8");
         /*将username和password传给Tomcat服务器*/
-        url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&update_user" + update_user;
+        url = url + "?competition_id=" + competition_id + "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             /*获取网络连接*/

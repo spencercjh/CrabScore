@@ -11,6 +11,7 @@ import java.net.URLDecoder;
 /**
  * Created by spencercjh on 2018/2/6.
  * iClass
+ * 真删除
  */
 
 public class DeleteCompanyInfo extends Thread {
