@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_QueryUserProperty;
+import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_QueryUserProperty_Login;
 import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_UpdatePassword;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -86,7 +86,7 @@ public class UpdatePasswordActivity extends AppCompatActivity implements OnClick
         String display_name = Edisplay_name.getText().toString().trim();
         String email = Eemail.getText().toString().trim();
         UserOBJ userOBJ = new UserOBJ(user_name, display_name, email, choice);
-        UserOBJ check = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty.http_QueryUserProperty(userOBJ));
+        UserOBJ check = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty_Login.http_QueryUserProperty(userOBJ));
         if (user_name.equals(check.getUser_name()) && display_name.equals(check.getDisplay_name()) && email.equals(check.getEmail()) && choice == check.getRole_id()) {
             flag = true;
             dialog_check_success();

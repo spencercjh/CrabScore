@@ -14,7 +14,8 @@ public class ServerURL {
     public static String servlet_QueryFatnessScore = "QueryFatnessScore";
     public static String servlet_QueryTasteScore = "QueryTasteScore";
     public static String servlet_InsertCompanyInfo = "InsertCompanyInfo";
-    public static String servlet_QueryUserProperty = "QueryUserProperty";
+    public static String servlet_QueryUserProperty_Login = "QueryUserProperty_";
+    public static String servlet_QueryUserProperty_Common = "QueryUserProperty_Common";
     public static String servlet_QueryAllCompetition = "QueryAllCompetition";
     public static String servlet_QueryAllUncheckedUser = "QueryAllUncheckedUser";
     public static String servlet_QueryAllCompany = "QueryAllCompany";

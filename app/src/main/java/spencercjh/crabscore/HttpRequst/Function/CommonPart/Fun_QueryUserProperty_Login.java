@@ -1,7 +1,7 @@
 package spencercjh.crabscore.HttpRequst.Function.CommonPart;
 
 import spencercjh.crabscore.HttpRequst.Function.ServerURL;
-import spencercjh.crabscore.HttpRequst.Thread.CommonPart.QueryUserProperty;
+import spencercjh.crabscore.HttpRequst.Thread.CommonPart.QueryUserProperty_Login;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
@@ -9,10 +9,10 @@ import spencercjh.crabscore.OBJ.UserOBJ;
  * iClass
  */
 
-public class Fun_QueryUserProperty {
+public class Fun_QueryUserProperty_Login {
     public static String http_QueryUserProperty(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryUserProperty;
-        QueryUserProperty thread = new QueryUserProperty(url, userOBJ.getUser_name(), userOBJ.getDisplay_name());
+        String url = ServerURL.sever_url + ServerURL.servlet_QueryUserProperty_Login;
+        QueryUserProperty_Login thread = new QueryUserProperty_Login(url, userOBJ.getUser_name(), userOBJ.getDisplay_name());
         thread.start();
         thread.join();
         if (thread.getFlag()) {

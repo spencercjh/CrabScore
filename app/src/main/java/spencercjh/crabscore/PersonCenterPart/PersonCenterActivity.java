@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.Date;
 
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
-import spencercjh.crabscore.HttpRequst.Function.PersonCenterPart.Fun_QueryUserProperty;
+import spencercjh.crabscore.HttpRequst.Function.PersonCenterPart.Fun_QueryUserProperty_Common;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
@@ -88,7 +88,7 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void InitialInfo() throws InterruptedException {
-        userOBJ = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty.http_QueryUserProperty(userOBJ));
+        userOBJ = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty_Common.http_QueryUserProperty(userOBJ));
         Tuser_name.setText(userOBJ.getUser_name().trim());
         Tdisplay_name.setText(userOBJ.getDisplay_name().trim());
         Temail.setText(userOBJ.getEmail().trim());

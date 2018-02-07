@@ -13,14 +13,14 @@ import java.net.URLDecoder;
  * iClass
  */
 
-public class QueryUserProperty extends Thread {
+public class QueryUserProperty_Common extends Thread {
     private boolean flag;
     private String url;
     private String user_name;
     private String password;
     private String jsonstr;
 
-    public QueryUserProperty(String url, String user_name, String password) {
+    public QueryUserProperty_Common(String url, String user_name, String password) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
