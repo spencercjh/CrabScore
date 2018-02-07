@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,9 +32,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();
     private int choice;
-    private SwipeRefreshLayout srl_simple;
     private TextView Tyear_note;
-    private EditText Tcompetition_year;
     private EditText Tvar_fatness_m;
     private EditText Tvar_fatness_f;
     private EditText Tvar_weight_m;
@@ -95,9 +92,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     }
 
     private void InitialInfo(CompetitionOBJ competitionOBJ) throws InterruptedException {
-        /**
-         * 数据初始化 网络线程
-         */
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         competitionOBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
         competitionOBJ = JsonConvert.convert_competition_property(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competitionOBJ.getCompetition_year()));
@@ -163,9 +157,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         competition_OBJ = new CompetitionOBJ(year, note, var_fatness_m, var_fatness_f,
                 var_weight_m, var_mfatness_sd, var_mweight_sd, var_weight_f, var_ffatness_sd,
                 var_fweight_sd, result_fatness, result_quality, result_taste);
-        /**
-         * 更新数据网络线程
-         */
         if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competition_OBJ, userOBJ)) {
             dialog_update_success();
             InitialInfo(competition_OBJ);
