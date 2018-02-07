@@ -268,7 +268,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.apply();
                     }
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    userOBJ.setRole_id(choice);
                     intent.putExtra("USEROBJ", userOBJ);
                     LoginActivity.this.startActivity(intent);
                     finish();

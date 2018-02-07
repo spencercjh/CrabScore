@@ -41,6 +41,9 @@ public class ServerURL {
     public static String servlet_UpdateQualityScoreInfo = "UpdateQualityScoreInfo";
     public static String servlet_UpdateTasteScoreInfo = "UpdateTasteScoreInfo";
     public static String servlet_QueryAllGroup = "QueryAllGroup";
+    public static String servlet_UpdateUserPassword = "UpdateUserPassword";
+    public static String servlet_UpdateUserDisplayName = "UpdateUserDisplayName";
+    public static String servlet_UpdateUserEmail = "UpdateUserEmail";
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";
