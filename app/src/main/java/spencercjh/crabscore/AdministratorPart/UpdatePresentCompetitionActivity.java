@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryAllCompetition;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdateCompetitionStatus;
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_UpdatePresentCompetition;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
@@ -150,7 +151,8 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdatePresentCompetition.http_UpdatePresentCompetition(competitionOBJ, userOBJ)) {
+                            if (Fun_UpdatePresentCompetition.http_UpdatePresentCompetition(competitionOBJ, userOBJ,
+                                    Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID())) {
                                 dialog_update_success();
                             } else {
                                 dialog_update_fail();

@@ -30,15 +30,10 @@ public class QueryCompanyID extends Thread {
         company_name = URLEncoder.encode(company_name, "utf-8");
         company_name = URLEncoder.encode(company_name, "utf-8");
         url=url+"?company_name="+company_name;
-        /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);
-//            URLEncoder.encode(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -54,9 +49,8 @@ public class QueryCompanyID extends Thread {
                 competition_id = buffer.toString();
                 competition_id = URLDecoder.decode(competition_id, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + competition_id);
-            if (competition_id.equals("get student subject list failed")) {
+            if (competition_id.equals("query company id failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -78,7 +72,6 @@ public class QueryCompanyID extends Thread {
         return competition_id;
     }
 
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

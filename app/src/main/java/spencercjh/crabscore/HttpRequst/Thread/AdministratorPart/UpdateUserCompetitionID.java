@@ -30,15 +30,11 @@ public class UpdateUserCompetitionID extends Thread {
     }
 
     private void doGet() throws IOException {
-        /*将username和password传给Tomcat服务器*/
         url = url + "?user_name=" + user_name + "&competition_id=" + competition_id + "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -56,7 +52,7 @@ public class UpdateUserCompetitionID extends Thread {
             }
             //把服务端返回的数据打印出来
             System.out.println("result:" + update_state);
-            if (update_state.equals("student login failed")) {
+            if (update_state.equals("update user competition failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -75,15 +71,6 @@ public class UpdateUserCompetitionID extends Thread {
         this.flag = flag;
     }
 
-    public String getUpdate_state() {
-        return update_state;
-    }
-
-    private void setUpdate_state(String update_state) {
-        this.update_state = update_state;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

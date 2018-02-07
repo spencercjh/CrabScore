@@ -13,30 +13,28 @@ import java.net.URLDecoder;
  * iClass
  */
 
-public class UpdatePresentCompetition extends Thread{
+public class UpdatePresentCompetition extends Thread {
     private boolean flag;
     private String url;
-    private int competition_id;
+    private int old_competition_id;
+    private int new_competition_id;
     private String update_state;
     private String update_user;
 
-    public UpdatePresentCompetition(String url, int competition_id, String update_user) {
+    public UpdatePresentCompetition(String url, int old_competition_id, String update_user, int new_competition_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.competition_id = competition_id;
+        this.old_competition_id = old_competition_id;
+        this.new_competition_id = new_competition_id;
         this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
-        /*将username和password传给Tomcat服务器*/
-        url = url + "?competition_id=" + competition_id + "&update_user=" + update_user;
+        url = url + "?old_competition_id=" + old_competition_id + "&update_user=" + update_user + "&new_competition_id=" + new_competition_id;
         try {
             URL httpUrl = new URL(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -52,9 +50,8 @@ public class UpdatePresentCompetition extends Thread{
                 update_state = buffer.toString();
                 update_state = URLDecoder.decode(update_state, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + update_state);
-            if (update_state.equals("student login failed")) {
+            if (update_state.equals("update present competition failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -77,11 +74,6 @@ public class UpdatePresentCompetition extends Thread{
         return update_state;
     }
 
-    private void setUpdate_state(String update_state) {
-        this.update_state = update_state;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

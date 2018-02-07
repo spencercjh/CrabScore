@@ -27,15 +27,10 @@ public class QueryCompanyName extends Thread {
 
     private void doGet() throws IOException {
         url = url + "?company_id=" + company_id;
-        /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);
-//            URLEncoder.encode(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -51,9 +46,8 @@ public class QueryCompanyName extends Thread {
                 company_name = buffer.toString();
                 company_name = URLDecoder.decode(company_name, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + company_name);
-            if (company_name.equals("get student subject list failed")) {
+            if (company_name.equals("query company name failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -75,7 +69,6 @@ public class QueryCompanyName extends Thread {
         return company_name;
     }
 
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

@@ -35,17 +35,13 @@ public class Register extends Thread {
     }
 
     private void doGet() throws IOException {
-        /*将username和password传给Tomcat服务器*/
         display_name = URLEncoder.encode(display_name, "utf-8");
         display_name = URLEncoder.encode(display_name, "utf-8");
         url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice;
         try {
             URL httpUrl = new URL(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -61,9 +57,8 @@ public class Register extends Thread {
                 register_state = buffer.toString();
                 register_state = URLDecoder.decode(register_state, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + register_state);
-            if (register_state.equals("student login failed")) {
+            if (register_state.equals("register failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -82,15 +77,6 @@ public class Register extends Thread {
         this.flag = flag;
     }
 
-    public String getRegister_state() {
-        return register_state;
-    }
-
-    private void setRegister_state(String register_state) {
-        this.register_state = register_state;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

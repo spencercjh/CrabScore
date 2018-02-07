@@ -65,8 +65,6 @@ public class UpdateCompanyInfoActivity extends AppCompatActivity implements View
     }
 
     private void updatecompanyinfo() throws InterruptedException {
-        String company_name = text_company_name.getText().toString().trim();
-        companyOBJ.setCompany_name(company_name);
         dialog();
     }
 
@@ -81,7 +79,8 @@ public class UpdateCompanyInfoActivity extends AppCompatActivity implements View
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdateCompanyName.http_UpdateCompanyName(companyOBJ, userOBJ)) {
+                            String company_name = text_company_name.getText().toString().trim();
+                            if (Fun_UpdateCompanyName.http_UpdateCompanyName(companyOBJ, userOBJ,company_name)) {
                                 dialog_update_success();
                             } else {
                                 dialog_update_fail();

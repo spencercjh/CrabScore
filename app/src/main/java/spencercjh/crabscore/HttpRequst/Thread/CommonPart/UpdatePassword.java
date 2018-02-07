@@ -38,11 +38,8 @@ public class UpdatePassword extends Thread {
         url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&role_id=" + role_id + "&email=" + email + "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -58,9 +55,8 @@ public class UpdatePassword extends Thread {
                 update_state = buffer.toString();
                 update_state = URLDecoder.decode(update_state, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + update_state);
-            if (update_state.equals("student login failed")) {
+            if (update_state.equals("update password failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -79,15 +75,6 @@ public class UpdatePassword extends Thread {
         this.flag = flag;
     }
 
-    public String getUpdate_state() {
-        return update_state;
-    }
-
-    private void setUpdate_state(String update_state) {
-        this.update_state = update_state;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

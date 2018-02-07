@@ -19,7 +19,7 @@ public class InsertCompanyInfo extends Thread {
     private String url;
     private String company_name;
     private String user_name;
-    private String jsonstr;
+    private String insert_status;
 
     public InsertCompanyInfo(String url, String company_name, String user_name) {
         // TODO Auto-generated constructor stub
@@ -29,18 +29,13 @@ public class InsertCompanyInfo extends Thread {
     }
 
     private void doGet() throws IOException {
-        /*将username和password传给Tomcat服务器*/
         company_name = URLEncoder.encode(company_name, "utf-8");
         company_name = URLEncoder.encode(company_name, "utf-8");
         url = url + "?company_name=" + company_name + "&user_name=" + user_name;
         try {
             URL httpUrl = new URL(url);
-//            URLEncoder.encode(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -53,12 +48,11 @@ public class InsertCompanyInfo extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                jsonstr = buffer.toString();
-                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
+                insert_status = buffer.toString();
+                insert_status = URLDecoder.decode(insert_status, "UTF-8");
             }
-            //把服务端返回的数据打印出来
-            System.out.println("result:" + jsonstr);
-            if (jsonstr.equals("get student subject list failed")) {
+            System.out.println("result:" + insert_status);
+            if (insert_status.equals("insert company failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -77,11 +71,6 @@ public class InsertCompanyInfo extends Thread {
         this.flag = flag;
     }
 
-    public String getJsonstr() {
-        return jsonstr;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {

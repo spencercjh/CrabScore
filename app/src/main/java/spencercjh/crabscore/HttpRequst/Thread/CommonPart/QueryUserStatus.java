@@ -26,15 +26,11 @@ public class QueryUserStatus extends Thread {
     }
 
     private void doGet() throws IOException {
-        /*将username和password传给Tomcat服务器*/
         url = url + "?user_name=" + user_name;
         try {
             URL httpUrl = new URL(url);
-            /*获取网络连接*/
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
-            /*设置请求方法为GET方法*/
             conn.setRequestMethod("GET");
-            /*设置访问超时时间*/
             conn.setReadTimeout(2000);
             conn.setConnectTimeout(2000);
             conn.connect();
@@ -50,9 +46,8 @@ public class QueryUserStatus extends Thread {
                 user_status = buffer.toString();
                 user_status = URLDecoder.decode(user_status, "UTF-8");
             }
-            //把服务端返回的数据打印出来
             System.out.println("result:" + user_status);
-            if (user_status.equals("student login failed")) {
+            if (user_status.equals("query user status failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -75,11 +70,6 @@ public class QueryUserStatus extends Thread {
         return user_status;
     }
 
-    private void setUser_status(String user_status) {
-        this.user_status = user_status;
-    }
-
-    /*在run中调用doGet*/
     @Override
     public void run() {
         try {
