@@ -1,7 +1,7 @@
 package spencercjh.crabscore.HttpRequst.Function.CompanyPart;
 
 import spencercjh.crabscore.HttpRequst.Function.ServerURL;
-import spencercjh.crabscore.HttpRequst.Thread.CompanyPart.QueryAllGroup;
+import spencercjh.crabscore.HttpRequst.Thread.CompanyPart.QueryOneCompanyAllGroup;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 
 /**
@@ -9,10 +9,10 @@ import spencercjh.crabscore.OBJ.CompanyOBJ;
  * iClass
  */
 
-public class Fun_QueryAllGroup {
+public class Fun_QueryOneCompanyAllGroup {
     public static String http_QueryAllGroup(CompanyOBJ companyOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllGroup;
-        QueryAllGroup thread = new QueryAllGroup(url, companyOBJ.getCompany_id(), companyOBJ.getCompetition_id());
+        String url = ServerURL.sever_url + ServerURL.servlet_QueryOneCompanyAllGroup;
+        QueryOneCompanyAllGroup thread = new QueryOneCompanyAllGroup(url, companyOBJ.getCompany_id(), companyOBJ.getCompetition_id());
         thread.start();
         thread.join();
         if (thread.getFlag()) {

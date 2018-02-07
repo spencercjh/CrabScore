@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequst.Thread.CompanyPart;
+package spencercjh.crabscore.HttpRequst.Thread.JudgePart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,26 +9,30 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Created by spencercjh on 2018/2/6.
+ * Created by spencercjh on 2018/2/8.
  * iClass
  */
 
-public class QueryAllGroup extends Thread {
+public class UpdateTasteScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private int company_id;
+    private int group_id;
     private int competition_id;
-    private String jsonstr;
+    private int crab_sex;
+    private String user_name;
+    private String update_status;
 
-    public QueryAllGroup(String url, int company_id, int competition_id) {
+    public UpdateTasteScoreInfo(String url, int group_id, int competition_id, int crab_sex, String user_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.company_id = company_id;
+        this.user_name = user_name;
+        this.group_id = group_id;
         this.competition_id = competition_id;
+        this.crab_sex = crab_sex;
     }
 
     private void doGet() throws IOException {
-        url = url + "?company_id=" + company_id + "&competition_id=" + competition_id;
+        url = url + "?group_id=" + group_id + "&competition_id=" + competition_id + "&crab_sex=" + crab_sex + "&user_name=" + user_name;
         /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);
@@ -50,12 +54,12 @@ public class QueryAllGroup extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                jsonstr = buffer.toString();
-                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
+                update_status = buffer.toString();
+                update_status = URLDecoder.decode(update_status, "UTF-8");
             }
             //把服务端返回的数据打印出来
-            System.out.println("result:" + jsonstr);
-            if (jsonstr.equals("get student subject list failed")) {
+            System.out.println("result:" + update_status);
+            if (update_status.equals("get student subject list failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -73,8 +77,8 @@ public class QueryAllGroup extends Thread {
         this.flag = flag;
     }
 
-    public String getJsonstr() {
-        return jsonstr;
+    public String getUpdate_status() {
+        return update_status;
     }
 
     /*在run中调用doGet*/
@@ -88,3 +92,5 @@ public class QueryAllGroup extends Thread {
         }
     }
 }
+
+

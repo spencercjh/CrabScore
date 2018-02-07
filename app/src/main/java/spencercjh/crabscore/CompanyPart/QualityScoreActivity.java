@@ -1,5 +1,6 @@
 package spencercjh.crabscore.CompanyPart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -31,6 +32,8 @@ public class QualityScoreActivity extends AppCompatActivity implements TabLayout
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quality_score);
+        Intent intent = getIntent();
+        qualityScoreOBJ = (QualityScoreOBJ) intent.getSerializableExtra("QUALITYSCOREOBJ");
         Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);

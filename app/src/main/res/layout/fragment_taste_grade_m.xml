@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_head"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bgc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/ic_back" />
+
     <RelativeLayout
         android:id="@+id/re_input"
         android:layout_width="0dp"
@@ -17,7 +30,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131">
+        app:layout_constraintVertical_bias="0.107">
 
         <RelativeLayout
             android:id="@+id/re_result_fatness"
@@ -84,19 +97,6 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tl_head"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/bgc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:navigationIcon="@drawable/ic_back" />
-
     <RelativeLayout
         android:id="@+id/re_crab_sex"
         android:layout_width="0dp"
@@ -104,11 +104,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229">
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:id="@+id/tv1"
@@ -144,11 +144,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321">
+        app:layout_constraintVertical_bias="0.292">
 
         <TextView
             android:id="@+id/tv3"
@@ -165,15 +165,15 @@
             android:id="@+id/text_score_fin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv3"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -186,11 +186,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42">
+        app:layout_constraintVertical_bias="0.391">
 
         <TextView
             android:id="@+id/tv4"
@@ -207,15 +207,15 @@
             android:id="@+id/text_score_ygys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>
@@ -229,11 +229,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506">
+        app:layout_constraintVertical_bias="0.485">
 
         <TextView
             android:id="@+id/tv2"
@@ -250,15 +250,15 @@
             android:id="@+id/text_score_sys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv2"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>
@@ -270,11 +270,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599">
+        app:layout_constraintVertical_bias="0.57">
 
         <TextView
             android:id="@+id/tv5"
@@ -291,15 +291,15 @@
             android:id="@+id/text_score_ghys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv5"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignTop="@+id/tv5"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -310,11 +310,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691">
+        app:layout_constraintVertical_bias="0.662">
 
         <TextView
             android:id="@+id/tv6"
@@ -331,15 +331,15 @@
             android:id="@+id/text_score_xwxw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv6"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -350,11 +350,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784">
+        app:layout_constraintVertical_bias="0.755">
 
         <TextView
             android:id="@+id/tv7"
@@ -371,15 +371,15 @@
             android:id="@+id/text_score_gh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv7"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -390,11 +390,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876">
+        app:layout_constraintVertical_bias="0.847">
 
         <TextView
             android:id="@+id/tv8"
@@ -411,14 +411,15 @@
             android:id="@+id/text_score_fbjr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
@@ -429,11 +430,11 @@
         android:background="@drawable/btn_list_item_bg"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969">
+        app:layout_constraintVertical_bias="0.94">
 
         <TextView
             android:id="@+id/tv9"
@@ -450,14 +451,15 @@
             android:id="@+id/text_score_bzjr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

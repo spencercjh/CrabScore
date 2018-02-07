@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_QueryAllGroup;
+import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -27,21 +31,17 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class GradeFragment extends Fragment {
-    private static final String TAG = "FatnessPrizeFragment";
     protected View mView;
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
-    private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
     public GradeFragment() {
     }
 
 
-    public GradeFragment(UserOBJ userOBJ, int choice) {
+    public GradeFragment(UserOBJ userOBJ) {
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -52,7 +52,11 @@ public class GradeFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_GroupList();
+                try {
+                    Fill_GroupList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -69,20 +73,21 @@ public class GradeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_GroupList();
+        try {
+            Fill_GroupList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.grade_list);
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
-        final ArrayList<QualityScoreOBJ> QualityScoreList = new ArrayList<>();
-        final ArrayList<TasteScoreOBJ> TasteScoreList = new ArrayList<>();
+    private void Fill_GroupList() throws InterruptedException {
+        ListView lv = mView.findViewById(R.id.grade_list);
+        final int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
-                return QualityScoreList.size();
+                return GroupList.size();
             }
 
             @Override
@@ -103,25 +108,19 @@ public class GradeFragment extends Fragment {
                 } else {
                     view = convertView;
                 }
-                QualityScoreOBJ qualityScoreOBJ = QualityScoreList.get(position);
-                TasteScoreOBJ tasteScoreOBJ = TasteScoreList.get(position);
+                GroupOBJ groupOBJ = GroupList.get(position);
                 TextView Tindex = view.findViewById(R.id.text_index);
                 Tindex.setText(position);
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
-                Tgroup_id.setText("第 " + qualityScoreOBJ.getGroup_id() + " 组");
-                TextView Tgrade_status = view.findViewById(R.id.text_grade_status);
-                if (qualityScoreOBJ.getScore_fin() == 0 && tasteScoreOBJ.getScore_fin() == 0) {
-                    Tgrade_status.setText("未打分");
-                } else {
-                    Tgrade_status.setText("已给分");
-                }
+                Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
-                final QualityScoreOBJ qualityScoreOBJ = QualityScoreList.get(position);
-                final TasteScoreOBJ tasteScoreOBJ = TasteScoreList.get(position);
+                GroupOBJ groupOBJ = GroupList.get(position);
+                final QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(), competition_id);
+                final TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id(), competition_id);
                 PopupMenu popup = new PopupMenu(getContext(), view);
                 final MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.pop_menu_grade, popup.getMenu());
@@ -134,14 +133,12 @@ public class GradeFragment extends Fragment {
                             case R.id.menu_quality_grade:
                                 intent = new Intent(getContext(), QualityGradeActivity.class);
                                 intent.putExtra("USEROBJ", userOBJ);
-                                intent.putExtra("USER", choice);
                                 intent.putExtra("QUALITYSCOREOBJ", qualityScoreOBJ);
                                 startActivity(intent);
                                 break;
                             case R.id.menu_taste_grade:
                                 intent = new Intent(getContext(), TasteGradeActivity.class);
                                 intent.putExtra("USEROBJ", userOBJ);
-                                intent.putExtra("USER", choice);
                                 intent.putExtra("TASTESCOREOBJ", tasteScoreOBJ);
                                 startActivity(intent);
                             default:

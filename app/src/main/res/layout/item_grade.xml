@@ -36,36 +36,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
-                android:text="打分情况: " />
-
-            <TextView
-                android:id="@+id/text_grade_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:lines="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="18sp"
-            android:orientation="horizontal"
-            android:layout_below="@+id/linearLayout1"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:text="组号:" />
 
             <TextView
                 android:id="@+id/text_group_id"
-                android:layout_width="150sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ellipsize="end"
                 android:lines="1" />
         </LinearLayout>
 
@@ -74,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="18sp"
             android:orientation="horizontal"
-            android:layout_below="@+id/linearLayout2"
+            android:layout_below="@+id/linearLayout1"
             android:layout_alignParentStart="true">
 
         </LinearLayout>

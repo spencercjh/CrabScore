@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import spencercjh.crabscore.CompanyPart.OverallScoreActivity;
 import spencercjh.crabscore.CompanyPart.QualityScoreActivity;
 import spencercjh.crabscore.CompanyPart.TasteScoreActivity;
-import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryAllGroup;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryOneCompanyAllGroup;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
@@ -82,7 +82,7 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
     }
 
     private void Fill_GroupList() throws InterruptedException {
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(companyOBJ));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

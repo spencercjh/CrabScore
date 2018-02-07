@@ -6,22 +6,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.View;
+import android.view.Window;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "ConstantConditions"})
 public class TasteGradeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
-    private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
+    private ArrayList<String> mTitleArray = new ArrayList<>();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +31,26 @@ public class TasteGradeActivity extends AppCompatActivity implements TabLayout.O
         setContentView(R.layout.activity_taste_grade);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         tasteScoreOBJ = (TasteScoreOBJ) intent.getSerializableExtra("TASTESCOREOBJ");
-        tl_head = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
-        tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
-        setSupportActionBar(tl_head);
-        mTitleArray.add("雌蟹");
-        mTitleArray.add("雄蟹");
+        toolbar.setEnabled(false);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
+        mTitleArray.add("雌蟹口感得分");
+        mTitleArray.add("雄蟹口感得分");
         initTabLayout();
         initTabViewPager();
+    }
+
+    private void goback() {
+        finish();
     }
 
     private void initTabLayout() {
@@ -50,7 +60,7 @@ public class TasteGradeActivity extends AppCompatActivity implements TabLayout.O
     }
 
     private void initTabViewPager() {
-        TasteGradePageAdapter adapter = new TasteGradePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, tasteScoreOBJ);
+        TasteGradePageAdapter adapter = new TasteGradePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, tasteScoreOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -82,6 +92,25 @@ public class TasteGradeActivity extends AppCompatActivity implements TabLayout.O
     }
 
     public void onBackPressed() {
+        finish();
+    }
 
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        // 显示菜单项左侧的图标
+        // ActionBar的featureId是8，Toolbar的featureId是108
+        if (featureId % 100 == Window.FEATURE_ACTION_BAR && menu != null) {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+                try {
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 }

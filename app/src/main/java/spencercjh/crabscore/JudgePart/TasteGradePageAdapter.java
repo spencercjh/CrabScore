@@ -9,28 +9,26 @@ import java.util.ArrayList;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class TasteGradePageAdapter extends FragmentPagerAdapter {
+class TasteGradePageAdapter extends FragmentPagerAdapter {
     private ArrayList<String> mTitleArray;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    public TasteGradePageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice, TasteScoreOBJ tasteScoreOBJ) {
+    TasteGradePageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, TasteScoreOBJ tasteScoreOBJ) {
         super(fm);
         mTitleArray = titleArray;
         this.userOBJ = userOBJ;
-        this.choice = choice;
         this.tasteScoreOBJ = tasteScoreOBJ;
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new TasteGrade_F_Fragment(userOBJ, choice, tasteScoreOBJ);
+            return new TasteGrade_F_Fragment(userOBJ, tasteScoreOBJ);
         } else if (position == 1) {
-            return new TasteGrade_M_Fragment(userOBJ, choice, tasteScoreOBJ);
+            return new TasteGrade_M_Fragment(userOBJ, tasteScoreOBJ);
         }
-        return new TasteGrade_F_Fragment(userOBJ, choice, tasteScoreOBJ);
+        return new TasteGrade_F_Fragment(userOBJ, tasteScoreOBJ);
     }
 
     @Override

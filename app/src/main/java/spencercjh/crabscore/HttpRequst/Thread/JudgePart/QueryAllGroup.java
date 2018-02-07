@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.JudgePart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,26 +9,24 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Created by spencercjh on 2018/2/6.
+ * Created by spencercjh on 2018/2/8.
  * iClass
  */
 
 public class QueryAllGroup extends Thread {
     private boolean flag;
     private String url;
-    private int company_id;
     private int competition_id;
     private String jsonstr;
 
-    public QueryAllGroup(String url, int company_id, int competition_id) {
+    public QueryAllGroup(String url, int competition_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.company_id = company_id;
         this.competition_id = competition_id;
     }
 
     private void doGet() throws IOException {
-        url = url + "?company_id=" + company_id + "&competition_id=" + competition_id;
+        url = url + "?competition_id=" + competition_id;
         /*将username和password传给Tomcat服务器*/
         try {
             URL httpUrl = new URL(url);

@@ -14,14 +14,12 @@ import java.util.Date;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "ConstantConditions"})
 public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-    private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
+    private ArrayList<String> mTitleArray = new ArrayList<>();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private long lastPressTime = 0;
 
     @Override
@@ -30,12 +28,10 @@ public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabS
         setContentView(R.layout.activity_judge);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
-        tl_head = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar tl_head = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
         tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
         setSupportActionBar(tl_head);
         mTitleArray.add("评分");
         initTabLayout();
@@ -48,7 +44,7 @@ public class JudgeActivity extends AppCompatActivity implements TabLayout.OnTabS
     }
 
     private void initTabViewPager() {
-        JudgePageAdapter adapter = new JudgePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        JudgePageAdapter adapter = new JudgePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override

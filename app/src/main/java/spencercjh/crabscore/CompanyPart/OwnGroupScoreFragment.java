@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompanyID;
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
-import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryAllGroup;
+import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryOneCompanyAllGroup;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
@@ -90,7 +90,7 @@ public class OwnGroupScoreFragment extends Fragment {
         companyOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
         companyOBJ.setCompany_name(userOBJ.getDisplay_name());
         companyOBJ.setCompany_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(companyOBJ));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

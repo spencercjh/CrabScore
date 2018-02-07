@@ -9,28 +9,26 @@ import java.util.ArrayList;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class QualityGradePageAdapter extends FragmentPagerAdapter {
+class QualityGradePageAdapter extends FragmentPagerAdapter {
     private ArrayList<String> mTitleArray;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
 
-    public QualityGradePageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice, QualityScoreOBJ qualityScoreOBJ) {
+    QualityGradePageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, QualityScoreOBJ qualityScoreOBJ) {
         super(fm);
         mTitleArray = titleArray;
         this.userOBJ = userOBJ;
-        this.choice = choice;
         this.qualityScoreOBJ = qualityScoreOBJ;
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new QualityGrade_F_Fragment(userOBJ, choice, qualityScoreOBJ);
+            return new QualityGrade_F_Fragment(userOBJ, qualityScoreOBJ);
         } else if (position == 1) {
-            return new QualityGrade_M_Fragment(userOBJ, choice, qualityScoreOBJ);
+            return new QualityGrade_M_Fragment(userOBJ, qualityScoreOBJ);
         }
-        return new QualityGrade_F_Fragment(userOBJ, choice, qualityScoreOBJ);
+        return new QualityGrade_F_Fragment(userOBJ, qualityScoreOBJ);
     }
 
     @Override
