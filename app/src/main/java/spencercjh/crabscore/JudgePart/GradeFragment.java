@@ -35,11 +35,11 @@ public class GradeFragment extends Fragment {
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
-    GradeFragment() {
+    public GradeFragment() {
     }
 
 
-    GradeFragment(UserOBJ userOBJ, int choice) {
+    public GradeFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

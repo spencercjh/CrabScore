@@ -33,10 +33,10 @@ public class TastePrizeFragment extends Fragment {
     private int choice;
     private SwipeRefreshLayout srl_simple;
 
-    TastePrizeFragment() {
+    public TastePrizeFragment() {
     }
 
-    TastePrizeFragment(UserOBJ userOBJ, int choice) {
+    public TastePrizeFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

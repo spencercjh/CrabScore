@@ -33,11 +33,11 @@ public class FatnessPrizeFragment extends Fragment {
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
-    FatnessPrizeFragment() {
+    public FatnessPrizeFragment() {
     }
 
 
-    FatnessPrizeFragment(UserOBJ userOBJ, int choice) {
+    public FatnessPrizeFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

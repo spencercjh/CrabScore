@@ -30,9 +30,9 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_year__note);
         Intent intent = getIntent();
-        competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
-        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         choice = (int) intent.getSerializableExtra("USER");
+        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
+        competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
         Eyear = (EditText) findViewById(R.id.text_year);
         Enote = (EditText) findViewById(R.id.text_note);
         button = (Button) findViewById(R.id.button);
@@ -52,10 +52,13 @@ public class UpdateYear_NoteActivity extends AppCompatActivity implements View.O
     }
 
     private void InitialInfo() {
-        Eyear.setText(competitionOBJ.getCompetition_year());
-        Enote.setText(competitionOBJ.getNote());
+        try {
+            Eyear.setText(competitionOBJ.getCompetition_year());
+            Enote.setText(competitionOBJ.getNote());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     public void onClick(View view) {

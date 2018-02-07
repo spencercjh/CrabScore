@@ -1,5 +1,6 @@
 package spencercjh.crabscore.AdministratorPart;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionProperty;
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionYear;
@@ -41,6 +47,9 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_competition_property);
+        Intent intent = getIntent();
+        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
+        choice = (int) intent.getSerializableExtra("USER");
         Ryear_note = (RelativeLayout) findViewById(R.id.re_year_note);
         Ryear_note.setOnClickListener(this);
         Rmore_setting = (RelativeLayout) findViewById(R.id.re_more_setting);
@@ -68,6 +77,7 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
         Intent intent;
         switch (view.getId()) {
             case R.id.re_year_note:
+                File();
                 intent = new Intent(UpdateCompetitionPropertyActivity.this, UpdateYear_NoteActivity.class);
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
@@ -76,6 +86,7 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 break;
             case R.id.re_more_setting:
+                File();
                 intent = new Intent(UpdateCompetitionPropertyActivity.this, UpdateMoreSettingActivity.class);
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
@@ -84,6 +95,7 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 break;
             case R.id.button:
+                File();
                 try {
                     updateCompetition_info();
                 } catch (InterruptedException e) {
@@ -93,6 +105,48 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
             default:
                 break;
         }
+    }
+
+    private void File() {
+        Properties prop = loadConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties");
+        if (prop == null) {
+            prop = new Properties();
+            prop.put("USEROBJ", userOBJ);
+            prop.put("COMPETITIONOBJ", competition_OBJ);
+            prop.put("USER", choice);
+            saveConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties", prop);
+        } else {
+            prop.put("USEROBJ", userOBJ);
+            prop.put("COMPETITIONOBJ", competition_OBJ);
+            prop.put("USER", choice);
+            saveConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties", prop);
+        }
+    }
+
+    public boolean saveConfig(Context context, String file, Properties properties) {
+        try {
+            File fil = new File(file);
+            if (!fil.exists())
+                fil.createNewFile();
+            FileOutputStream s = new FileOutputStream(fil);
+            properties.store(s, "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public Properties loadConfig(Context context, String file) {
+        Properties properties = new Properties();
+        try {
+            FileInputStream s = new FileInputStream(file);
+            properties.load(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return properties;
     }
 
     private void InitialInfo(CompetitionOBJ competitionOBJ) throws InterruptedException {

@@ -34,9 +34,9 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_more_setting);
         Intent intent = getIntent();
+        choice = (int) intent.getSerializableExtra("USER");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         Renable1 = (RadioButton) findViewById(R.id.radio_enable1);
         Runable1 = (RadioButton) findViewById(R.id.radio_unable1);
         Renable2 = (RadioButton) findViewById(R.id.radio_enable2);
@@ -71,20 +71,24 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
     }
 
     private void InitialInfo() {
-        if (competitionOBJ.getResult_fatness() == 1) {
-            Renable1.setChecked(true);
-        } else {
-            Runable1.setChecked(true);
-        }
-        if (competitionOBJ.getResult_quality() == 1) {
-            Renable2.setChecked(true);
-        } else {
-            Runable2.setChecked(true);
-        }
-        if (competitionOBJ.getResult_taste() == 1) {
-            Renable3.setChecked(true);
-        } else {
-            Runable3.setChecked(true);
+        try {
+            if (competitionOBJ.getResult_fatness() == 1) {
+                Renable1.setChecked(true);
+            } else {
+                Runable1.setChecked(true);
+            }
+            if (competitionOBJ.getResult_quality() == 1) {
+                Renable2.setChecked(true);
+            } else {
+                Runable2.setChecked(true);
+            }
+            if (competitionOBJ.getResult_taste() == 1) {
+                Renable3.setChecked(true);
+            } else {
+                Runable3.setChecked(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

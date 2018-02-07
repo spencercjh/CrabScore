@@ -30,10 +30,10 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
     private EditText Eidentification;
     private TextView text_group_id;
 
-    FindIdentificationFragment() {
+    public FindIdentificationFragment() {
     }
 
-    FindIdentificationFragment(UserOBJ userOBJ, int choice) {
+    public FindIdentificationFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

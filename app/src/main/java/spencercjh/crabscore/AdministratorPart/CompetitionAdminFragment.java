@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,11 +49,12 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     private Button button;
     private CompetitionOBJ competition_OBJ = new CompetitionOBJ();
 
-    CompetitionAdminFragment() {
+    public CompetitionAdminFragment() {
     }
 
-    CompetitionAdminFragment(UserOBJ userOBJ, int choice) {
+    public CompetitionAdminFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
+        this.choice = choice;
     }
 
     @Override
@@ -85,25 +89,26 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            InitialInfo(competition_OBJ);
+            InitialInfo();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void InitialInfo(CompetitionOBJ competitionOBJ) throws InterruptedException {
+    private void InitialInfo() throws InterruptedException {
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        competitionOBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
-        competitionOBJ = JsonConvert.convert_competition_property(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competitionOBJ.getCompetition_year()));
-        Tyear_note.setText(competitionOBJ.getCompetition_year() + " " + competition_OBJ.getNote().substring(0, 4));
-        Tvar_fatness_m.setText(String.valueOf(competitionOBJ.getVar_fatness_m()));
-        Tvar_weight_m.setText(String.valueOf(competitionOBJ.getVar_weight_m()));
-        Tvar_mfatness_sd.setText(String.valueOf(competitionOBJ.getVar_mfatness_sd()));
-        Tvar_mweight_sd.setText(String.valueOf(competitionOBJ.getVar_mweight_sd()));
-        Tvar_fatness_f.setText(String.valueOf(competitionOBJ.getVar_fatness_f()));
-        Tvar_weight_f.setText(String.valueOf(competitionOBJ.getVar_weight_f()));
-        Tvar_ffatness_sd.setText(String.valueOf(competitionOBJ.getVar_ffatness_sd()));
-        Tvar_fweight_sd.setText(String.valueOf(competitionOBJ.getVar_fweight_sd()));
+        competition_OBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
+        competition_OBJ = JsonConvert.convert_competition_property(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competition_OBJ.getCompetition_year()));
+//        Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote().substring(0, 4));
+        Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote());
+        Tvar_fatness_m.setText(String.valueOf(competition_OBJ.getVar_fatness_m()));
+        Tvar_weight_m.setText(String.valueOf(competition_OBJ.getVar_weight_m()));
+        Tvar_mfatness_sd.setText(String.valueOf(competition_OBJ.getVar_mfatness_sd()));
+        Tvar_mweight_sd.setText(String.valueOf(competition_OBJ.getVar_mweight_sd()));
+        Tvar_fatness_f.setText(String.valueOf(competition_OBJ.getVar_fatness_f()));
+        Tvar_weight_f.setText(String.valueOf(competition_OBJ.getVar_weight_f()));
+        Tvar_ffatness_sd.setText(String.valueOf(competition_OBJ.getVar_ffatness_sd()));
+        Tvar_fweight_sd.setText(String.valueOf(competition_OBJ.getVar_fweight_sd()));
     }
 
 
@@ -113,16 +118,14 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         switch (view.getId()) {
             case R.id.re_year_note:
                 intent = new Intent(getContext(), UpdateYear_NoteActivity.class);
-                getActivity().startActivity(intent);
-                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);       //用文件存储的方式传递这个参数
                 intent.putExtra("USEROBJ", userOBJ);
                 intent.putExtra("USER", choice);
                 startActivity(intent);
                 break;
             case R.id.re_more_setting:
                 intent = new Intent(getContext(), UpdateMoreSettingActivity.class);
-                getActivity().startActivity(intent);
-                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);       //用文件存储的方式传递这个参数
                 intent.putExtra("USEROBJ", userOBJ);
                 intent.putExtra("USER", choice);
                 startActivity(intent);
@@ -138,7 +141,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
                 break;
         }
     }
-
 
     private void updateCompetition_info() throws InterruptedException {
         String year = competition_OBJ.getCompetition_year();
@@ -159,7 +161,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
                 var_fweight_sd, result_fatness, result_quality, result_taste);
         if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competition_OBJ, userOBJ)) {
             dialog_update_success();
-            InitialInfo(competition_OBJ);
+            InitialInfo();
         } else {
             dialog_update_fail();
         }
@@ -195,5 +197,41 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
                 }
         );
         builder.create().show();////显示对话框
+    }
+
+    /*public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Toolbar tl_head = view.findViewById(R.id.tl_head);
+    }*/
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.pop_menu_competition_function, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {   //toobar的点击操作
+        int id = item.getItemId();
+        Intent intent;
+        if (id == R.id.menu_calculate_score) {  //toobar里的fresh刷新
+            intent = new Intent(getContext(), CalculateScoreActivity.class);
+            intent.putExtra("USEROBJ", userOBJ);
+            intent.putExtra("USER", choice);
+            intent.putExtra("COMPETITIONOBJ", competition_OBJ);
+            startActivity(intent);
+        } else if (id == R.id.menu_excel_generate) {
+            intent = new Intent(getContext(), GenerateExcelActivity.class);
+            intent.putExtra("USEROBJ", userOBJ);
+            intent.putExtra("USER", choice);
+            intent.putExtra("COMPETITIONOBJ", competition_OBJ);
+            startActivity(intent);
+        } else if (id == R.id.menu_change_competition) {
+            intent = new Intent(getContext(), UpdatePresentCompetitionActivity.class);
+            intent.putExtra("USEROBJ", userOBJ);
+            intent.putExtra("USER", choice);
+            intent.putExtra("COMPETITIONOBJ", competition_OBJ);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

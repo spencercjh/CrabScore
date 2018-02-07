@@ -7,8 +7,11 @@ import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.Window;
 import android.widget.Toast;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -95,4 +98,24 @@ public class AdministratorActivity extends AppCompatActivity implements OnTabSel
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        // 显示菜单项左侧的图标
+        // ActionBar的featureId是8，Toolbar的featureId是108
+        if (featureId % 100 == Window.FEATURE_ACTION_BAR && menu != null) {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+                try {
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
+    }
+
 }

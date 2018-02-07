@@ -35,10 +35,10 @@ public class TasteScore_F_Fragment extends Fragment {
     private int choice;
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    TasteScore_F_Fragment() {
+    public TasteScore_F_Fragment() {
     }
 
-    TasteScore_F_Fragment(UserOBJ userOBJ, int choice, TasteScoreOBJ tasteScoreOBJ) {
+    public TasteScore_F_Fragment(UserOBJ userOBJ, int choice, TasteScoreOBJ tasteScoreOBJ) {
         this.userOBJ = userOBJ;
         this.choice = choice;
         this.tasteScoreOBJ = tasteScoreOBJ;

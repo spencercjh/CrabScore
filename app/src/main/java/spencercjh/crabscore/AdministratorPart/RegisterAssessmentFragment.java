@@ -39,11 +39,11 @@ public class RegisterAssessmentFragment extends Fragment {
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
-    RegisterAssessmentFragment() {
+    public RegisterAssessmentFragment() {
     }
 
 
-    RegisterAssessmentFragment(UserOBJ userOBJ, int choice) {
+    public RegisterAssessmentFragment(UserOBJ userOBJ, int choice) {
         this.admin = userOBJ;
         this.choice = choice;
     }

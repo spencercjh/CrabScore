@@ -34,10 +34,10 @@ public class QualityPrizeFragment extends Fragment {
     private SwipeRefreshLayout srl_simple;
 
 
-    QualityPrizeFragment() {
+    public QualityPrizeFragment() {
     }
 
-    QualityPrizeFragment(UserOBJ userOBJ, int choice) {
+    public QualityPrizeFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

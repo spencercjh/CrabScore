@@ -35,10 +35,10 @@ public class DataEntryFragment extends Fragment {
     private SwipeRefreshLayout srl_simple;
 
 
-    DataEntryFragment() {
+    public DataEntryFragment() {
     }
 
-    DataEntryFragment(UserOBJ userOBJ, int choice) {
+    public DataEntryFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }

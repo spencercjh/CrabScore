@@ -33,10 +33,10 @@ public class QualityScore_F_Fragment extends Fragment {
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
     private int choice;
 
-    QualityScore_F_Fragment() {
+    public QualityScore_F_Fragment() {
     }
 
-    QualityScore_F_Fragment(UserOBJ userOBJ, int choice, QualityScoreOBJ qualityScoreOBJ) {
+    public QualityScore_F_Fragment(UserOBJ userOBJ, int choice, QualityScoreOBJ qualityScoreOBJ) {
         this.userOBJ = userOBJ;
         this.choice = choice;
         this.qualityScoreOBJ = qualityScoreOBJ;

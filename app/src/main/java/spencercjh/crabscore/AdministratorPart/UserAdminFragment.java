@@ -41,10 +41,10 @@ public class UserAdminFragment extends Fragment {
     private SwipeRefreshLayout srl_simple;
 
 
-    UserAdminFragment() {
+    public UserAdminFragment() {
     }
 
-    UserAdminFragment(UserOBJ userOBJ, int choice) {
+    public UserAdminFragment(UserOBJ userOBJ, int choice) {
         this.admin = userOBJ;
         this.choice = choice;
     }

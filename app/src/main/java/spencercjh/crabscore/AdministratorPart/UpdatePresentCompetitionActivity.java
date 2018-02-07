@@ -56,6 +56,7 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
             }
         });
         srl_simple.setColorSchemeResources(R.color.red, R.color.orange, R.color.green, R.color.blue);
+        toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("大赛列表");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);

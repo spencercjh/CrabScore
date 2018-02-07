@@ -36,11 +36,11 @@ public class OwnGroupScoreFragment extends Fragment {
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
-    OwnGroupScoreFragment() {
+    public OwnGroupScoreFragment() {
     }
 
 
-    OwnGroupScoreFragment(UserOBJ userOBJ, int choice) {
+    public OwnGroupScoreFragment(UserOBJ userOBJ, int choice) {
         this.userOBJ = userOBJ;
         this.choice = choice;
     }
