@@ -20,26 +20,15 @@ import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_Quer
 import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryFatnessScore;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.GroupOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class FatnessPrizeFragment extends Fragment {
-    private static final String TAG = "FatnessPrizeFragment";
     protected View mView;
     protected Context mContext;
-    private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
-    private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
     public FatnessPrizeFragment() {
-    }
-
-
-    public FatnessPrizeFragment(UserOBJ userOBJ, int choice) {
-        this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -79,7 +68,7 @@ public class FatnessPrizeFragment extends Fragment {
     }
 
     private void Fill_FatnessPrizeList() throws InterruptedException {
-        lv = mView.findViewById(R.id.fatness_score_list);
+        ListView lv = mView.findViewById(R.id.fatness_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
         lv.setAdapter(new BaseAdapter() {
@@ -118,8 +107,8 @@ public class FatnessPrizeFragment extends Fragment {
                     e.printStackTrace();
                 }
                 TextView Tscore = view.findViewById(R.id.tv_score);
-                /**
-                 * 计算不完善！
+                /*
+                  计算不完善！
                  */
                 Tscore.setText(String.valueOf((groupOBJ.getFatness_score_f() + groupOBJ.getFatness_score_m()) / 2.0));
                 return view;

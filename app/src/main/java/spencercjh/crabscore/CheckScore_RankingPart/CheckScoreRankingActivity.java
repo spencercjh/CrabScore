@@ -1,6 +1,5 @@
 package spencercjh.crabscore.CheckScore_RankingPart;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,30 +10,23 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
-import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
+@SuppressWarnings({"deprecation", "ConstantConditions"})
 public class CheckScoreRankingActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-    private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
-    private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
+    private ArrayList<String> mTitleArray = new ArrayList<>();
     private long lastPressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_ranking);
-        Intent intent = getIntent();
-        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
-        tl_head = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar tl_head = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
         tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
         setSupportActionBar(tl_head);
         mTitleArray.add("金蟹/优质奖");
         mTitleArray.add("最佳种质奖");
@@ -51,7 +43,7 @@ public class CheckScoreRankingActivity extends AppCompatActivity implements TabL
     }
 
     private void initTabViewPager() {
-        CheckScoreRankingPageAdapter adapter = new CheckScoreRankingPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        CheckScoreRankingPageAdapter adapter = new CheckScoreRankingPageAdapter(getSupportFragmentManager(), mTitleArray);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
