@@ -30,11 +30,9 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class CompetitionAdminFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private TextView Tyear_note;
     private EditText Tvar_fatness_m;
     private EditText Tvar_fatness_f;
@@ -44,27 +42,23 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     private EditText Tvar_weight_f;
     private EditText Tvar_ffatness_sd;
     private EditText Tvar_fweight_sd;
-    private RelativeLayout Ryear_note;
-    private RelativeLayout Rmore_setting;
-    private Button button;
     private CompetitionOBJ competition_OBJ = new CompetitionOBJ();
 
     public CompetitionAdminFragment() {
     }
 
-    public CompetitionAdminFragment(UserOBJ userOBJ, int choice) {
+    public CompetitionAdminFragment(UserOBJ userOBJ) {
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
         mView = inflater.inflate(R.layout.fragment_competition_admin, container, false);
-        Ryear_note = mView.findViewById(R.id.re_year_note);
-        Ryear_note.setOnClickListener(this);
-        Rmore_setting = mView.findViewById(R.id.re_more_setting);
-        Rmore_setting.setOnClickListener(this);
+        RelativeLayout ryear_note = mView.findViewById(R.id.re_year_note);
+        ryear_note.setOnClickListener(this);
+        RelativeLayout rmore_setting = mView.findViewById(R.id.re_more_setting);
+        rmore_setting.setOnClickListener(this);
         Tyear_note = mView.findViewById(R.id.text_year_note);
         Tvar_fatness_m = mView.findViewById(R.id.text_var_fatness_m);
         Tvar_weight_m = mView.findViewById(R.id.text_var_weight_m);
@@ -74,7 +68,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         Tvar_weight_f = mView.findViewById(R.id.text_var_weight_f);
         Tvar_ffatness_sd = mView.findViewById(R.id.text_var_ffatness_sd);
         Tvar_fweight_sd = mView.findViewById(R.id.text_var_fweight_sd);
-        button = mView.findViewById(R.id.button);
+        Button button = mView.findViewById(R.id.button);
         button.setOnClickListener(this);
         return mView;
     }
@@ -99,7 +93,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         competition_OBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
         competition_OBJ = JsonConvert.convert_CompetitionOBJ(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competition_OBJ.getCompetition_year()));
-//        Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote().substring(0, 4));
         Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote());
         Tvar_fatness_m.setText(String.valueOf(competition_OBJ.getVar_fatness_m()));
         Tvar_weight_m.setText(String.valueOf(competition_OBJ.getVar_weight_m()));
@@ -118,16 +111,14 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         switch (view.getId()) {
             case R.id.re_year_note:
                 intent = new Intent(getContext(), UpdateYear_NoteActivity.class);
-                intent.putExtra("COMPETITIONOBJ", competition_OBJ);       //用文件存储的方式传递这个参数
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
                 startActivity(intent);
                 break;
             case R.id.re_more_setting:
                 intent = new Intent(getContext(), UpdateMoreSettingActivity.class);
-                intent.putExtra("COMPETITIONOBJ", competition_OBJ);       //用文件存储的方式传递这个参数
+                intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
                 startActivity(intent);
                 break;
             case R.id.button:
@@ -199,10 +190,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         builder.create().show();////显示对话框
     }
 
-    /*public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Toolbar tl_head = view.findViewById(R.id.tl_head);
-    }*/
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.pop_menu_competition_function, menu);
@@ -210,25 +197,22 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {   //toobar的点击操作
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         Intent intent;
-        if (id == R.id.menu_calculate_score) {  //toobar里的fresh刷新
+        if (id == R.id.menu_calculate_score) {
             intent = new Intent(getContext(), CalculateScoreActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
-            intent.putExtra("USER", choice);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);
         } else if (id == R.id.menu_excel_generate) {
             intent = new Intent(getContext(), GenerateExcelActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
-            intent.putExtra("USER", choice);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);
         } else if (id == R.id.menu_change_competition) {
             intent = new Intent(getContext(), UpdatePresentCompetitionActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
-            intent.putExtra("USER", choice);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);
         }

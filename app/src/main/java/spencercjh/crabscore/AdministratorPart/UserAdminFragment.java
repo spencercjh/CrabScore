@@ -32,21 +32,18 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class UserAdminFragment extends Fragment {
-    private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
     private ListView lv;
     private UserOBJ admin = new UserOBJ();
-    private int choice;
     private SwipeRefreshLayout srl_simple;
 
 
     public UserAdminFragment() {
     }
 
-    public UserAdminFragment(UserOBJ userOBJ, int choice) {
+    public UserAdminFragment(UserOBJ userOBJ) {
         this.admin = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -88,9 +85,6 @@ public class UserAdminFragment extends Fragment {
     }
 
     private void Fill_AllUserList() throws InterruptedException {
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         **/
         final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUser.http_QueryAllUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
@@ -158,7 +152,6 @@ public class UserAdminFragment extends Fragment {
                                         intent = new Intent(getContext(), UpdateUserInfoActivity.class);
                                         intent.putExtra("ADMIN", admin);
                                         intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("USER", choice);
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_ban:

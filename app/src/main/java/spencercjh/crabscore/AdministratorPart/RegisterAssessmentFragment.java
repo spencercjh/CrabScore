@@ -31,21 +31,17 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class RegisterAssessmentFragment extends Fragment {
-    private static final String TAG = "FatnessPrizeFragment";
     protected View mView;
     protected Context mContext;
     private UserOBJ admin = new UserOBJ();
-    private int choice;
-    private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
     public RegisterAssessmentFragment() {
     }
 
 
-    public RegisterAssessmentFragment(UserOBJ userOBJ, int choice) {
+    public RegisterAssessmentFragment(UserOBJ userOBJ) {
         this.admin = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -85,10 +81,7 @@ public class RegisterAssessmentFragment extends Fragment {
     }
 
     private void Fill_RegisterList() throws InterruptedException {
-        lv = mView.findViewById(R.id.all_register_list);
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         **/
+        ListView lv = mView.findViewById(R.id.all_register_list);
         final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUncheckedUser.http_QueryAllUncheckedUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
@@ -153,7 +146,6 @@ public class RegisterAssessmentFragment extends Fragment {
                                         intent = new Intent(getContext(), UpdateUserInfoActivity.class);
                                         intent.putExtra("ADMIN", admin);
                                         intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("USER", choice);
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_enable:

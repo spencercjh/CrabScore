@@ -22,7 +22,6 @@ import spencercjh.crabscore.R;
 
 public class UpdateCompetitionPropertyActivity extends AppCompatActivity implements View.OnClickListener {
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private TextView Tyear_note;
     private EditText Tvar_fatness_m;
     private EditText Tvar_fatness_f;
@@ -32,9 +31,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
     private EditText Tvar_weight_f;
     private EditText Tvar_ffatness_sd;
     private EditText Tvar_fweight_sd;
-    private RelativeLayout Ryear_note;
-    private RelativeLayout Rmore_setting;
-    private Button button;
     private CompetitionOBJ competition_OBJ = new CompetitionOBJ();
 
     @Override
@@ -43,11 +39,10 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
         setContentView(R.layout.activity_update_competition_property);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
-        Ryear_note = (RelativeLayout) findViewById(R.id.re_year_note);
-        Ryear_note.setOnClickListener(this);
-        Rmore_setting = (RelativeLayout) findViewById(R.id.re_more_setting);
-        Rmore_setting.setOnClickListener(this);
+        RelativeLayout ryear_note = (RelativeLayout) findViewById(R.id.re_year_note);
+        ryear_note.setOnClickListener(this);
+        RelativeLayout rmore_setting = (RelativeLayout) findViewById(R.id.re_more_setting);
+        rmore_setting.setOnClickListener(this);
         Tyear_note = (TextView) findViewById(R.id.text_year_note);
         Tvar_fatness_m = (EditText) findViewById(R.id.text_var_fatness_m);
         Tvar_weight_m = (EditText) findViewById(R.id.text_var_weight_m);
@@ -57,7 +52,7 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
         Tvar_weight_f = (EditText) findViewById(R.id.text_var_weight_f);
         Tvar_ffatness_sd = (EditText) findViewById(R.id.text_var_ffatness_sd);
         Tvar_fweight_sd = (EditText) findViewById(R.id.text_var_fweight_sd);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
         try {
             InitialInfo(competition_OBJ);
@@ -75,7 +70,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
                 startActivity(intent);
                 break;
             case R.id.re_more_setting:
@@ -83,7 +77,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
                 intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
                 startActivity(intent);
                 break;
             case R.id.button:

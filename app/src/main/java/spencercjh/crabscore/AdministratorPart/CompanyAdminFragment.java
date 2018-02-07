@@ -32,21 +32,17 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class CompanyAdminFragment extends Fragment {
-    private static final String TAG = "BestGermplasmPrizeFragment";
     protected View mView;
     protected Context mContext;
-    private ListView lv;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private SwipeRefreshLayout srl_simple;
 
 
     public CompanyAdminFragment() {
     }
 
-    public CompanyAdminFragment(UserOBJ userOBJ, int choice) {
+    public CompanyAdminFragment(UserOBJ userOBJ) {
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -86,10 +82,7 @@ public class CompanyAdminFragment extends Fragment {
     }
 
     private void Fill_CompanyList() throws InterruptedException {
-        lv = mView.findViewById(R.id.all_company_list);
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
+        ListView lv = mView.findViewById(R.id.all_company_list);
         final ArrayList<CompanyOBJ> CompanyList = JsonConvert.convert_company_user_name(Fun_QueryAllCompany.http_QueryAllUnit());
         lv.setAdapter(new BaseAdapter() {
             @Override
@@ -146,7 +139,6 @@ public class CompanyAdminFragment extends Fragment {
                                         intent = new Intent(getContext(), CheckCompanyScoreActivity.class);
                                         intent.putExtra("USEROBJ", userOBJ);
                                         intent.putExtra("COMPANYOBJ", companyOBJ);
-                                        intent.putExtra("USER", choice);
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_edit_info:
@@ -158,7 +150,6 @@ public class CompanyAdminFragment extends Fragment {
                                         Intent intent = new Intent(getContext(), UpdateCompanyInfoActivity.class);
                                         intent.putExtra("COMPANYOBJ", companyOBJ);
                                         intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("USER", choice);
                                         startActivity(intent);
                                         break;
                                     case R.id.menu_delete:

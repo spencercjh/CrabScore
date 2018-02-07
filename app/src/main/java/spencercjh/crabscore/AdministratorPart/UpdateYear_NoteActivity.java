@@ -19,25 +19,21 @@ import spencercjh.crabscore.R;
 public class UpdateYear_NoteActivity extends AppCompatActivity implements View.OnClickListener {
     private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private EditText Eyear;
     private EditText Enote;
-    private Button button;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_year__note);
         Intent intent = getIntent();
-        choice = (int) intent.getSerializableExtra("USER");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
         Eyear = (EditText) findViewById(R.id.text_year);
         Enote = (EditText) findViewById(R.id.text_note);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("修改年份以及备注信息");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);

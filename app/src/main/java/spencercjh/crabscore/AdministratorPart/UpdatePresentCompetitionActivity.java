@@ -30,10 +30,8 @@ import spencercjh.crabscore.R;
 
 public class UpdatePresentCompetitionActivity extends AppCompatActivity {
     private ListView lv;
-    private Toolbar toolbar;
     private SwipeRefreshLayout srl_simple;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_present_competition);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         lv = (ListView) findViewById(R.id.all_competition_list);
         srl_simple = (SwipeRefreshLayout) findViewById(R.id.srl_simple);
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -56,7 +53,7 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
             }
         });
         srl_simple.setColorSchemeResources(R.color.red, R.color.orange, R.color.green, R.color.blue);
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("大赛列表");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);
@@ -74,9 +71,6 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
     }
 
     private void Fill_CompetitionList() throws InterruptedException {
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         **/
         final ArrayList<CompetitionOBJ> CompetitionList = JsonConvert.convert_id_year_note(Fun_QueryAllCompetition.http_QueryAllCompetition());
         lv.setAdapter(new BaseAdapter() {
             @Override
@@ -126,7 +120,6 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
                                 intent = new Intent(UpdatePresentCompetitionActivity.this, UpdateCompetitionPropertyActivity.class);
                                 intent.putExtra("COMPETITIONOBJ", competitionOBJ);
                                 intent.putExtra("USEROBJ", userOBJ);
-                                intent.putExtra("USER", choice);
                                 startActivity(intent);
                                 break;
                             case R.id.menu_set_present:

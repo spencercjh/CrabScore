@@ -24,11 +24,8 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
     private EditText Tdisplay_name;
     private EditText Temail;
     private Spinner spinner;
-    private Button button;
     private UserOBJ admin = new UserOBJ();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +34,10 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
         Intent intent = getIntent();
         admin = (UserOBJ) intent.getSerializableExtra("ADMIN");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         Tuser_name = (TextView) findViewById(R.id.text_user_name);
         Tdisplay_name = (EditText) findViewById(R.id.text_display_name);
         Temail = (EditText) findViewById(R.id.text_email);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         String[] Items = getResources().getStringArray(R.array.roles2);
@@ -60,7 +56,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
 
             }
         });
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("修改用户信息");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);

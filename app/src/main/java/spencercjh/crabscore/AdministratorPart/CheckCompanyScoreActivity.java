@@ -33,7 +33,6 @@ import spencercjh.crabscore.R;
 public class CheckCompanyScoreActivity extends AppCompatActivity {
     private UserOBJ userOBJ = new UserOBJ();
     private CompanyOBJ companyOBJ = new CompanyOBJ();
-    private int choice;
     private ListView lv;
     private SwipeRefreshLayout srl_simple;
 
@@ -44,7 +43,6 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         companyOBJ = (CompanyOBJ) intent.getSerializableExtra("COMPANYOBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         lv = (ListView) findViewById(R.id.group_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("选择小组");

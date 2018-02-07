@@ -19,22 +19,18 @@ import spencercjh.crabscore.R;
 public class UpdateMoreSettingActivity extends AppCompatActivity implements View.OnClickListener {
     private UserOBJ userOBJ = new UserOBJ();
     private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
-    private int choice;
     private RadioButton Renable1;
     private RadioButton Runable1;
     private RadioButton Renable2;
     private RadioButton Runable2;
     private RadioButton Renable3;
     private RadioButton Runable3;
-    private Button button;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_more_setting);
         Intent intent = getIntent();
-        choice = (int) intent.getSerializableExtra("USER");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
         Renable1 = (RadioButton) findViewById(R.id.radio_enable1);
@@ -43,9 +39,9 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
         Runable2 = (RadioButton) findViewById(R.id.radio_unable2);
         Renable3 = (RadioButton) findViewById(R.id.radio_enable3);
         Runable3 = (RadioButton) findViewById(R.id.radio_unable3);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("修改其他比赛设置");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);

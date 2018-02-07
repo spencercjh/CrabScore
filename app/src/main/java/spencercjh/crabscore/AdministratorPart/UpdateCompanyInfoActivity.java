@@ -18,11 +18,8 @@ import spencercjh.crabscore.R;
 
 public class UpdateCompanyInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText text_company_name;
-    private Button button;
     private CompanyOBJ companyOBJ = new CompanyOBJ();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +28,10 @@ public class UpdateCompanyInfoActivity extends AppCompatActivity implements View
         Intent intent = getIntent();
         companyOBJ = (CompanyOBJ) intent.getSerializableExtra("COMPANYOBJ");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         text_company_name = (EditText) findViewById(R.id.text_company_name);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("修改参选单位信息");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);

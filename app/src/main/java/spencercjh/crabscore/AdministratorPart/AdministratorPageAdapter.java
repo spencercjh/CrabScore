@@ -11,27 +11,25 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 class AdministratorPageAdapter extends FragmentPagerAdapter {
     private ArrayList<String> mTitleArray;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
 
-    AdministratorPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
+    AdministratorPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
         super(fm);
         mTitleArray = titleArray;
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new UserAdminFragment(userOBJ, choice);
+            return new UserAdminFragment(userOBJ);
         } else if (position == 1) {
-            return new RegisterAssessmentFragment(userOBJ, choice);
+            return new RegisterAssessmentFragment(userOBJ);
         } else if (position == 2) {
-            return new CompanyAdminFragment(userOBJ, choice);
+            return new CompanyAdminFragment(userOBJ);
         }else if(position==3){
-            return new CompetitionAdminFragment(userOBJ,choice);
+            return new CompetitionAdminFragment(userOBJ);
         }
-        return new UserAdminFragment(userOBJ, choice);
+        return new UserAdminFragment(userOBJ);
     }
 
     @Override

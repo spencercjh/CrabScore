@@ -20,12 +20,10 @@ import spencercjh.crabscore.R;
 
 @SuppressWarnings({"deprecation", "ConstantConditions"})
 public class AdministratorActivity extends AppCompatActivity implements OnTabSelectedListener {
-    private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
+    private ArrayList<String> mTitleArray = new ArrayList<>();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private long lastPressTime = 0;
 
     @Override
@@ -34,8 +32,7 @@ public class AdministratorActivity extends AppCompatActivity implements OnTabSel
         setContentView(R.layout.activity_administrator);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
-        tl_head = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar tl_head = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
         tl_head.setTitle("查看成绩");
@@ -58,7 +55,7 @@ public class AdministratorActivity extends AppCompatActivity implements OnTabSel
     }
 
     private void initTabViewPager() {
-        AdministratorPageAdapter adapter = new AdministratorPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        AdministratorPageAdapter adapter = new AdministratorPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
