@@ -15,16 +15,19 @@ public class CrabOBJ implements Serializable {
     private double crab_weight;
     private double crab_length;
     private double crab_fatness;
+    private int competition_id;
 
     public CrabOBJ() {
 
     }
 
-    public CrabOBJ(int group_id) {
+    public CrabOBJ(int group_id, int crab_sex, int competition_id) {
+        this.crab_sex = crab_sex;
+        this.competition_id = competition_id;
         this.group_id = group_id;
     }
 
-    public CrabOBJ(int crab_id, int group_id, int crab_sex, String crab_label, double crab_weight, double crab_length, double crab_fatness) {
+    public CrabOBJ(int crab_id, int group_id, int crab_sex, String crab_label, double crab_weight, double crab_length, double crab_fatness, int competition_id) {
         this.crab_id = crab_id;
         this.group_id = group_id;
         this.crab_sex = crab_sex;
@@ -32,6 +35,15 @@ public class CrabOBJ implements Serializable {
         this.crab_weight = crab_weight;
         this.crab_length = crab_length;
         this.crab_fatness = crab_fatness;
+        this.competition_id = competition_id;
+    }
+
+    public int getCompetition_id() {
+        return competition_id;
+    }
+
+    public void setCompetition_id(int competition_id) {
+        this.competition_id = competition_id;
     }
 
     public double getCrab_fatness() {

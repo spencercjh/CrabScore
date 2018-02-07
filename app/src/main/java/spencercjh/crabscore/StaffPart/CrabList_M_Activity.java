@@ -1,8 +1,11 @@
 package spencercjh.crabscore.StaffPart;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.StaffPart.Fun_QueryAllCrab;
 import spencercjh.crabscore.OBJ.CrabOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -21,25 +26,51 @@ public class CrabList_M_Activity extends AppCompatActivity {
     ListView lv;
     private GroupOBJ groupOBJ = new GroupOBJ();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
+    private int competition_id = -1;
+    private SwipeRefreshLayout srl_simple;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crablist__m);
+        srl_simple = (SwipeRefreshLayout) findViewById(R.id.srl_simple);
+        srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    Fill_CrabList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                srl_simple.setRefreshing(false);
+            }
+        });
+        srl_simple.setColorSchemeResources(R.color.red, R.color.orange, R.color.green, R.color.blue);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
+        toolbar.setTitle("选择一只雄蟹");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
         Intent intent = getIntent();
         groupOBJ = (GroupOBJ) intent.getSerializableExtra("GROUPOBJ");
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
+        competition_id = (int) intent.getSerializableExtra("COMPETITIONID");
         lv = (ListView) findViewById(R.id.crablist);
-        Fill_CrabList();
+        try {
+            Fill_CrabList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_CrabList() {
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
-        final ArrayList<CrabOBJ> CrabList = new ArrayList<>();
+    private void Fill_CrabList() throws InterruptedException {
+        final ArrayList<CrabOBJ> CrabList = JsonConvert.convert_Crab_List(Fun_QueryAllCrab.http_QueryAllCrab(competition_id, groupOBJ.getGroup_id(), 1));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -77,13 +108,23 @@ public class CrabList_M_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 CrabOBJ crabOBJ = CrabList.get(i);
                 Intent intent = new Intent(CrabList_M_Activity.this, UpdateCrabInfoActivity.class);
+                intent.putExtra("INDEX", i);
                 intent.putExtra("CRABOBJ", crabOBJ);
-                intent.putExtra("GROUPOBJ", groupOBJ);
                 intent.putExtra("USEROBJ", userOBJ);
-                intent.putExtra("USER", choice);
+                intent.putExtra("SEX", 1);
+                intent.putExtra("GROUPOBJ", groupOBJ);
                 startActivity(intent);
                 finish();
             }
         });
     }
+
+    private void goback() {
+        finish();
+    }
+
+    public void onBackPressed() {
+        goback();
+    }
+
 }

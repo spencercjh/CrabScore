@@ -80,7 +80,7 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
     }
 
     private void Fill_GroupList() throws InterruptedException {
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

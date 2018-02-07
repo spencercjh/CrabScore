@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_add_crab_f"
+        android:id="@+id/menu_crab_info_f"
         android:title="雌蟹信息" />
     <item
-        android:id="@+id/menu_add_crab_m"
+        android:id="@+id/menu_crab_info_m"
         android:title="雄蟹信息" />
+
+    <item
+        android:id="@+id/menu_add_crab"
+        android:title="添加螃蟹" />
 </menu>

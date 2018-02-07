@@ -85,7 +85,7 @@ public class UserAdminFragment extends Fragment {
     }
 
     private void Fill_AllUserList() throws InterruptedException {
-        final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUser.http_QueryAllUser());
+        final ArrayList<UserOBJ> UserList = JsonConvert.convert_User_List(Fun_QueryAllUser.http_QueryAllUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

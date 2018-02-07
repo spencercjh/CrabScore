@@ -59,7 +59,7 @@ public class TasteGrade_F_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
-        mView = inflater.inflate(R.layout.fragment_taste_grade_m, container, false);
+        mView = inflater.inflate(R.layout.fragment_taste_grade_f, container, false);
         text_crab_sex = mView.findViewById(R.id.text_crab_sex);
         text_score_fin = mView.findViewById(R.id.text_score_fin);
         text_score_ygys = mView.findViewById(R.id.text_score_ygys);

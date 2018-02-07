@@ -83,7 +83,7 @@ public class GradeFragment extends Fragment {
     private void Fill_GroupList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.grade_list);
         final int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

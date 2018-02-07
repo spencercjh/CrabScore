@@ -11,22 +11,20 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 public class StaffPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private UserOBJ userOBJ = new UserOBJ();
-	private int choice;
-	public StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
+	public StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.userOBJ=userOBJ;
-		this.choice=choice;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 		if (position == 0) {
-			return new DataEntryFragment(userOBJ,choice);
+			return new DataEntryFragment(userOBJ);
 		} else if (position == 1) {
-			return new FindIdentificationFragment(userOBJ,choice);
+			return new FindIdentificationFragment();
 		}
-		return new DataEntryFragment(userOBJ,choice);
+		return new DataEntryFragment(userOBJ);
 	}
 
 	@Override

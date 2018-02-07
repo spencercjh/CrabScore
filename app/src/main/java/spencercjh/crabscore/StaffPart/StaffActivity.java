@@ -14,14 +14,13 @@ import java.util.Date;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "ConstantConditions"})
 public class StaffActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
+    private ArrayList<String> mTitleArray = new ArrayList<>();
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private long lastPressTime = 0;
 
     @Override
@@ -30,12 +29,10 @@ public class StaffActivity extends AppCompatActivity implements TabLayout.OnTabS
         setContentView(R.layout.activity_staff);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
         tl_head = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
         tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
         setSupportActionBar(tl_head);
         mTitleArray.add("数据录入");
         mTitleArray.add("查找标识");
@@ -50,7 +47,7 @@ public class StaffActivity extends AppCompatActivity implements TabLayout.OnTabS
     }
 
     private void initTabViewPager() {
-        StaffPageAdapter adapter = new StaffPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice);
+        StaffPageAdapter adapter = new StaffPageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -90,4 +87,5 @@ public class StaffActivity extends AppCompatActivity implements TabLayout.OnTabS
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

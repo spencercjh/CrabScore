@@ -88,7 +88,7 @@ public class OwnGroupScoreFragment extends Fragment {
         companyOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
         companyOBJ.setCompany_name(userOBJ.getDisplay_name());
         companyOBJ.setCompany_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryOneCompanyAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

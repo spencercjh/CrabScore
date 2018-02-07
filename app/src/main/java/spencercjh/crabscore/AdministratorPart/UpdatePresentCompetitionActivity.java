@@ -72,7 +72,7 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
     }
 
     private void Fill_CompetitionList() throws InterruptedException {
-        final ArrayList<CompetitionOBJ> CompetitionList = JsonConvert.convert_id_year_note(Fun_QueryAllCompetition.http_QueryAllCompetition());
+        final ArrayList<CompetitionOBJ> CompetitionList = JsonConvert.convert_Competition_List(Fun_QueryAllCompetition.http_QueryAllCompetition());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

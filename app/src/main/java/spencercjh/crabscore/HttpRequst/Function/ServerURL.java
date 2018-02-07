@@ -45,6 +45,9 @@ public class ServerURL {
     public static String servlet_UpdateUserPassword = "UpdateUserPassword";
     public static String servlet_UpdateUserDisplayName = "UpdateUserDisplayName";
     public static String servlet_UpdateUserEmail = "UpdateUserEmail";
+    public static String servlet_QueryAllCrab = "QueryAllCrab";
+    public static String servlet_InsertCrabInfo = "InsertCrabInfo";
+    public static String servlet_UpdateCrabInfo = "Fun_UpdateCrabInfo";
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";

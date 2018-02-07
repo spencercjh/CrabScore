@@ -82,7 +82,7 @@ public class RegisterAssessmentFragment extends Fragment {
 
     private void Fill_RegisterList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.all_register_list);
-        final ArrayList<UserOBJ> UserList = JsonConvert.convert_user_name_display_name_role_id_status(Fun_QueryAllUncheckedUser.http_QueryAllUncheckedUser());
+        final ArrayList<UserOBJ> UserList = JsonConvert.convert_User_List(Fun_QueryAllUncheckedUser.http_QueryAllUncheckedUser());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

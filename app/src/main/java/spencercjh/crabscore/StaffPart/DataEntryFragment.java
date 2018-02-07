@@ -20,27 +20,26 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_QueryAllGroup;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class DataEntryFragment extends Fragment {
-    private static final String TAG = "QualityPrizeFragment";
     protected View mView;
     protected Context mContext;
-    private ListView lv;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private SwipeRefreshLayout srl_simple;
 
 
     public DataEntryFragment() {
     }
 
-    public DataEntryFragment(UserOBJ userOBJ, int choice) {
+    public DataEntryFragment(UserOBJ userOBJ) {
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
@@ -51,7 +50,11 @@ public class DataEntryFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_GroupList();
+                try {
+                    Fill_GroupList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -68,15 +71,17 @@ public class DataEntryFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_GroupList();
+        try {
+            Fill_GroupList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.data_entry_list);
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
-        final ArrayList<GroupOBJ> GroupList = new ArrayList<>();
+    private void Fill_GroupList() throws InterruptedException {
+        ListView lv = mView.findViewById(R.id.data_entry_list);
+        final int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -102,6 +107,8 @@ public class DataEntryFragment extends Fragment {
                     view = convertView;
                 }
                 GroupOBJ groupOBJ = GroupList.get(position);
+                TextView Tindex = view.findViewById(R.id.text_index);
+                Tindex.setText(position);
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
                 Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;
@@ -121,18 +128,25 @@ public class DataEntryFragment extends Fragment {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
-                                    case R.id.menu_add_crab_f:
+                                    case R.id.menu_crab_info_f:
                                         intent = new Intent(getContext(), CrabList_F_Activity.class);
                                         intent.putExtra("GROUPOBJ", groupOBJ);
                                         intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("USER", choice);
+                                        intent.putExtra("COMPETITIONID", competition_id);
                                         startActivity(intent);
                                         break;
-                                    case R.id.menu_add_crab_m:
+                                    case R.id.menu_crab_info_m:
                                         intent = new Intent(getContext(), CrabList_M_Activity.class);
                                         intent.putExtra("GROUPOBJ", groupOBJ);
                                         intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("USER", choice);
+                                        intent.putExtra("COMPETITIONID", competition_id);
+                                        startActivity(intent);
+                                        break;
+                                    case R.id.menu_add_crab:
+                                        intent = new Intent(getContext(), AddCrabActivity.class);
+                                        intent.putExtra("GROUPOBJ", groupOBJ);
+                                        intent.putExtra("USEROBJ", userOBJ);
+                                        intent.putExtra("COMPETITIONID", competition_id);
                                         startActivity(intent);
                                         break;
                                     default:
@@ -147,4 +161,5 @@ public class DataEntryFragment extends Fragment {
             }
         });
     }
+
 }

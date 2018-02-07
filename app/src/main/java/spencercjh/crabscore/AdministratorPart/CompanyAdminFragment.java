@@ -83,7 +83,7 @@ public class CompanyAdminFragment extends Fragment {
 
     private void Fill_CompanyList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.all_company_list);
-        final ArrayList<CompanyOBJ> CompanyList = JsonConvert.convert_company_user_name(Fun_QueryAllCompany.http_QueryAllUnit());
+        final ArrayList<CompanyOBJ> CompanyList = JsonConvert.convert_Company_List(Fun_QueryAllCompany.http_QueryAllUnit());
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

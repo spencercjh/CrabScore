@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.CompetitionOBJ;
+import spencercjh.crabscore.OBJ.CrabOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
@@ -21,7 +22,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 @SuppressWarnings("LoopStatementThatDoesntLoop")
 public class JsonConvert {
     //    大赛切换中的大赛列表：比赛号-年份-备注
-    public static ArrayList<CompetitionOBJ> convert_id_year_note(String json_string) {
+    public static ArrayList<CompetitionOBJ> convert_Competition_List(String json_string) {
         ArrayList<CompetitionOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json_string);
@@ -40,7 +41,7 @@ public class JsonConvert {
     }
 
     //    用户：用户名-显示名-用户组-状态-email-比赛id 多用户
-    public static ArrayList<UserOBJ> convert_user_name_display_name_role_id_status(String json_string) {
+    public static ArrayList<UserOBJ> convert_User_List(String json_string) {
         ArrayList<UserOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json_string);
@@ -82,7 +83,7 @@ public class JsonConvert {
     }
 
     //    参赛单位：参选单位
-    public static ArrayList<CompanyOBJ> convert_company_user_name(String json_string) {
+    public static ArrayList<CompanyOBJ> convert_Company_List(String json_string) {
         ArrayList<CompanyOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json_string);
@@ -129,7 +130,7 @@ public class JsonConvert {
     }
 
     //    小组号列表
-    public static ArrayList<GroupOBJ> convert_group_id(String json_string) {
+    public static ArrayList<GroupOBJ> convert_Group_List(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json_string);
@@ -211,5 +212,28 @@ public class JsonConvert {
             e.printStackTrace();
         }
         return new TasteScoreOBJ();
+    }
+
+    //    螃蟹：螃蟹id-小组号-性别-标签-质量-长度-肥满度-比赛ID
+    public static ArrayList<CrabOBJ> convert_Crab_List(String json_string) {
+        ArrayList<CrabOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int crab_id = list_item.getInt("crab_id");
+                int group_id = list_item.getInt("group_id");
+                int crab_sex = list_item.getInt("crab_sex");
+                String crab_label = list_item.getString("crab_label");
+                double crab_weight = list_item.getDouble("crab_weight");
+                double crab_length = list_item.getDouble("crab_length");
+                double crab_fatness = list_item.getDouble("crab_fatness");
+                int competition_id = list_item.getInt("competition_id");
+                list.add(new CrabOBJ(crab_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, competition_id));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
