@@ -38,7 +38,7 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
+        choice = userOBJ.getRole_id();
         ll_container = findViewById(R.id.ll_container);
         ll_first = findViewById(R.id.ll_first);
         ll_second = findViewById(R.id.ll_second);

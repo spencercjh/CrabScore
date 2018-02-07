@@ -8,8 +8,7 @@ import java.security.MessageDigest;
  */
 
 public class MD5andKL {
-    // MD5加码。32位
-    public static String MD5(String inStr) {
+    public static String MD5(String inStr) {    // MD5加码。32位
         MessageDigest md5 = null;
         try {
             md5 = MessageDigest.getInstance("MD5");
@@ -37,34 +36,4 @@ public class MD5andKL {
 
         return hexValue.toString();
     }
-
-    // 可逆的加密算法
-    public static String KL(String inStr) {
-        // String s = new String(inStr);
-        char[] a = inStr.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            a[i] = (char) (a[i] ^ 't');
-        }
-        String s = new String(a);
-        return s;
-    }
-
-    // 加密后解密
-    public static String JM(String inStr) {
-        char[] a = inStr.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            a[i] = (char) (a[i] ^ 't');
-        }
-        String k = new String(a);
-        return k;
-    }
-
-    /*// 测试主函数
-    public static void main(String args[]) {
-        String s = new String("admin");
-        System.out.println("原始：" + s);
-        System.out.println("MD5后：" + MD5(s));
-        System.out.println("MD5后再加密：" + KL(MD5(s)));
-        System.out.println("解密为MD5后的：" + JM(KL(MD5(s))));
-    }*/
 }

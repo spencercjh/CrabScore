@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox rem_pw, auto_login;
     private SharedPreferences sp;
     private int choice = 0;
-    private Spinner spinner;
 
     @SuppressLint("WorldReadableFiles")
     @Override
@@ -60,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pwd = (EditText) findViewById(R.id.edit_password);
         rem_pw = (CheckBox) findViewById(R.id.remember_password);
         auto_login = (CheckBox) findViewById(R.id.auto_login);
-        spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         String[] Items = getResources().getStringArray(R.array.roles);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -135,8 +134,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             pwd.setText(sp.getString("PASSWORD", ""));
             if (sp.getBoolean("AUTO_ISCHECK", false)) { //判断自动登陆多选框状态
                 auto_login.setChecked(true);          //设置默认是自动登录状态
-                /**
-                 * 自动登陆
+                /*
+                  自动登陆
                  */
 /*                UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), MD5andKL.MD5(pwd.getText().toString().trim()), choice);
                 int user_status ;
@@ -252,8 +251,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .setPositiveButton("关闭", null)
                         .show();
             }
-            /**
-             * 登陆
+            /*
+              登陆
              */
 /*            UserOBJ userOBJ = new UserOBJ(user_name, MD5andKL.MD5(passowrd), choice);
             int user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
@@ -269,8 +268,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.apply();
                     }
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    userOBJ.setRole_id(choice);
                     intent.putExtra("USEROBJ", userOBJ);
-                    intent.putExtra("USER", choice);
                     LoginActivity.this.startActivity(intent);
                     finish();
                 } else if (login_status == 0) {
@@ -283,8 +282,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else if (user_status == -1) {
                 Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
             }*/
-            /**
-             * 测试登陆 直接进入
+            /*
+              测试登陆 直接进入
              */
             UserOBJ userOBJ_test = new UserOBJ("123", "123", choice);
             if (rem_pw.isChecked()) {
@@ -296,7 +295,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("USEROBJ", userOBJ_test);
-            intent.putExtra("USER", choice);
             LoginActivity.this.startActivity(intent);
             finish();
         }
