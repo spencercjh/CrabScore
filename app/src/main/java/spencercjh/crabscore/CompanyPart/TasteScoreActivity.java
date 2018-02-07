@@ -26,7 +26,7 @@ public class TasteScoreActivity extends AppCompatActivity implements TabLayout.O
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
+    private ArrayList<String> mTitleArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

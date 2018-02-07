@@ -11,20 +11,18 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 class CompanyPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private UserOBJ userOBJ = new UserOBJ();
-	private int choice;
-	CompanyPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
+	CompanyPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.userOBJ=userOBJ;
-		this.choice=choice;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 		if (position == 0) {
-			return new OwnGroupScoreFragment(userOBJ,choice);
+			return new OwnGroupScoreFragment(userOBJ);
 		}
-		return new OwnGroupScoreFragment(userOBJ,choice);
+		return new OwnGroupScoreFragment(userOBJ);
 	}
 
 	@Override

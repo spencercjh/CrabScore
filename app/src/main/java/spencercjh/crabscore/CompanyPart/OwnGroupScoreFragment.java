@@ -36,7 +36,6 @@ public class OwnGroupScoreFragment extends Fragment {
     protected View mView;
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private SwipeRefreshLayout srl_simple;
     private CompanyOBJ companyOBJ = new CompanyOBJ();
 
@@ -44,9 +43,8 @@ public class OwnGroupScoreFragment extends Fragment {
     }
 
 
-    public OwnGroupScoreFragment(UserOBJ userOBJ, int choice) {
+    public OwnGroupScoreFragment(UserOBJ userOBJ) {
         this.userOBJ = userOBJ;
-        this.choice = choice;
     }
 
     @Override
