@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateCompetitionProperty {
     public static boolean http_UpdateCompetitionProperty(CompetitionOBJ competitionOBJ, UserOBJ update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.serlvet_UpdateCompetitionProperty;
+        String url = ServerURL.sever_url + ServerURL.servlet_UpdateCompetitionProperty;
         UpdateCompetitionProperty thread = new UpdateCompetitionProperty(url, update_user.getUser_name(), competitionOBJ);
         thread.start();
         thread.join();

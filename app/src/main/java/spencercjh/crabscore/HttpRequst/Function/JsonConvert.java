@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.CompetitionOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
+import spencercjh.crabscore.OBJ.QualityScoreOBJ;
+import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
@@ -16,12 +18,13 @@ import spencercjh.crabscore.OBJ.UserOBJ;
  * iClass
  */
 
+@SuppressWarnings("LoopStatementThatDoesntLoop")
 public class JsonConvert {
     //    大赛切换中的大赛列表：比赛号-年份-备注
-    public static ArrayList<CompetitionOBJ> convert_id_year_note(String jsonstr) {
+    public static ArrayList<CompetitionOBJ> convert_id_year_note(String json_string) {
         ArrayList<CompetitionOBJ> list = new ArrayList<>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int competition_id = list_item.getInt("competition_id");
@@ -37,10 +40,10 @@ public class JsonConvert {
     }
 
     //    用户：用户名-显示名-用户组-状态-email-比赛id 多用户
-    public static ArrayList<UserOBJ> convert_user_name_display_name_role_id_status(String jsonstr) {
+    public static ArrayList<UserOBJ> convert_user_name_display_name_role_id_status(String json_string) {
         ArrayList<UserOBJ> list = new ArrayList<>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String user_name = list_item.getString("user_name");
@@ -59,9 +62,9 @@ public class JsonConvert {
     }
 
     //    用户：用户名-显示名-用户组-状态-email-比赛id 单用户
-    public static UserOBJ convert_user_name_display_name_role_id_status_one(String jsonstr) {
+    public static UserOBJ convert_UserOBJ(String json_string) {
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String user_name = list_item.getString("user_name");
@@ -79,10 +82,10 @@ public class JsonConvert {
     }
 
     //    参赛单位：参选单位
-    public static ArrayList<CompanyOBJ> convert_company_user_name(String jsonstr) {
+    public static ArrayList<CompanyOBJ> convert_company_user_name(String json_string) {
         ArrayList<CompanyOBJ> list = new ArrayList<>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String company_name = list_item.getString("company_name");
@@ -97,9 +100,9 @@ public class JsonConvert {
 
     //    大赛管理：年份-备注-雄蟹肥满度参数-雄蟹体重参数-雄蟹肥满度标准差参数-雄蟹体重标准差参数-雄蟹肥满度参数
     //    -雌蟹体重参数-雌蟹肥满度标准差参数-雌蟹体重标准差参数-肥满度及蟹王蟹后结果-种质评比排名-口感评比排名
-    public static CompetitionOBJ convert_competition_property(String jsonstr) {
+    public static CompetitionOBJ convert_CompetitionOBJ(String json_string) {
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String competition_year = list_item.getString("competition_year");
@@ -115,10 +118,9 @@ public class JsonConvert {
                 int result_fatness = list_item.getInt("result_fatness");
                 int result_quality = list_item.getInt("result_quality");
                 int result_taste = list_item.getInt("result_taste");
-                CompetitionOBJ competition_info_obj = new CompetitionOBJ(competition_year,
+                return new CompetitionOBJ(competition_year,
                         note, var_fatness_m, var_weight_m, var_mfatness_sd, var_mweight_sd, var_fatness_f,
                         var_weight_f, var_ffatness_sd, var_fweight_sd, result_fatness, result_quality, result_taste);
-                return competition_info_obj;
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -127,10 +129,10 @@ public class JsonConvert {
     }
 
     //    小组号列表
-    public static ArrayList<GroupOBJ> convert_group_id(String jsonstr) {
+    public static ArrayList<GroupOBJ> convert_group_id(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
@@ -144,10 +146,10 @@ public class JsonConvert {
     }
 
     //    优质奖：小组号-参选单位号-比赛号-雄蟹肥满度评分-雌蟹肥满度评分
-    public static ArrayList<GroupOBJ> convert_fatness_score(String jsonstr) {
+    public static ArrayList<GroupOBJ> convert_fatness_score(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonstr);
+            JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
@@ -161,5 +163,53 @@ public class JsonConvert {
             e.printStackTrace();
         }
         return list;
+    }
+
+    //    优质奖小分：小组号-性别-最终得分-体色(背)-体色(腹)-额齿-第4侧齿-背部疣状突-比赛ID
+    public static QualityScoreOBJ convert_QualityScoreOBJ(String json_string) {
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int crab_sex = list_item.getInt("crab_sex");
+                double score_fin = list_item.getDouble("score_fin");
+                double score_bts = list_item.getDouble("score_bts");
+                double score_fts = list_item.getDouble("score_fts");
+                double score_ec = list_item.getDouble("score_ec");
+                double score_dscc = list_item.getDouble("score_dscc");
+                double score_bbyzt = list_item.getDouble("score_bbyzt");
+                int competition_id = list_item.getInt("competition_id");
+                return new QualityScoreOBJ(group_id, crab_sex, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, competition_id);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new QualityScoreOBJ();
+    }
+
+    //    口感奖小分：小组号-性别-最终得分-蟹盖颜色-鳃颜色-膏、黄颜色-腥味、香味-膏、黄-腹部肌肉-第二、三步足肌肉-比赛ID
+    public static TasteScoreOBJ convert_TasteScoreOBJ(String json_string) {
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int crab_sex = list_item.getInt("crab_sex");
+                double score_fin = list_item.getDouble("score_fin");
+                double score_ygys = list_item.getDouble("score_ygys");
+                double score_sys = list_item.getDouble("score_sys");
+                double score_ghys = list_item.getDouble("score_ghys");
+                double score_xwxw = list_item.getDouble("score_xwxw");
+                double score_gh = list_item.getDouble("score_gh");
+                double score_fbjr = list_item.getDouble("score_fbjr");
+                double score_bzjr = list_item.getDouble("score_bzjr");
+                int competition_id = list_item.getInt("competition_id");
+                return new TasteScoreOBJ(group_id, crab_sex, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, competition_id);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new TasteScoreOBJ();
     }
 }

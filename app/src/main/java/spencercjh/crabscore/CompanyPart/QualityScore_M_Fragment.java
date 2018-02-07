@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryQualityScoreInfo;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 /**
@@ -29,16 +30,12 @@ public class QualityScore_M_Fragment extends Fragment {
     private TextView text_score_ec;
     private TextView text_score_dscc;
     private TextView text_score_bbyzt;
-    private UserOBJ userOBJ = new UserOBJ();
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
-    private int choice;
 
     public QualityScore_M_Fragment() {
     }
 
-    public QualityScore_M_Fragment(UserOBJ userOBJ, int choice, QualityScoreOBJ qualityScoreOBJ) {
-        this.userOBJ = userOBJ;
-        this.choice = choice;
+    public QualityScore_M_Fragment(QualityScoreOBJ qualityScoreOBJ) {
         this.qualityScoreOBJ = qualityScoreOBJ;
     }
 
@@ -65,12 +62,23 @@ public class QualityScore_M_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        InitialInfo();
+        try {
+            InitialInfo();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void InitialInfo() {
-        /**
-         * 数据初始化 网络线程
-         */
+    private void InitialInfo() throws InterruptedException {
+        QualityScoreOBJ qualityScoreOBJ_M = qualityScoreOBJ;
+        qualityScoreOBJ_M.setCrab_sex(1);
+        qualityScoreOBJ_M = JsonConvert.convert_QualityScoreOBJ(Fun_QueryQualityScoreInfo.http_QueryQualityScoreInfo(qualityScoreOBJ_M));
+        text_crab_sex.setText("雄蟹");
+        text_score_fin.setText(String.valueOf(qualityScoreOBJ_M.getScore_fin()));
+        text_score_bts.setText(String.valueOf(qualityScoreOBJ_M.getScore_bts()));
+        text_score_fts.setText(String.valueOf(qualityScoreOBJ_M.getScore_fts()));
+        text_score_ec.setText(String.valueOf(qualityScoreOBJ_M.getScore_ec()));
+        text_score_dscc.setText(String.valueOf(qualityScoreOBJ_M.getScore_dscc()));
+        text_score_bbyzt.setText(String.valueOf(qualityScoreOBJ_M.getScore_bbyzt()));
     }
 }

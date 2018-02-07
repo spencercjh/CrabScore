@@ -1,18 +1,18 @@
 package spencercjh.crabscore.CompanyPart;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.View;
+import android.view.Window;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 /**
@@ -20,32 +20,30 @@ import spencercjh.crabscore.R;
  * iClass
  */
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "ConstantConditions"})
 public class QualityScoreActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
-    private Toolbar tl_head;
     private ViewPager vp_content;
     private TabLayout tab_title;
-    private ArrayList<String> mTitleArray = new ArrayList<String>();
-    private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
-    private long lastPressTime = 0;
+    private ArrayList<String> mTitleArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quality_score);
-        Intent intent = getIntent();
-        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
-        choice = (int) intent.getSerializableExtra("USER");
-        tl_head = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         tab_title = (TabLayout) findViewById(R.id.tab_title);
         vp_content = (ViewPager) findViewById(R.id.vp_content);
-        tl_head.setEnabled(false);
-//        tl_head.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_div));
-        setSupportActionBar(tl_head);
-        mTitleArray.add("雌");
-        mTitleArray.add("雄");
+        toolbar.setEnabled(false);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
+        mTitleArray.add("雌蟹种质得分");
+        mTitleArray.add("雄蟹种质得分");
         initTabLayout();
         initTabViewPager();
     }
@@ -57,7 +55,7 @@ public class QualityScoreActivity extends AppCompatActivity implements TabLayout
     }
 
     private void initTabViewPager() {
-        QualityScorePageAdapter adapter = new QualityScorePageAdapter(getSupportFragmentManager(), mTitleArray, userOBJ, choice, qualityScoreOBJ);
+        QualityScorePageAdapter adapter = new QualityScorePageAdapter(getSupportFragmentManager(), mTitleArray, qualityScoreOBJ);
         vp_content.setAdapter(adapter);
         vp_content.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -89,12 +87,29 @@ public class QualityScoreActivity extends AppCompatActivity implements TabLayout
     }
 
     public void onBackPressed() {
-        if (new Date().getTime() - lastPressTime < 1000) {
-            finish();
-            Runtime.getRuntime().exit(0);//结束程序
-        } else {
-            lastPressTime = new Date().getTime();//重置lastPressTime
-            Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
+        goback();
+    }
+
+    private void goback() {
+        finish();
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        // 显示菜单项左侧的图标
+        // ActionBar的featureId是8，Toolbar的featureId是108
+        if (featureId % 100 == Window.FEATURE_ACTION_BAR && menu != null) {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+                try {
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        return super.onMenuOpened(featureId, menu);
     }
 }

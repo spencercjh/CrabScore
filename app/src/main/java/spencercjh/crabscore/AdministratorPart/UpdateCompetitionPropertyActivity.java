@@ -1,21 +1,15 @@
 package spencercjh.crabscore.AdministratorPart;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.Properties;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionProperty;
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompetitionYear;
@@ -77,7 +71,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
         Intent intent;
         switch (view.getId()) {
             case R.id.re_year_note:
-                File();
                 intent = new Intent(UpdateCompetitionPropertyActivity.this, UpdateYear_NoteActivity.class);
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
@@ -86,7 +79,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 break;
             case R.id.re_more_setting:
-                File();
                 intent = new Intent(UpdateCompetitionPropertyActivity.this, UpdateMoreSettingActivity.class);
                 startActivity(intent);
                 intent.putExtra("COMPETITIONOBJ", competition_OBJ);
@@ -95,7 +87,6 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
                 startActivity(intent);
                 break;
             case R.id.button:
-                File();
                 try {
                     updateCompetition_info();
                 } catch (InterruptedException e) {
@@ -107,52 +98,10 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
         }
     }
 
-    private void File() {
-        Properties prop = loadConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties");
-        if (prop == null) {
-            prop = new Properties();
-            prop.put("USEROBJ", userOBJ);
-            prop.put("COMPETITIONOBJ", competition_OBJ);
-            prop.put("USER", choice);
-            saveConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties", prop);
-        } else {
-            prop.put("USEROBJ", userOBJ);
-            prop.put("COMPETITIONOBJ", competition_OBJ);
-            prop.put("USER", choice);
-            saveConfig(UpdateCompetitionPropertyActivity.this, "/mnt/sdcard/config.properties", prop);
-        }
-    }
-
-    public boolean saveConfig(Context context, String file, Properties properties) {
-        try {
-            File fil = new File(file);
-            if (!fil.exists())
-                fil.createNewFile();
-            FileOutputStream s = new FileOutputStream(fil);
-            properties.store(s, "");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-
-    public Properties loadConfig(Context context, String file) {
-        Properties properties = new Properties();
-        try {
-            FileInputStream s = new FileInputStream(file);
-            properties.load(s);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return properties;
-    }
-
     private void InitialInfo(CompetitionOBJ competitionOBJ) throws InterruptedException {
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         competitionOBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
-        competitionOBJ = JsonConvert.convert_competition_property(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competitionOBJ.getCompetition_year()));
+        competitionOBJ = JsonConvert.convert_CompetitionOBJ(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competitionOBJ.getCompetition_year()));
         Tyear_note.setText(competitionOBJ.getCompetition_year() + " " + competition_OBJ.getNote().substring(0, 4));
         Tvar_fatness_m.setText(String.valueOf(competitionOBJ.getVar_fatness_m()));
         Tvar_weight_m.setText(String.valueOf(competitionOBJ.getVar_weight_m()));

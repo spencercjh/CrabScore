@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class CheckScoreRankingPageAdapter extends FragmentPagerAdapter {
+class CheckScoreRankingPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private UserOBJ userOBJ = new UserOBJ();
 	private int choice;
-	public CheckScoreRankingPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
+	CheckScoreRankingPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.userOBJ=userOBJ;

@@ -35,7 +35,6 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
     private CompanyOBJ companyOBJ = new CompanyOBJ();
     private int choice;
     private ListView lv;
-    private Toolbar toolbar;
     private SwipeRefreshLayout srl_simple;
 
     @Override
@@ -47,7 +46,7 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
         companyOBJ = (CompanyOBJ) intent.getSerializableExtra("COMPANYOBJ");
         choice = (int) intent.getSerializableExtra("USER");
         lv = (ListView) findViewById(R.id.group_list);
-        toolbar = (Toolbar) findViewById(R.id.tl_head);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("选择小组");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back);
@@ -83,9 +82,6 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
     }
 
     private void Fill_GroupList() throws InterruptedException {
-        /**
-         * 数据初始化 网络线程
-         */
         final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
@@ -135,27 +131,18 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
                                 case R.id.menu_overall_score:
                                     intent = new Intent(CheckCompanyScoreActivity.this, OverallScoreActivity.class);
                                     intent.putExtra("GROUPOBJ", groupOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", userOBJ);
-                                    intent.putExtra("COMPANYOBJ", companyOBJ);
                                     startActivity(intent);
                                     break;
                                 case R.id.menu_detail_quality_score:
-                                    QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id());
+                                    QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(),companyOBJ.getCompetition_id());
                                     intent = new Intent(CheckCompanyScoreActivity.this, QualityScoreActivity.class);
                                     intent.putExtra("QUALITYSCOREOBJ", qualityScoreOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", choice);
-                                    intent.putExtra("COMPANYOBJ", companyOBJ);
                                     startActivity(intent);
                                     break;
                                 case R.id.menu_detail_taste_score:
-                                    TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id());
+                                    TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id(),companyOBJ.getCompetition_id());
                                     intent = new Intent(CheckCompanyScoreActivity.this, TasteScoreActivity.class);
                                     intent.putExtra("TASTESCOREACTIVITY", tasteScoreOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", choice);
-                                    intent.putExtra("COMPANYOBJ", companyOBJ);
                                     startActivity(intent);
                                     break;
                                 default:
@@ -168,6 +155,7 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
             }
         });
     }
+
     public void onBackPressed() {
         goback();
     }

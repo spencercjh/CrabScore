@@ -7,30 +7,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class TasteScorePageAdapter extends FragmentPagerAdapter {
+class TasteScorePageAdapter extends FragmentPagerAdapter {
     private ArrayList<String> mTitleArray;
-    private UserOBJ userOBJ = new UserOBJ();
-    private int choice;
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    public TasteScorePageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice, TasteScoreOBJ tasteScoreOBJ) {
+    TasteScorePageAdapter(FragmentManager fm, ArrayList<String> titleArray, TasteScoreOBJ tasteScoreOBJ) {
         super(fm);
         mTitleArray = titleArray;
-        this.userOBJ = userOBJ;
-        this.choice = choice;
         this.tasteScoreOBJ = tasteScoreOBJ;
     }
 
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new TasteScore_F_Fragment(userOBJ, choice, tasteScoreOBJ);
+            return new TasteScore_F_Fragment(tasteScoreOBJ);
         } else if (position == 1) {
-            return new TasteScore_M_Fragment(userOBJ, choice, tasteScoreOBJ);
+            return new TasteScore_M_Fragment(tasteScoreOBJ);
         }
-        return new TasteScore_F_Fragment(userOBJ, choice, tasteScoreOBJ);
+        return new TasteScore_F_Fragment(tasteScoreOBJ);
     }
 
     @Override

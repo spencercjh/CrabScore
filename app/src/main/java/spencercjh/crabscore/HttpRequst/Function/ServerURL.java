@@ -27,7 +27,7 @@ public class ServerURL {
     public static String servlet_QueryPresentCompetitionID = "QueryPresentCompetitionID";
     public static String servlet_DeleteCompanyInfo = "DeleteCompanyInfo";
     public static String servlet_QueryCompetitionYear = "QueryCompetitionYear";
-    public static String serlvet_UpdateCompetitionProperty = "UpdateCompetitionProperty";
+    public static String servlet_UpdateCompetitionProperty = "UpdateCompetitionProperty";
     public static String servlet_DeleteUserInfo = "DeleteUserInfo";
     public static String servlet_QueryCompanyID = "QueryCompanyID";
     public static String servlet_QueryAllGroup = "QueryAllGroup";
@@ -35,8 +35,10 @@ public class ServerURL {
     public static String servlet_QueryCompanyName = "QueryCompanyName";
     public static String servlet_UpdatePresentCompetition = "UpdatePresentCompetition";
     public static String servlet_UpdateCompetitionStatus = "UpdateCompetitionStatus";
+    public static String servlet_UpdatePassword = "UpdatePassword";
+    public static String servlet_QueryQualityScoreInfo = "QueryQualityScoreInfo";
+    public static String servlet_QueryTasteScoreInfo = "QueryTasteScoreInfo";
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";
-    public static String servlet_UpdatePassword="UpdatePassword";
 }

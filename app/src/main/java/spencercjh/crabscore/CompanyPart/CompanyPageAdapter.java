@@ -6,14 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import spencercjh.crabscore.JudgePart.GradeFragment;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class CompanyPageAdapter extends FragmentPagerAdapter {
+class CompanyPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private UserOBJ userOBJ = new UserOBJ();
 	private int choice;
-	public CompanyPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
+	CompanyPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ, int choice) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.userOBJ=userOBJ;

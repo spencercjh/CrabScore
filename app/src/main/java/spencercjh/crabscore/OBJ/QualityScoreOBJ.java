@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class QualityScoreOBJ implements Serializable {
-    private int crab_id;    //螃蟹序号
+    private int score_id;    //分数序号
     private int group_id;   //组号
     private int crab_sex;   //螃蟹性别
     private int user_id;    //评委用户ID
@@ -25,16 +25,25 @@ public class QualityScoreOBJ implements Serializable {
     }
 
     //    评委评分界面
-    public QualityScoreOBJ(int group_id) {
+    public QualityScoreOBJ(int group_id, int competition_id) {
         this.group_id = group_id;
+        this.competition_id = competition_id;
     }
 
-    //查看成绩界面
-    public QualityScoreOBJ(int group_id, String company_name, double score_fin) {
+    //    查分
+    public QualityScoreOBJ(int group_id, int crab_sex, double score_fin, double score_bts, double score_fts, double score_ec, double score_dscc, double score_bbyzt, int competition_id) {
         this.group_id = group_id;
+        this.crab_sex = crab_sex;
         this.score_fin = score_fin;
+        this.score_bts = score_bts;
+        this.score_fts = score_fts;
+        this.score_ec = score_ec;
+        this.score_dscc = score_dscc;
+        this.score_bbyzt = score_bbyzt;
+        this.competition_id = competition_id;
     }
 
+    //    评分
     public QualityScoreOBJ(int group_id, int crab_sex, int user_id, double score_fin, double score_bts,
                            double score_fts, double score_ec, double score_dscc, double score_bbyzt, int competition_id) {
         this.group_id = group_id;

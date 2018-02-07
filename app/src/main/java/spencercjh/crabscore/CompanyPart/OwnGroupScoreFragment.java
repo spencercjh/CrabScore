@@ -20,6 +20,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompanyID;
+import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
+import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryAllGroup;
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
@@ -28,13 +33,12 @@ import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
 public class OwnGroupScoreFragment extends Fragment {
-    private static final String TAG = "FatnessPrizeFragment";
     protected View mView;
     protected Context mContext;
     private UserOBJ userOBJ = new UserOBJ();
     private int choice;
-    private ListView lv;
     private SwipeRefreshLayout srl_simple;
+    private CompanyOBJ companyOBJ = new CompanyOBJ();
 
     public OwnGroupScoreFragment() {
     }
@@ -53,7 +57,11 @@ public class OwnGroupScoreFragment extends Fragment {
         srl_simple.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Fill_GroupList();
+                try {
+                    Fill_GroupList();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 srl_simple.setRefreshing(false);
             }
         });
@@ -70,15 +78,19 @@ public class OwnGroupScoreFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Fill_GroupList();
+        try {
+            Fill_GroupList();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void Fill_GroupList() {
-        lv = mView.findViewById(R.id.group_score_list);
-        /**
-         * 涉及多表多数据的计算 此处网络线程后面再完善
-         */
-        final ArrayList<GroupOBJ> GroupList = new ArrayList<>();
+    private void Fill_GroupList() throws InterruptedException {
+        ListView lv = mView.findViewById(R.id.group_score_list);
+        companyOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
+        companyOBJ.setCompany_name(userOBJ.getDisplay_name());
+        companyOBJ.setCompany_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_group_id(Fun_QueryAllGroup.http_QueryAllGroup(companyOBJ));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -104,6 +116,8 @@ public class OwnGroupScoreFragment extends Fragment {
                     view = convertView;
                 }
                 GroupOBJ groupOBJ = GroupList.get(position);
+                TextView Tindex = view.findViewById(R.id.text_index);
+                Tindex.setText(position);
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
                 Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;
@@ -125,24 +139,18 @@ public class OwnGroupScoreFragment extends Fragment {
                                 case R.id.menu_overall_score:
                                     intent = new Intent(getContext(), OverallScoreActivity.class);
                                     intent.putExtra("GROUPOBJ", groupOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", userOBJ);
                                     startActivity(intent);
                                     break;
                                 case R.id.menu_detail_quality_score:
-                                    QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id());
+                                    QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(), companyOBJ.getCompetition_id());
                                     intent = new Intent(getContext(), QualityScoreActivity.class);
                                     intent.putExtra("QUALITYSCOREOBJ", qualityScoreOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", choice);
                                     startActivity(intent);
                                     break;
                                 case R.id.menu_detail_taste_score:
-                                    TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id());
+                                    TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id(), companyOBJ.getCompetition_id());
                                     intent = new Intent(getContext(), TasteScoreActivity.class);
                                     intent.putExtra("TASTESCOREACTIVITY", tasteScoreOBJ);
-                                    intent.putExtra("USEROBJ", userOBJ);
-                                    intent.putExtra("USER", choice);
                                     startActivity(intent);
                                     break;
                                 default:
