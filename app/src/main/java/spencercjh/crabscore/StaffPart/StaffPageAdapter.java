@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import spencercjh.crabscore.OBJ.UserOBJ;
 
-public class StaffPageAdapter extends FragmentPagerAdapter {
+class StaffPageAdapter extends FragmentPagerAdapter {
 	private ArrayList<String> mTitleArray;
 	private UserOBJ userOBJ = new UserOBJ();
-	public StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
+	StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
 		super(fm);
 		mTitleArray = titleArray;
 		this.userOBJ=userOBJ;

@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.StaffPart.Fun_QueryGroupID;
+import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
@@ -50,12 +55,26 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button) {
-            find_identification();
+            try {
+                find_identification();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private void find_identification() {
+    private void find_identification() throws InterruptedException {
         String crab_label = Eidentification.getText().toString().trim();
-
+        ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryGroupID.http_QueryGroupID(crab_label));
+        if (GroupList.size() == 0) {
+            String past = text_group_id.getText().toString();
+            text_group_id.setText(String.format("%s  该标识不存在", past));
+        } else {
+            for (int i = 0; i < GroupList.size(); i++) {
+                String past = text_group_id.getText().toString();
+                GroupOBJ groupOBJ = GroupList.get(i);
+                text_group_id.setText(past + "  第" + groupOBJ.getGroup_id() + "  组");
+            }
+        }
     }
 }

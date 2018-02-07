@@ -57,21 +57,21 @@
 
     <TextView
         android:id="@+id/text_group_id"
-        android:layout_width="344dp"
-        android:layout_height="50dp"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
         android:background="@drawable/qq_edit_login"
         android:ems="10"
         android:inputType="none"
         android:maxLines="1"
         android:selectAllOnFocus="false"
+        android:text="所属组号:"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812">
+        app:layout_constraintVertical_bias="0.809">
 
-        <requestFocus />
     </TextView>
 
 </android.support.constraint.ConstraintLayout>

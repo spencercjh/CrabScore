@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequst.Thread.CommonPart;
+package spencercjh.crabscore.HttpRequst.Thread.StaffPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,39 +7,26 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 
 /**
- * Created by spencercjh on 2018/2/2.
+ * Created by spencercjh on 2018/2/8.
  * iClass
  */
 
-public class Register extends Thread {
+public class QueryGroupID extends Thread {
     private boolean flag;
     private String url;
-    private String user_name;
-    private String password;
-    private String display_name;
-    private int choice;
-    private String email;
-    private String register_state;
-    private String create_user;
+    private String crab_label;
+    private String jsonstr;
 
-    public Register(String url, String user_name, String password, String display_name, String email, int choice) {
+    public QueryGroupID(String url, String crab_label) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
-        this.password = password;
-        this.display_name = display_name;
-        this.email = email;
-        this.choice = choice;
-        this.create_user = user_name;
+        this.crab_label = crab_label;
     }
 
     private void doGet() throws IOException {
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        display_name = URLEncoder.encode(display_name, "utf-8");
-        url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice + "&create_user=" + create_user;
+        url = url + "?crab_label=" + crab_label;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -56,11 +43,11 @@ public class Register extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                register_state = buffer.toString();
-                register_state = URLDecoder.decode(register_state, "UTF-8");
+                jsonstr = buffer.toString();
+                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
             }
-            System.out.println("result:" + register_state);
-            if (register_state.equals("register failed")) {
+            System.out.println("result:" + jsonstr);
+            if (jsonstr.equals("query group failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -68,7 +55,6 @@ public class Register extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean getFlag() {
@@ -77,6 +63,10 @@ public class Register extends Thread {
 
     private void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public String getJsonstr() {
+        return jsonstr;
     }
 
     @Override
