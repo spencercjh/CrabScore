@@ -32,7 +32,10 @@ public class InsertCrabInfo extends Thread {
     }
 
     private void doGet() throws IOException {
-        url = url + "?create_user=" + create_user + "&crab_sex=" + crab_sex + "&group_id=" + group_id + "&competition_id=" + competition_id;
+        url = url + "?create_user=" + create_user +
+                "&crab_sex=" + crab_sex +
+                "&group_id=" + group_id +
+                "&competition_id=" + competition_id;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

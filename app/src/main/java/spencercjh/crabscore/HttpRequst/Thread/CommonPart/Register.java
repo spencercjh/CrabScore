@@ -20,26 +20,31 @@ public class Register extends Thread {
     private String user_name;
     private String password;
     private String display_name;
-    private int choice;
+    private int role_id;
     private String email;
     private String register_state;
     private String create_user;
 
-    public Register(String url, String user_name, String password, String display_name, String email, int choice) {
+    public Register(String url, String user_name, String password, String display_name, String email, int role_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
         this.password = password;
         this.display_name = display_name;
         this.email = email;
-        this.choice = choice;
+        this.role_id = role_id;
         this.create_user = user_name;
     }
 
     private void doGet() throws IOException {
         display_name = URLEncoder.encode(display_name, "utf-8");
         display_name = URLEncoder.encode(display_name, "utf-8");
-        url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&email=" + email + "&role_id=" + choice + "&create_user=" + create_user;
+        url = url + "?user_name=" + user_name +
+                "&password=" + password +
+                "&display_name=" + display_name +
+                "&email=" + email +
+                "&role_id=" + role_id +
+                "&create_user=" + create_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

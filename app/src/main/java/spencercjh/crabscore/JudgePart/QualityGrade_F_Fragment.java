@@ -142,14 +142,14 @@ public class QualityGrade_F_Fragment extends Fragment {
     private boolean updateInfo() {
         try {
             if (radio_enable1.isChecked()) {  //填写总分
-                double score_fin = Double.parseDouble(text_score_fin.getText().toString().trim());
+                float score_fin = Float.parseFloat(text_score_fin.getText().toString().trim());
                 qualityScoreOBJ_F.setScore_fin(score_fin);
             } else if (radio_unable1.isChecked()) {    //填写小分
-                double score_bts = Double.parseDouble(text_score_bts.getText().toString().trim());
-                double score_fts = Double.parseDouble(text_score_fts.getText().toString().trim());
-                double score_ec = Double.parseDouble(text_score_ec.getText().toString().trim());
-                double score_dscc = Double.parseDouble(text_score_dscc.getText().toString().trim());
-                double score_bbyzt = Double.parseDouble(text_score_bbyzt.getText().toString().trim());
+                float score_bts = Float.parseFloat(text_score_bts.getText().toString().trim());
+                float score_fts = Float.parseFloat(text_score_fts.getText().toString().trim());
+                float score_ec = Float.parseFloat(text_score_ec.getText().toString().trim());
+                float score_dscc = Float.parseFloat(text_score_dscc.getText().toString().trim());
+                float score_bbyzt = Float.parseFloat(text_score_bbyzt.getText().toString().trim());
                 qualityScoreOBJ_F.setScore_fin(score_bts + score_fts + score_ec + score_dscc + score_bbyzt);
                 qualityScoreOBJ_F.setScore_bts(score_bts);
                 qualityScoreOBJ_F.setScore_fts(score_fts);

@@ -156,16 +156,16 @@ public class TasteGrade_F_Fragment extends Fragment {
     private boolean updateInfo() {
         try {
             if (radio_enable1.isChecked()) {  //填写总分
-                double score_fin = Double.parseDouble(text_score_fin.getText().toString().trim());
+                float score_fin = Float.parseFloat(text_score_fin.getText().toString().trim());
                 tasteScoreOBJ_F.setScore_fin(score_fin);
             } else if (radio_unable1.isChecked()) {    //填写小分
-                double score_ygys = Double.parseDouble(text_score_ygys.getText().toString().trim());
-                double score_sys = Double.parseDouble(text_score_sys.getText().toString().trim());
-                double score_ghys = Double.parseDouble(text_score_ghys.getText().toString().trim());
-                double score_xwxw = Double.parseDouble(text_score_xwxw.getText().toString().trim());
-                double score_gh = Double.parseDouble(text_score_gh.getText().toString().trim());
-                double score_fbjr = Double.parseDouble(text_score_fbjr.getText().toString().trim());
-                double score_bzjr = Double.parseDouble(text_score_bzjr.getText().toString().trim());
+                float score_ygys = Float.parseFloat(text_score_ygys.getText().toString().trim());
+                float score_sys = Float.parseFloat(text_score_sys.getText().toString().trim());
+                float score_ghys = Float.parseFloat(text_score_ghys.getText().toString().trim());
+                float score_xwxw = Float.parseFloat(text_score_xwxw.getText().toString().trim());
+                float score_gh = Float.parseFloat(text_score_gh.getText().toString().trim());
+                float score_fbjr = Float.parseFloat(text_score_fbjr.getText().toString().trim());
+                float score_bzjr = Float.parseFloat(text_score_bzjr.getText().toString().trim());
                 tasteScoreOBJ_F.setScore_fin(score_ygys + score_sys + score_ghys + score_xwxw + score_gh + score_fbjr + score_bzjr);
                 tasteScoreOBJ_F.setScore_ygys(score_ygys);
                 tasteScoreOBJ_F.setScore_sys(score_sys);

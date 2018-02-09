@@ -14,28 +14,24 @@ import java.net.URLDecoder;
  */
 
 public class UpdatePassword extends Thread {
-    private String email;
     private boolean flag;
     private String url;
     private String user_name;
-    private String display_name;
-    private int role_id;
     private String update_state;
     private String update_user;
+    private String password;
 
-    public UpdatePassword(String url, String user_name, String display_name, int role_id, String email, String update_user) {
+    public UpdatePassword(String url, String user_name, String password, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.user_name = user_name;
-        this.display_name = display_name;
-        this.role_id = role_id;
-        this.email = email;
+        this.password = password;
         this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
         /*将username和password传给Tomcat服务器*/
-        url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&role_id=" + role_id + "&email=" + email + "&update_user=" + update_user;
+        url = url + "?user_name=" + user_name + "&update_user=" + update_user + "&password=" + password;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

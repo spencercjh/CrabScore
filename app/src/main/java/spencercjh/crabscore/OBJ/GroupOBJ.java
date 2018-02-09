@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class GroupOBJ implements Serializable {
     private int group_id;
     private int company_id;
+    private int competition_id;
     private double fatness_score_m;
     private double quality_score_m;
     private double taste_score_m;
@@ -20,15 +21,42 @@ public class GroupOBJ implements Serializable {
     public GroupOBJ() {
     }
 
-    public GroupOBJ(int group_id) {
+    public GroupOBJ(int group_id, int competition_id) {
         this.group_id = group_id;
+        this.competition_id = competition_id;
     }
-//  优质奖
-    public GroupOBJ(int group_id, int company_id, double fatness_score_m, double fatness_score_f) {
+
+    public GroupOBJ(int group_id, int competition_id, int company_id) {
+        this.group_id = group_id;
+        this.competition_id = competition_id;
+        this.company_id = company_id;
+    }
+
+    //  优质奖
+    public GroupOBJ(int group_id, int company_id, int competition_id, double fatness_score_m, double fatness_score_f, int i) {
         this.group_id = group_id;
         this.company_id = company_id;
+        this.competition_id = competition_id;
         this.fatness_score_m = fatness_score_m;
         this.fatness_score_f = fatness_score_f;
+    }
+
+    //    种质奖
+    public GroupOBJ(int group_id, int company_id, int competition_id, double quality_score_m, double quality_score_f, float i) {
+        this.group_id = group_id;
+        this.company_id = company_id;
+        this.competition_id = competition_id;
+        this.quality_score_m = quality_score_m;
+        this.quality_score_f = quality_score_f;
+    }
+
+    //    口感奖
+    public GroupOBJ(int group_id, int company_id, int competition_id, double taste_score_m, double taste_score_f, double i) {
+        this.group_id = group_id;
+        this.company_id = company_id;
+        this.competition_id = competition_id;
+        this.taste_score_m = taste_score_m;
+        this.taste_score_f = taste_score_f;
     }
 
     public GroupOBJ(int group_id, int company_id, double fatness_score_m, double quality_score_m,
@@ -41,6 +69,14 @@ public class GroupOBJ implements Serializable {
         this.fatness_score_f = fatness_score_f;
         this.quality_score_f = quality_score_f;
         this.taste_score_f = taste_score_f;
+    }
+
+    public int getCompetition_id() {
+        return competition_id;
+    }
+
+    public void setCompetition_id(int competition_id) {
+        this.competition_id = competition_id;
     }
 
     public int getGroup_id() {

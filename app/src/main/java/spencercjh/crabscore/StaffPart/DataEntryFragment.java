@@ -81,7 +81,7 @@ public class DataEntryFragment extends Fragment {
     private void Fill_GroupList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.data_entry_list);
         final int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
+        final ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List1(Fun_QueryAllGroup.http_QueryAllGroup(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

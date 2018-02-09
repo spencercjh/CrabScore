@@ -18,7 +18,7 @@ public class Login extends Thread{
     private String url;
     private String user_name;
     private String password;
-    private int choice;
+    private int role_id;
     private String login_state;
 
     public Login(String url, String user_name, String password,int choice) {
@@ -26,11 +26,11 @@ public class Login extends Thread{
         this.url = url;
         this.user_name = user_name;
         this.password = password;
-        this.choice=choice;
+        this.role_id =choice;
     }
 
     private void doGet() throws IOException {
-        url = url + "?user_name=" + user_name + "&password=" + password+"&role_id="+choice;
+        url = url + "?user_name=" + user_name + "&password=" + password+"&role_id="+ role_id;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

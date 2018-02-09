@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import spencercjh.crabscore.OBJ.TasteScoreOBJ;
+
 /**
  * Created by spencercjh on 2018/2/8.
  * iClass
@@ -16,23 +18,31 @@ import java.net.URLDecoder;
 public class UpdateTasteScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private int group_id;
-    private int competition_id;
-    private int crab_sex;
-    private String user_name;
+    private String update_user;
     private String update_status;
+    private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    public UpdateTasteScoreInfo(String url, int group_id, int competition_id, int crab_sex, String user_name) {
+    public UpdateTasteScoreInfo(String url, TasteScoreOBJ tasteScoreOBJ, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.user_name = user_name;
-        this.group_id = group_id;
-        this.competition_id = competition_id;
-        this.crab_sex = crab_sex;
+        this.update_user = update_user;
+        this.tasteScoreOBJ = tasteScoreOBJ;
     }
 
     private void doGet() throws IOException {
-        url = url + "?group_id=" + group_id + "&competition_id=" + competition_id + "&crab_sex=" + crab_sex + "&user_name=" + user_name;
+        url = url + "?group_id=" + tasteScoreOBJ.getGroup_id() +
+                "&competition_id=" + tasteScoreOBJ.getCompetition_id() +
+                "&crab_sex=" + tasteScoreOBJ.getCrab_sex() +
+                "&user_id=" + update_user +
+                "&score_fin=" + tasteScoreOBJ.getScore_fin() +
+                "&score_ygys=" + tasteScoreOBJ.getScore_ygys() +
+                "&score_sys=" + tasteScoreOBJ.getScore_sys() +
+                "&score_ghys=" + tasteScoreOBJ.getScore_ghys() +
+                "&score_xwxw=" + tasteScoreOBJ.getScore_xwxw() +
+                "&score_gh=" + tasteScoreOBJ.getScore_gh() +
+                "&score_fbjr=" + tasteScoreOBJ.getScore_fbjr() +
+                "&score_bzjr=" + tasteScoreOBJ.getScore_bzjr() +
+                "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

@@ -13,7 +13,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 public class Fun_InsertCompanyInfo {
     public static boolean http_InsertUnitInfo(CompanyOBJ companyOBJ,UserOBJ userOBJ) throws InterruptedException {
         String url= ServerURL.sever_url+ServerURL.servlet_InsertCompanyInfo;
-        InsertCompanyInfo thread=new InsertCompanyInfo(url,companyOBJ.getCompany_name(),userOBJ.getUser_name());
+        InsertCompanyInfo thread=new InsertCompanyInfo(url,companyOBJ.getCompany_name(),userOBJ.getUser_name(),companyOBJ.getCompetition_id());
         thread.start();
         thread.join();
         return thread.getFlag();

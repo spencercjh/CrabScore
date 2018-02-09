@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
 import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryCompanyName;
-import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryFatnessScore;
+import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryQualityScore;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.R;
@@ -71,7 +71,7 @@ public class QualityPrizeFragment extends Fragment {
     private void Fill_QualityPrizeList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.quality_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
+        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_quality_score(Fun_QueryQualityScore.http_QueryBestGermplasmScore(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

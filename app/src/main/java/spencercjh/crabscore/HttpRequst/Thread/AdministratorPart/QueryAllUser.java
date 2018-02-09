@@ -11,7 +11,7 @@ import java.net.URLDecoder;
 /**
  * Created by spencercjh on 2018/2/2.
  * iClass
- * 用户列表UserAdminFragment中查找所有用户
+ * 用户列表UserAdminFragment中查找所有用户 账户状态为启用（1）的用户
  */
 
 public class QueryAllUser extends Thread {

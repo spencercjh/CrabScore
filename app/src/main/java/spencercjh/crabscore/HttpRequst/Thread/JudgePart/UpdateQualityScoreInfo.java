@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import spencercjh.crabscore.OBJ.QualityScoreOBJ;
+
 /**
  * Created by spencercjh on 2018/2/8.
  * iClass
@@ -16,23 +18,29 @@ import java.net.URLDecoder;
 public class UpdateQualityScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private int group_id;
-    private int competition_id;
-    private int crab_sex;
+    private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
     private String update_user;
     private String update_status;
 
-    public UpdateQualityScoreInfo(String url, int group_id, int competition_id, int crab_sex, String update_user) {
+    public UpdateQualityScoreInfo(String url, QualityScoreOBJ qualityScoreOBJ, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.group_id = group_id;
-        this.competition_id = competition_id;
-        this.crab_sex = crab_sex;
+        this.qualityScoreOBJ = qualityScoreOBJ;
         this.update_user = update_user;
     }
 
     private void doGet() throws IOException {
-        url = url + "?group_id=" + group_id + "&competition_id=" + competition_id + "&crab_sex=" + crab_sex + "&update_user=" + update_user;
+        url = url + "?group_id=" + qualityScoreOBJ.getGroup_id() +
+                "&competition_id=" + qualityScoreOBJ.getCompetition_id() +
+                "&crab_sex=" + qualityScoreOBJ.getCrab_sex() +
+                "&user_id=" + update_user +
+                "&score_fin=" + qualityScoreOBJ.getScore_fin() +
+                "&score_bts=" + qualityScoreOBJ.getScore_bts() +
+                "&score_fts=" + qualityScoreOBJ.getScore_fts() +
+                "&score_ec=" + qualityScoreOBJ.getScore_ec() +
+                "&score_dscc=" + qualityScoreOBJ.getScore_dscc() +
+                "&score_bbyzt=" + qualityScoreOBJ.getScore_bbyzt() +
+                "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import spencercjh.crabscore.HttpRequst.Function.StaffPart.Fun_QueryCrabLabelExist;
 import spencercjh.crabscore.HttpRequst.Function.StaffPart.Fun_UpdateCrabInfo;
 import spencercjh.crabscore.OBJ.CrabOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
@@ -75,6 +76,7 @@ public class UpdateCrabInfoActivity extends AppCompatActivity implements View.On
     private void InitialInfo() {
         text_index.setText(index);
         text_crab_id.setText(crabOBJ.getCrab_id());
+        text_crab_label.setText(crabOBJ.getCrab_id() + crabOBJ.getGroup_id());
         text_crab_label.setText(crabOBJ.getCrab_label());
         text_crab_weight.setText(String.valueOf(crabOBJ.getCrab_weight()));
         text_crab_length.setText(String.valueOf(crabOBJ.getCrab_length()));
@@ -83,8 +85,8 @@ public class UpdateCrabInfoActivity extends AppCompatActivity implements View.On
     private boolean checkInput() {
         try {
             crabOBJ.setCrab_label(text_crab_label.getText().toString().trim());
-            crabOBJ.setCrab_weight(Double.parseDouble(text_crab_weight.getText().toString().trim()));
-            crabOBJ.setCrab_length(Double.parseDouble(text_crab_length.getText().toString().trim()));
+            crabOBJ.setCrab_weight(Float.parseFloat(text_crab_weight.getText().toString().trim()));
+            crabOBJ.setCrab_length(Float.parseFloat(text_crab_length.getText().toString().trim()));
             return true;
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -111,10 +113,14 @@ public class UpdateCrabInfoActivity extends AppCompatActivity implements View.On
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdateCrabInfo.http_UpdateCrabInfo(crabOBJ, userOBJ)) {
-                                dialog_update_success();
+                            if (!Fun_QueryCrabLabelExist.http_QueryCrabLabelExist(crabOBJ)) {
+                                if (Fun_UpdateCrabInfo.http_UpdateCrabInfo(crabOBJ, userOBJ)) {
+                                    dialog_update_success();
+                                } else {
+                                    dialog_update_fail();
+                                }
                             } else {
-                                dialog_update_fail();
+                                dialog_check_fail();
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -150,6 +156,22 @@ public class UpdateCrabInfoActivity extends AppCompatActivity implements View.On
     private void dialog_update_fail() {
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCrabInfoActivity.this);
         builder.setMessage("修改失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_check_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCrabInfoActivity.this);
+        builder.setMessage("螃蟹标签已存在！");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
         builder.setCancelable(false);

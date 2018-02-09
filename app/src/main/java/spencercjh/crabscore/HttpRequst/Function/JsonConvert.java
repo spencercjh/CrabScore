@@ -108,14 +108,14 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String competition_year = list_item.getString("competition_year");
                 String note = list_item.getString("note");
-                double var_fatness_m = list_item.getDouble("var_fatness_m");
-                double var_weight_m = list_item.getDouble("var_weight_m");
-                double var_mfatness_sd = list_item.getDouble("var_mfatness_sd");
-                double var_mweight_sd = list_item.getDouble("var_mweight_sd");
-                double var_fatness_f = list_item.getDouble("var_fatness_f");
-                double var_weight_f = list_item.getDouble("var_weight_f");
-                double var_ffatness_sd = list_item.getDouble("var_ffatness_sd");
-                double var_fweight_sd = list_item.getDouble("var_fweight_sd");
+                float var_fatness_m = (float) list_item.getDouble("var_fatness_m");
+                float var_weight_m = (float) list_item.getDouble("var_weight_m");
+                float var_mfatness_sd = (float) list_item.getDouble("var_mfatness_sd");
+                float var_mweight_sd = (float) list_item.getDouble("var_mweight_sd");
+                float var_fatness_f = (float) list_item.getDouble("var_fatness_f");
+                float var_weight_f = (float) list_item.getDouble("var_weight_f");
+                float var_ffatness_sd = (float) list_item.getDouble("var_ffatness_sd");
+                float var_fweight_sd = (float) list_item.getDouble("var_fweight_sd");
                 int result_fatness = list_item.getInt("result_fatness");
                 int result_quality = list_item.getInt("result_quality");
                 int result_taste = list_item.getInt("result_taste");
@@ -129,15 +129,17 @@ public class JsonConvert {
         return new CompetitionOBJ();
     }
 
-    //    小组号列表
-    public static ArrayList<GroupOBJ> convert_Group_List(String json_string) {
+    //    小组号列表 有参选单位id
+    public static ArrayList<GroupOBJ> convert_Group_List2(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
-                GroupOBJ groupOBJ = new GroupOBJ(group_id);
+                int company_id = list_item.getInt("company_id");
+                int competition_id = list_item.getInt("competition_id");
+                GroupOBJ groupOBJ = new GroupOBJ(group_id, competition_id, company_id);
                 list.add(groupOBJ);
             }
         } catch (JSONException e) {
@@ -146,7 +148,25 @@ public class JsonConvert {
         return list;
     }
 
-    //    优质奖：小组号-参选单位号-比赛号-雄蟹肥满度评分-雌蟹肥满度评分
+    //    小组号列表 无参选单位id
+    public static ArrayList<GroupOBJ> convert_Group_List1(String json_string) {
+        ArrayList<GroupOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int competition_id = list_item.getInt("competition_id");
+                GroupOBJ groupOBJ = new GroupOBJ(group_id, competition_id);
+                list.add(groupOBJ);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //    优质奖：小组号-参选单位号-比赛号-雄蟹肥满度评分-雌蟹肥满度评分 int index
     public static ArrayList<GroupOBJ> convert_fatness_score(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
         try {
@@ -155,9 +175,11 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
                 int company_id = list_item.getInt("company_id");
-                double fatness_score_m = list_item.getDouble("fatness_score_m");
-                double fatness_score_f = list_item.getDouble("fatness_score_f");
-                GroupOBJ groupOBJ = new GroupOBJ(group_id, company_id, fatness_score_m, fatness_score_f);
+                int competition_id = list_item.getInt("competition_id");
+                float fatness_score_m = (float) list_item.getDouble("fatness_score_m");
+                float fatness_score_f = (float) list_item.getDouble("fatness_score_f");
+                int index = 0;
+                GroupOBJ groupOBJ = new GroupOBJ(group_id, company_id, competition_id, fatness_score_m, fatness_score_f, index);
                 list.add(groupOBJ);
             }
         } catch (JSONException e) {
@@ -166,7 +188,29 @@ public class JsonConvert {
         return list;
     }
 
-    //    优质奖小分：小组号-性别-最终得分-体色(背)-体色(腹)-额齿-第4侧齿-背部疣状突-比赛ID
+    //    种质奖：小组号-参选单位号-比赛号-雄蟹种质评分-雌蟹种质评分 float index
+    public static ArrayList<GroupOBJ> convert_quality_score(String json_string) {
+        ArrayList<GroupOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int company_id = list_item.getInt("company_id");
+                int competition_id = list_item.getInt("competition_id");
+                float quality_score_f = (float) list_item.getDouble("quality_score_f");
+                float quality_score_m = (float) list_item.getDouble("quality_score_m");
+                float index = (float) 0.1;
+                GroupOBJ groupOBJ = new GroupOBJ(group_id, company_id, competition_id, quality_score_m, quality_score_f, index);
+                list.add(groupOBJ);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //    种质奖小分：小组号-性别-最终得分-体色(背)-体色(腹)-额齿-第4侧齿-背部疣状突-比赛ID
     public static QualityScoreOBJ convert_QualityScoreOBJ(String json_string) {
         try {
             JSONArray jsonArray = new JSONArray(json_string);
@@ -174,12 +218,12 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
                 int crab_sex = list_item.getInt("crab_sex");
-                double score_fin = list_item.getDouble("score_fin");
-                double score_bts = list_item.getDouble("score_bts");
-                double score_fts = list_item.getDouble("score_fts");
-                double score_ec = list_item.getDouble("score_ec");
-                double score_dscc = list_item.getDouble("score_dscc");
-                double score_bbyzt = list_item.getDouble("score_bbyzt");
+                float score_fin = (float) list_item.getDouble("score_fin");
+                float score_bts = (float) list_item.getDouble("score_bts");
+                float score_fts = (float) list_item.getDouble("score_fts");
+                float score_ec = (float) list_item.getDouble("score_ec");
+                float score_dscc = (float) list_item.getDouble("score_dscc");
+                float score_bbyzt = (float) list_item.getDouble("score_bbyzt");
                 int competition_id = list_item.getInt("competition_id");
                 return new QualityScoreOBJ(group_id, crab_sex, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, competition_id);
             }
@@ -187,6 +231,28 @@ public class JsonConvert {
             e.printStackTrace();
         }
         return new QualityScoreOBJ();
+    }
+
+    //    口感奖：小组号-参选单位号-比赛号-雄蟹口感评分-雌蟹口感评分 double index
+    public static ArrayList<GroupOBJ> covert_taste_score(String json_string) {
+        ArrayList<GroupOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int company_id = list_item.getInt("company_id");
+                int competition_id = list_item.getInt("competition_id");
+                float taste_score_f = (float) list_item.getDouble("taste_score_f");
+                float taste_score_m = (float) list_item.getDouble("taste_score_m");
+                double index = 0.1;
+                GroupOBJ groupOBJ = new GroupOBJ(group_id, company_id, competition_id, taste_score_m, taste_score_f, index);
+                list.add(groupOBJ);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     //    口感奖小分：小组号-性别-最终得分-蟹盖颜色-鳃颜色-膏、黄颜色-腥味、香味-膏、黄-腹部肌肉-第二、三步足肌肉-比赛ID
@@ -197,14 +263,14 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int group_id = list_item.getInt("group_id");
                 int crab_sex = list_item.getInt("crab_sex");
-                double score_fin = list_item.getDouble("score_fin");
-                double score_ygys = list_item.getDouble("score_ygys");
-                double score_sys = list_item.getDouble("score_sys");
-                double score_ghys = list_item.getDouble("score_ghys");
-                double score_xwxw = list_item.getDouble("score_xwxw");
-                double score_gh = list_item.getDouble("score_gh");
-                double score_fbjr = list_item.getDouble("score_fbjr");
-                double score_bzjr = list_item.getDouble("score_bzjr");
+                float score_fin = (float) list_item.getDouble("score_fin");
+                float score_ygys = (float) list_item.getDouble("score_ygys");
+                float score_sys = (float) list_item.getDouble("score_sys");
+                float score_ghys = (float) list_item.getDouble("score_ghys");
+                float score_xwxw = (float) list_item.getDouble("score_xwxw");
+                float score_gh = (float) list_item.getDouble("score_gh");
+                float score_fbjr = (float) list_item.getDouble("score_fbjr");
+                float score_bzjr = (float) list_item.getDouble("score_bzjr");
                 int competition_id = list_item.getInt("competition_id");
                 return new TasteScoreOBJ(group_id, crab_sex, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, competition_id);
             }
@@ -225,9 +291,9 @@ public class JsonConvert {
                 int group_id = list_item.getInt("group_id");
                 int crab_sex = list_item.getInt("crab_sex");
                 String crab_label = list_item.getString("crab_label");
-                double crab_weight = list_item.getDouble("crab_weight");
-                double crab_length = list_item.getDouble("crab_length");
-                double crab_fatness = list_item.getDouble("crab_fatness");
+                float crab_weight = (float) list_item.getDouble("crab_weight");
+                float crab_length = (float) list_item.getDouble("crab_length");
+                float crab_fatness = (float) list_item.getDouble("crab_fatness");
                 int competition_id = list_item.getInt("competition_id");
                 list.add(new CrabOBJ(crab_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, competition_id));
             }

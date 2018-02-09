@@ -12,9 +12,9 @@ public class CrabOBJ implements Serializable {
     private int group_id;
     private int crab_sex;
     private String crab_label;
-    private double crab_weight;
-    private double crab_length;
-    private double crab_fatness;
+    private float crab_weight;
+    private float crab_length;
+    private float crab_fatness;
     private int competition_id;
 
     public CrabOBJ() {
@@ -27,7 +27,7 @@ public class CrabOBJ implements Serializable {
         this.group_id = group_id;
     }
 
-    public CrabOBJ(int crab_id, int group_id, int crab_sex, String crab_label, double crab_weight, double crab_length, double crab_fatness, int competition_id) {
+    public CrabOBJ(int crab_id, int group_id, int crab_sex, String crab_label, float crab_weight, float crab_length, float crab_fatness, int competition_id) {
         this.crab_id = crab_id;
         this.group_id = group_id;
         this.crab_sex = crab_sex;
@@ -46,27 +46,27 @@ public class CrabOBJ implements Serializable {
         this.competition_id = competition_id;
     }
 
-    public double getCrab_fatness() {
+    public float getCrab_fatness() {
         return crab_fatness;
     }
 
-    public void setCrab_fatness(double crab_fatness) {
+    public void setCrab_fatness(float crab_fatness) {
         this.crab_fatness = crab_fatness;
     }
 
-    public double getCrab_length() {
+    public float getCrab_length() {
         return crab_length;
     }
 
-    public void setCrab_length(double crab_length) {
+    public void setCrab_length(float crab_length) {
         this.crab_length = crab_length;
     }
 
-    public double getCrab_weight() {
+    public float getCrab_weight() {
         return crab_weight;
     }
 
-    public void setCrab_weight(double crab_weight) {
+    public void setCrab_weight(float crab_weight) {
         this.crab_weight = crab_weight;
     }
 

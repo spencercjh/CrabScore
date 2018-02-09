@@ -18,20 +18,22 @@ public class InsertCompanyInfo extends Thread {
     private boolean flag;
     private String url;
     private String company_name;
-    private String user_name;
+    private String create_user;
+    private int competition_id;
     private String insert_status;
 
-    public InsertCompanyInfo(String url, String company_name, String user_name) {
+    public InsertCompanyInfo(String url, String company_name, String create_user, int competition_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.company_name = company_name;
-        this.user_name = user_name;
+        this.create_user = create_user;
+        this.competition_id = competition_id;
     }
 
     private void doGet() throws IOException {
         company_name = URLEncoder.encode(company_name, "utf-8");
         company_name = URLEncoder.encode(company_name, "utf-8");
-        url = url + "?company_name=" + company_name + "&user_name=" + user_name;
+        url = url + "?company_name=" + company_name + "&create_user=" + create_user + "&competition_id=" + competition_id;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

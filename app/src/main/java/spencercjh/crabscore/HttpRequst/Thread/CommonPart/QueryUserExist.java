@@ -1,4 +1,4 @@
-package spencercjh.crabscore.HttpRequst.Thread.AdministratorPart;
+package spencercjh.crabscore.HttpRequst.Thread.CommonPart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,21 +9,24 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Created by spencercjh on 2018/2/2.
+ * Created by spencercjh on 2018/2/9.
  * iClass
  */
 
-public class QueryAllCompetition extends Thread {
+public class QueryUserExist extends Thread{
     private boolean flag;
     private String url;
-    private String jsonstr;
+    private String user_name;
+    private String query_status;
 
-    public QueryAllCompetition(String url) {
+    public QueryUserExist(String url, String user_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
+        this.user_name = user_name;
     }
 
     private void doGet() throws IOException {
+        url = url + "?user_name=" + user_name;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -40,11 +43,11 @@ public class QueryAllCompetition extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                jsonstr = buffer.toString();
-                jsonstr = URLDecoder.decode(jsonstr, "UTF-8");
+                query_status = buffer.toString();
+                query_status = URLDecoder.decode(query_status, "UTF-8");
             }
-            System.out.println("result:" + jsonstr);
-            if (jsonstr.equals("query competition failed")) {
+            System.out.println("result:" + query_status);
+            if (query_status.equals("query user failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -52,6 +55,7 @@ public class QueryAllCompetition extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public boolean getFlag() {
@@ -60,10 +64,6 @@ public class QueryAllCompetition extends Thread {
 
     private void setFlag(boolean flag) {
         this.flag = flag;
-    }
-
-    public String getJsonstr() {
-        return jsonstr;
     }
 
     @Override

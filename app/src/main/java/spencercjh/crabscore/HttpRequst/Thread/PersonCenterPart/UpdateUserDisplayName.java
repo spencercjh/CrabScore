@@ -32,7 +32,10 @@ public class UpdateUserDisplayName extends Thread {
     }
 
     private void doGet() throws IOException {
-        url = url + "?user_name=" + user_name + "&password=" + password + "&display_name=" + display_name + "&update_user=" + update_user;
+        url = url + "?user_name=" + user_name +
+                "&password=" + password +
+                "&display_name=" + display_name +
+                "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

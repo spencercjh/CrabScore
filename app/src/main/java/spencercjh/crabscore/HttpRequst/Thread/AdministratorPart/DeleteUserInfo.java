@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * Created by spencercjh on 2018/2/6.
@@ -31,6 +32,8 @@ public class DeleteUserInfo extends Thread {
     }
 
     private void doGet() throws IOException {
+        display_name = URLEncoder.encode(display_name, "utf-8");
+        display_name = URLEncoder.encode(display_name, "utf-8");
         url = url + "?user_name=" + user_name + "&display_name=" + display_name + "&update_user" + update_user;
         try {
             URL httpUrl = new URL(url);

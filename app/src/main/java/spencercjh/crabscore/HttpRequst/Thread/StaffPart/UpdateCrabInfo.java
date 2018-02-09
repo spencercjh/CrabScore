@@ -34,7 +34,11 @@ public class UpdateCrabInfo extends Thread {
     }
 
     private void doGet() throws IOException {
-        url = url + "?crab_id=" + crab_id + "&crab_weight=" + crab_weight + "&crab_length=" + crab_length + "&crab_label=" + crab_label + "&update_user=" + update_user;
+        url = url + "?crab_id=" + crab_id +
+                "&crab_weight=" + crab_weight +
+                "&crab_length=" + crab_length +
+                "&crab_label=" + crab_label +
+                "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

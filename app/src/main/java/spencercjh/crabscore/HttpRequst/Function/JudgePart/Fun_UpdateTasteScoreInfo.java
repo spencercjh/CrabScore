@@ -13,8 +13,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 public class Fun_UpdateTasteScoreInfo {
     public static boolean http_UpdateTasteScoreInfo(TasteScoreOBJ tasteScoreOBJ, UserOBJ update_user) throws InterruptedException {
         String url = ServerURL.sever_url + ServerURL.servlet_UpdateTasteScoreInfo;
-        UpdateTasteScoreInfo thread = new UpdateTasteScoreInfo(url, tasteScoreOBJ.getGroup_id(),
-                tasteScoreOBJ.getCompetition_id(), tasteScoreOBJ.getCrab_sex(), update_user.getUser_name());
+        UpdateTasteScoreInfo thread = new UpdateTasteScoreInfo(url, tasteScoreOBJ, update_user.getUser_name());
         thread.start();
         thread.join();
         return thread.getFlag();

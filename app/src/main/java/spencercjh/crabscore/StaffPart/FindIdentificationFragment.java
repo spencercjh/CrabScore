@@ -65,7 +65,7 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
 
     private void find_identification() throws InterruptedException {
         String crab_label = Eidentification.getText().toString().trim();
-        ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List(Fun_QueryGroupID.http_QueryGroupID(crab_label));
+        ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List1(Fun_QueryGroupID.http_QueryGroupID(crab_label));
         if (GroupList.size() == 0) {
             String past = text_group_id.getText().toString();
             text_group_id.setText(String.format("%s  该标识不存在", past));

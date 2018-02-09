@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_QueryUserExist;
 import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_Register;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -93,10 +94,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_Register.http_register(userOBJ)) {
-                                dialog_register_success();
+                            if (!Fun_QueryUserExist.http_QueryUserExist(userOBJ.getUser_name())) {
+                                if (Fun_Register.http_register(userOBJ)) {
+                                    dialog_register_success();
+                                } else {
+                                    dialog_register_fail();
+                                }
                             } else {
-                                dialog_register_fail();
+                                dialog_check_fail();
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -132,6 +137,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void dialog_register_fail() {
         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
         builder.setMessage("注册失败！");
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.setTitle("警告");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();//关闭对话框
+                    }
+                }
+        );
+        builder.create().show();////显示对话框
+    }
+
+    private void dialog_check_fail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+        builder.setMessage("这个用户名已经被注册过了！");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
         builder.setCancelable(false);

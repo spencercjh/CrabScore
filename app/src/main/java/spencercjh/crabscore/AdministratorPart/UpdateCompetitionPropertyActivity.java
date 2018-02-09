@@ -109,14 +109,14 @@ public class UpdateCompetitionPropertyActivity extends AppCompatActivity impleme
     private void updateCompetition_info() throws InterruptedException {
         String year = competition_OBJ.getCompetition_year();
         String note = competition_OBJ.getNote();
-        double var_fatness_m = Double.parseDouble(Tvar_fatness_m.getText().toString().trim());
-        double var_weight_m = Double.parseDouble(Tvar_weight_m.getText().toString().trim());
-        double var_mfatness_sd = Double.parseDouble(Tvar_mfatness_sd.getText().toString().trim());
-        double var_mweight_sd = Double.parseDouble(Tvar_mweight_sd.getText().toString().trim());
-        double var_fatness_f = Double.parseDouble(Tvar_fatness_f.getText().toString().trim());
-        double var_weight_f = Double.parseDouble(Tvar_weight_f.getText().toString().trim());
-        double var_ffatness_sd = Double.parseDouble(Tvar_ffatness_sd.getText().toString().trim());
-        double var_fweight_sd = Double.parseDouble(Tvar_fweight_sd.getText().toString().trim());
+        float var_fatness_m = Float.parseFloat(Tvar_fatness_m.getText().toString().trim());
+        float var_weight_m = Float.parseFloat(Tvar_weight_m.getText().toString().trim());
+        float var_mfatness_sd = Float.parseFloat(Tvar_mfatness_sd.getText().toString().trim());
+        float var_mweight_sd = Float.parseFloat(Tvar_mweight_sd.getText().toString().trim());
+        float var_fatness_f = Float.parseFloat(Tvar_fatness_f.getText().toString().trim());
+        float var_weight_f = Float.parseFloat(Tvar_weight_f.getText().toString().trim());
+        float var_ffatness_sd = Float.parseFloat(Tvar_ffatness_sd.getText().toString().trim());
+        float var_fweight_sd = Float.parseFloat(Tvar_fweight_sd.getText().toString().trim());
         int result_fatness = competition_OBJ.getResult_fatness();
         int result_quality = competition_OBJ.getResult_quality();
         int result_taste = competition_OBJ.getResult_taste();
