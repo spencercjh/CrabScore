@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
 import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryCompanyName;
@@ -71,6 +73,21 @@ public class FatnessPrizeFragment extends Fragment {
         ListView lv = mView.findViewById(R.id.fatness_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
+        Collections.sort(ScoreList, new Comparator<GroupOBJ>() {
+            @Override
+            public int compare(GroupOBJ g1, GroupOBJ g2) {
+                float fatness_score_g1 = ((g1.getFatness_score_m() + g1.getFatness_score_f()) / (float) 2.0);
+                float fatness_score_g2 = (g2.getFatness_score_m() + g2.getFatness_score_m() / (float) 2.0);
+                if (fatness_score_g1 > fatness_score_g2) {
+                    return 1;
+                } else if (fatness_score_g1 == fatness_score_g2) {
+                    return 0;
+                } else if (fatness_score_g1 < fatness_score_g2) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {

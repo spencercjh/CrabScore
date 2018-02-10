@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
 import spencercjh.crabscore.HttpRequst.Function.CheckScore_Ranking_Part.Fun_QueryCompanyName;
@@ -72,6 +74,21 @@ public class QualityPrizeFragment extends Fragment {
         ListView lv = mView.findViewById(R.id.quality_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
         final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_quality_score(Fun_QueryQualityScore.http_QueryQualityScore(competition_id));
+        Collections.sort(ScoreList, new Comparator<GroupOBJ>() {
+            @Override
+            public int compare(GroupOBJ g1, GroupOBJ g2) {
+                float quality_score_g1 = ((g1.getQuality_score_m() + g1.getQuality_score_f()) / (float) 2.0);
+                float quality_score_g2 = (g2.getQuality_score_m() + g2.getQuality_score_f() / (float) 2.0);
+                if (quality_score_g1 > quality_score_g2) {
+                    return 1;
+                } else if (quality_score_g1 == quality_score_g2) {
+                    return 0;
+                } else if (quality_score_g1 < quality_score_g2) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
