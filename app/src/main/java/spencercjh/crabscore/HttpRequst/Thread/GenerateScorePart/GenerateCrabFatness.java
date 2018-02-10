@@ -20,18 +20,21 @@ public class GenerateCrabFatness extends Thread {
     private int crab_sex;
     private String update_user;
     private String update_state;
+    private int competition_id;
 
-    public GenerateCrabFatness(String url, float var_fatness, int crab_sex, String update_user) {
+    public GenerateCrabFatness(String url, float var_fatness, int crab_sex, int competition_id,String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.var_fatness = var_fatness;
         this.crab_sex = crab_sex;
         this.update_user = update_user;
+        this.competition_id=competition_id;
     }
 
     private void doGet() throws IOException {
         url = url + "?var_fatness=" + var_fatness +
                 "&crab_sex=" + crab_sex +
+                "&competition_id="+competition_id+
                 "&update_user=" + update_user;
         try {
             URL httpUrl = new URL(url);

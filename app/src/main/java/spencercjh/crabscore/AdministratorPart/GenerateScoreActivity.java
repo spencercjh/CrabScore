@@ -121,11 +121,11 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
     }
 
     private boolean generate_crab_fatness(int crab_sex, float var_fatness) throws InterruptedException {
-        return Fun_GenerateCrabFatness.http_GenerateCrabFatness(var_fatness, crab_sex, userOBJ.getUser_name());
+        return Fun_GenerateCrabFatness.http_GenerateCrabFatness(var_fatness, crab_sex, competitionOBJ.getCompetition_id(), userOBJ.getUser_name());
     }
 
-    private boolean generate_crab_fatness_score(int crab_sex, float var_weight, float var_fatness_sd) throws InterruptedException {
-        return Fun_GenerateCrabFatnessScore.http_GenerateCrabFatnessScore(var_weight, var_fatness_sd, crab_sex, userOBJ.getUser_name());
+    private boolean generate_crab_fatness_score(int group_id, int crab_sex, float var_weight, float var_fatness_sd) throws InterruptedException {
+        return Fun_GenerateCrabFatnessScore.http_GenerateCrabFatnessScore(var_weight, group_id, var_fatness_sd, crab_sex, competitionOBJ.getCompetition_id(), userOBJ.getUser_name());
     }
 
     private boolean generate_crab_quality_score(int group_id, int crab_sex, int competition_id) throws InterruptedException {
@@ -149,19 +149,24 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
                             try {
                                 boolean all_f_crab_fatness = generate_crab_fatness(0, competitionOBJ.getVar_fatness_f());  //所有雌蟹的肥满度计算
                                 boolean all_m_crab_fatness = generate_crab_fatness(1, competitionOBJ.getVar_fatness_m());  //所有雄蟹的肥满度计算
-                                boolean all_f_crab_fatness_score = generate_crab_fatness_score(0, competitionOBJ.getVar_weight_f(), competitionOBJ.getVar_ffatness_sd());   //所有雌蟹的肥满度分数计算
-                                boolean all_m_crab_fatness_score = generate_crab_fatness_score(1, competitionOBJ.getVar_weight_m(), competitionOBJ.getVar_mfatness_sd());   //所有雄蟹的肥满度分数计算
                                 ArrayList<GroupOBJ> GroupList = JsonConvert.convert_Group_List1(Fun_QueryAllGroup.http_QueryAllGroup(competitionOBJ.getCompetition_id()));  //获取所有组id
-                                boolean all_group_quality_taste_score = false;  //所有组的种质和口感分数计算
+                                boolean all_group_fatness_quality_taste_score = false;  //所有组的种质和口感分数计算
                                 for (int i = 0; i < GroupList.size(); i++) {
                                     GroupOBJ groupOBJ = GroupList.get(i);
+                                    boolean one_group_f_crab_fatness_score = generate_crab_fatness_score(groupOBJ.getGroup_id(), 0, competitionOBJ.getVar_weight_f(), competitionOBJ.getVar_ffatness_sd());   //该组雌蟹的肥满度分数计算
+                                    boolean one_group_m_crab_fatness_score = generate_crab_fatness_score(groupOBJ.getGroup_id(), 1, competitionOBJ.getVar_weight_m(), competitionOBJ.getVar_mfatness_sd());   //该组雄蟹的肥满度分数计算
                                     boolean one_group_f_quality_score = generate_crab_quality_score(groupOBJ.getGroup_id(), 0, competitionOBJ.getCompetition_id()); //该组雌蟹种质分数计算
                                     boolean one_group_m_quality_score = generate_crab_quality_score(groupOBJ.getGroup_id(), 1, competitionOBJ.getCompetition_id()); //该组雄性种质分数计算
                                     boolean one_group_f_taste_score = generate_crab_taste_score(groupOBJ.getGroup_id(), 0, competitionOBJ.getCompetition_id()); //该组雌性口感分数计算
                                     boolean one_group_m_taste_score = generate_crab_taste_score(groupOBJ.getGroup_id(), 1, competitionOBJ.getCompetition_id()); //该组雄性口感分数计算
-                                    all_group_quality_taste_score = one_group_f_quality_score && one_group_m_quality_score && one_group_f_taste_score && one_group_m_taste_score;
+                                    all_group_fatness_quality_taste_score = one_group_f_quality_score &&
+                                            one_group_m_quality_score &&
+                                            one_group_f_taste_score &&
+                                            one_group_m_taste_score &&
+                                            one_group_f_crab_fatness_score &&
+                                            one_group_m_crab_fatness_score;
                                 }
-                                if (all_f_crab_fatness && all_m_crab_fatness && all_f_crab_fatness_score && all_m_crab_fatness_score && all_group_quality_taste_score) {
+                                if (all_f_crab_fatness && all_m_crab_fatness && all_group_fatness_quality_taste_score) {
                                     dialog.dismiss();
                                     dialog_generate_success();
                                 } else {

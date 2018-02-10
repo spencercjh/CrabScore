@@ -56,7 +56,7 @@ public class GenerateCrabQualityScore extends Thread {
                 update_state = URLDecoder.decode(update_state, "UTF-8");
             }
             System.out.println("result:" + update_state);
-            if (update_state.equals("update crab fatness failed")) {
+            if (update_state.equals("update group quality score failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);

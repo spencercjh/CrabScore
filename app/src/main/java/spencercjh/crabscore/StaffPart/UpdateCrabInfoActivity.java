@@ -77,6 +77,7 @@ public class UpdateCrabInfoActivity extends AppCompatActivity implements View.On
         text_index.setText(index);
         text_crab_id.setText(crabOBJ.getCrab_id());
         text_crab_label.setText(crabOBJ.getCrab_id() + crabOBJ.getGroup_id());
+        crabOBJ.setCrab_label(String.valueOf(crabOBJ.getCrab_id() + crabOBJ.getGroup_id()));
         text_crab_label.setText(crabOBJ.getCrab_label());
         text_crab_weight.setText(String.valueOf(crabOBJ.getCrab_weight()));
         text_crab_length.setText(String.valueOf(crabOBJ.getCrab_length()));
