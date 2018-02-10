@@ -53,7 +53,7 @@
         <activity android:name=".AdministratorPart.UpdateCompanyInfoActivity" />
         <activity android:name=".AdministratorPart.UpdatePresentCompetitionActivity" />
         <activity android:name=".AdministratorPart.UpdateCompetitionPropertyActivity" />
-        <activity android:name=".AdministratorPart.CalculateScoreActivity" />
+        <activity android:name=".AdministratorPart.GenerateScoreActivity" />
         <activity android:name=".AdministratorPart.GenerateExcelActivity" />
         <activity android:name=".StaffPart.AddCrabActivity"></activity>
     </application>

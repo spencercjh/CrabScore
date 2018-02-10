@@ -51,6 +51,10 @@ public class ServerURL {
     public static String servlet_QueryGroupID = "QueryGroupID";
     public static String servlet_QueryUserExist = "QueryUserExist";
     public static String servlet_QueryCrabLabelExist = "QueryCrabLabelExist";
+    public static String servlet_GenerateCrabFatness = "GenerateCrabFatness";
+    public static String servlet_GenerateCrabFatnessScore = "GenerateCrabFatnessScore";
+    public static String servlet_GenerateCrabQualityScore = "GenerateCrabQualityScore";
+    public static String servlet_GenerateCrabTasteScore = "GenerateCrabTasteScore";
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";

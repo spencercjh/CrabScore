@@ -107,10 +107,7 @@ public class TastePrizeFragment extends Fragment {
                     e.printStackTrace();
                 }
                 TextView Tscore = view.findViewById(R.id.tv_score);
-                /*
-                  计算不完善！
-                 */
-                Tscore.setText(String.valueOf((groupOBJ.getFatness_score_f() + groupOBJ.getFatness_score_m()) / 2.0));
+                Tscore.setText(String.valueOf((groupOBJ.getTaste_score_m() + groupOBJ.getTaste_score_f()) / 2.0));
                 return view;
             }
         });

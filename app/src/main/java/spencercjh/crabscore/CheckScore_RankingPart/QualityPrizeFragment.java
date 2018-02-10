@@ -71,7 +71,7 @@ public class QualityPrizeFragment extends Fragment {
     private void Fill_QualityPrizeList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.quality_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_quality_score(Fun_QueryQualityScore.http_QueryBestGermplasmScore(competition_id));
+        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_quality_score(Fun_QueryQualityScore.http_QueryQualityScore(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -108,10 +108,7 @@ public class QualityPrizeFragment extends Fragment {
                     e.printStackTrace();
                 }
                 TextView Tscore = view.findViewById(R.id.tv_score);
-                /*
-                  计算不完善！
-                 */
-                Tscore.setText(String.valueOf((groupOBJ.getFatness_score_f() + groupOBJ.getFatness_score_m()) / 2.0));
+                Tscore.setText(String.valueOf((groupOBJ.getQuality_score_m() + groupOBJ.getQuality_score_f()) / 2.0));
                 return view;
             }
         });

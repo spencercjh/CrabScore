@@ -91,6 +91,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
 
     private void InitialInfo() throws InterruptedException {
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
+        competition_OBJ.setCompetition_id(competition_id);
         competition_OBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
         competition_OBJ = JsonConvert.convert_CompetitionOBJ(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competition_OBJ.getCompetition_year()));
         Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote());
@@ -201,7 +202,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.menu_calculate_score) {
-            intent = new Intent(getContext(), CalculateScoreActivity.class);
+            intent = new Intent(getContext(), GenerateScoreActivity.class);
             intent.putExtra("USEROBJ", userOBJ);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);

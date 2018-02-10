@@ -70,7 +70,7 @@ public class FatnessPrizeFragment extends Fragment {
     private void Fill_FatnessPrizeList() throws InterruptedException {
         ListView lv = mView.findViewById(R.id.fatness_score_list);
         int competition_id = Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID();
-        final ArrayList<GroupOBJ> ScoreList =JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
+        final ArrayList<GroupOBJ> ScoreList = JsonConvert.convert_fatness_score(Fun_QueryFatnessScore.http_QueryHighQualityScore(competition_id));
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -107,9 +107,6 @@ public class FatnessPrizeFragment extends Fragment {
                     e.printStackTrace();
                 }
                 TextView Tscore = view.findViewById(R.id.tv_score);
-                /*
-                  计算不完善！
-                 */
                 Tscore.setText(String.valueOf((groupOBJ.getFatness_score_f() + groupOBJ.getFatness_score_m()) / 2.0));
                 return view;
             }
