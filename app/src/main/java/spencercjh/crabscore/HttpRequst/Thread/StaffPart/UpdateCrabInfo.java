@@ -18,12 +18,12 @@ public class UpdateCrabInfo extends Thread {
     private String url;
     private int crab_id;
     private String crab_label;
-    private double crab_weight;
-    private double crab_length;
+    private float crab_weight;
+    private float crab_length;
     private String update_state;
     private String update_user;
 
-    public UpdateCrabInfo(String url, int crab_id, String crab_label, double crab_weight, double crab_length, String update_user) {
+    public UpdateCrabInfo(String url, int crab_id, String crab_label, float crab_weight, float crab_length, String update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.crab_id = crab_id;
