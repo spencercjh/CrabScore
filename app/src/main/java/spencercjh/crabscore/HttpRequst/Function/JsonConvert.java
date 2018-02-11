@@ -233,6 +233,30 @@ public class JsonConvert {
         return new QualityScoreOBJ();
     }
 
+    //    种质奖列表：小组号-性别-最终得分-体色(背)-体色(腹)-额齿-第4侧齿-背部疣状突-比赛ID
+    public static ArrayList<QualityScoreOBJ> convert_QualityScore_List(String json_string) {
+        ArrayList<QualityScoreOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int crab_sex = list_item.getInt("crab_sex");
+                float score_fin = (float) list_item.getDouble("score_fin");
+                float score_bts = (float) list_item.getDouble("score_bts");
+                float score_fts = (float) list_item.getDouble("score_fts");
+                float score_ec = (float) list_item.getDouble("score_ec");
+                float score_dscc = (float) list_item.getDouble("score_dscc");
+                float score_bbyzt = (float) list_item.getDouble("score_bbyzt");
+                int competition_id = list_item.getInt("competition_id");
+                list.add(new QualityScoreOBJ(group_id, crab_sex, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, competition_id));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     //    口感奖：小组号-参选单位号-比赛号-雄蟹口感评分-雌蟹口感评分 double index
     public static ArrayList<GroupOBJ> covert_taste_score(String json_string) {
         ArrayList<GroupOBJ> list = new ArrayList<>();
@@ -278,6 +302,32 @@ public class JsonConvert {
             e.printStackTrace();
         }
         return new TasteScoreOBJ();
+    }
+
+    //   口感奖列表：小组号-性别-最终得分-蟹盖颜色-鳃颜色-膏、黄颜色-腥味、香味-膏、黄-腹部肌肉-第二、三步足肌肉-比赛ID
+    public static ArrayList<TasteScoreOBJ> convert_TasteScore_List(String json_string) {
+        ArrayList<TasteScoreOBJ> list = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(json_string);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject list_item = jsonArray.getJSONObject(i);
+                int group_id = list_item.getInt("group_id");
+                int crab_sex = list_item.getInt("crab_sex");
+                float score_fin = (float) list_item.getDouble("score_fin");
+                float score_ygys = (float) list_item.getDouble("score_ygys");
+                float score_sys = (float) list_item.getDouble("score_sys");
+                float score_ghys = (float) list_item.getDouble("score_ghys");
+                float score_xwxw = (float) list_item.getDouble("score_xwxw");
+                float score_gh = (float) list_item.getDouble("score_gh");
+                float score_fbjr = (float) list_item.getDouble("score_fbjr");
+                float score_bzjr = (float) list_item.getDouble("score_bzjr");
+                int competition_id = list_item.getInt("competition_id");
+                list.add(new TasteScoreOBJ(group_id, crab_sex, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, competition_id));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     //    螃蟹：螃蟹id-小组号-性别-标签-质量-长度-肥满度-比赛ID

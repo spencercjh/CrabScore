@@ -55,7 +55,8 @@
         <activity android:name=".AdministratorPart.UpdateCompetitionPropertyActivity" />
         <activity android:name=".AdministratorPart.GenerateScoreActivity" />
         <activity android:name=".AdministratorPart.GenerateExcelActivity" />
-        <activity android:name=".StaffPart.AddCrabActivity"></activity>
+        <activity android:name=".StaffPart.AddCrabActivity" />
+        <activity android:name=".AdministratorPart.CheckExcelActivity"></activity>
     </application>
 
 </manifest>

@@ -6,4 +6,47 @@
     android:layout_height="match_parent"
     tools:context="spencercjh.crabscore.AdministratorPart.GenerateExcelActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_head"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bgc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="339dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="数据较多，请耐心等待！"
+        android:textColor="@color/textcolor"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/background_button_div"
+        android:text="@string/确认"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657" />
 </android.support.constraint.ConstraintLayout>

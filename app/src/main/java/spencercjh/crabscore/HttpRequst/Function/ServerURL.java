@@ -37,7 +37,7 @@ public class ServerURL {
     public static String servlet_UpdatePresentCompetition = "UpdatePresentCompetition";
     public static String servlet_UpdateCompetitionStatus = "UpdateCompetitionStatus";
     public static String servlet_UpdatePassword = "UpdatePassword";
-    public static String servlet_QueryQualityScoreInfo = "QueryQualityScoreInfo";
+    public static String servlet_QueryQualityScoreInfo = "QueryAllQualityScoreInfo";
     public static String servlet_QueryTasteScoreInfo = "QueryTasteScoreInfo";
     public static String servlet_UpdateQualityScoreInfo = "UpdateQualityScoreInfo";
     public static String servlet_UpdateTasteScoreInfo = "UpdateTasteScoreInfo";
@@ -55,6 +55,9 @@ public class ServerURL {
     public static String servlet_GenerateCrabFatnessScore = "GenerateCrabFatnessScore";
     public static String servlet_GenerateCrabQualityScore = "GenerateCrabQualityScore";
     public static String servlet_GenerateCrabTasteScore = "GenerateCrabTasteScore";
+    public static String servlet_QueryAllCrabList = "QueryAllCrabList";
+    public static String servlet_QueryAllQualityScoreInfo = "QueryAllQualityScoreInfo";
+    public static String servlet_QueryAllTasteScoreInfo = "QueryAllTasteScoreInfo";
     private static String sever_ip = "192.168.31.189";
     private static String port = "8080";
     public static String sever_url = "http://" + sever_ip + ":'" + port + "/";
