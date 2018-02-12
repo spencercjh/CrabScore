@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,7 +33,6 @@ import spencercjh.crabscore.R;
 public class GenerateScoreActivity extends AppCompatActivity implements View.OnClickListener {
     private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
     private UserOBJ userOBJ = new UserOBJ();
-    private boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,38 +67,6 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
     private void dialog_null() {
         AlertDialog.Builder builder = new AlertDialog.Builder(GenerateScoreActivity.this);
         builder.setMessage("有参数没有填写完整！");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setTitle("警告");
-        builder.setCancelable(false);
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();//关闭对话框
-                    }
-                }
-        );
-        builder.create().show();////显示对话框
-    }
-
-    private void dialog_generate_success() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(GenerateScoreActivity.this);
-        builder.setMessage("所有成绩生成完毕！");
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
-        builder.setTitle("警告");
-        builder.setCancelable(false);
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();//关闭对话框
-                    }
-                }
-        );
-        builder.create().show();////显示对话框
-    }
-
-    private void dialog_generate_failed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(GenerateScoreActivity.this);
-        builder.setMessage("成绩生成失败！");
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setTitle("警告");
         builder.setCancelable(false);
@@ -169,15 +140,60 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
                                 }
                                 if (all_f_crab_fatness && all_m_crab_fatness && all_group_fatness_quality_taste_score) {
                                     dialog.dismiss();
-                                    flag = true;
+                                    Looper.prepare();
+                                    Message message = new Message();
+                                    Bundle bundle = new Bundle();
+                                    Handler handler = new Handler() {
+                                        @Override
+                                        public void handleMessage(Message message) {
+                                            super.handleMessage(message);
+                                            Bundle bundle = message.getData();
+                                            String msg = bundle.getString("msg");
+                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                        }
+                                    };
+                                    bundle.putString("msg", "所有成绩生成完毕！");
+                                    message.setData(bundle);
+                                    handler.sendMessage(message);
+                                    Looper.loop();
                                 } else {
                                     dialog.dismiss();
-                                    flag=false;
+                                    Looper.prepare();
+                                    Message message = new Message();
+                                    Bundle bundle = new Bundle();
+                                    Handler handler = new Handler() {
+                                        @Override
+                                        public void handleMessage(Message message) {
+                                            super.handleMessage(message);
+                                            Bundle bundle = message.getData();
+                                            String msg = bundle.getString("msg");
+                                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                        }
+                                    };
+                                    bundle.putString("msg", "成绩生成失败！");
+                                    message.setData(bundle);
+                                    handler.sendMessage(message);
+                                    Looper.loop();
                                 }
                             } catch (InterruptedException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
-                                dialog_generate_failed();
+                                Looper.prepare();
+                                Message message = new Message();
+                                Bundle bundle = new Bundle();
+                                Handler handler = new Handler() {
+                                    @Override
+                                    public void handleMessage(Message message) {
+                                        super.handleMessage(message);
+                                        Bundle bundle = message.getData();
+                                        String msg = bundle.getString("msg");
+                                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                                    }
+                                };
+                                bundle.putString("msg", "成绩生成失败！");
+                                message.setData(bundle);
+                                handler.sendMessage(message);
+                                Looper.loop();
                             }
                         }
                     });
@@ -216,11 +232,6 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
                 }
             } else {
                 dialog_null();
-            }
-            if(flag){
-                dialog_generate_success();
-            }else{
-                dialog_generate_failed();
             }
         }
     }

@@ -35,10 +35,9 @@ public class CompetitionOBJ implements Serializable {
         this.note = note;
     }
 
-    public CompetitionOBJ(String competition_year, String note, float var_fatness_m, float var_fatness_f,
-                          float var_weight_m, float var_mfatness_sd, float var_mweight_sd,
-                          float var_weight_f, float var_ffatness_sd, float var_fweight_sd,
-                          int result_fatness, int result_quality, int result_taste) {
+    public CompetitionOBJ(String competition_year, String note, float var_fatness_m,
+                          float var_weight_m, float var_mfatness_sd, float var_mweight_sd, float var_fatness_f,
+                          float var_weight_f, float var_ffatness_sd, float var_fweight_sd, int result_fatness, int result_quality, int result_taste) {
         this.competition_year = competition_year;
         this.var_fatness_m = var_fatness_m;
         this.var_fatness_f = var_fatness_f;

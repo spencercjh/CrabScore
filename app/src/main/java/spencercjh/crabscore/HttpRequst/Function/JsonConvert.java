@@ -121,9 +121,8 @@ public class JsonConvert {
                 int result_fatness = list_item.getInt("result_fatness");
                 int result_quality = list_item.getInt("result_quality");
                 int result_taste = list_item.getInt("result_taste");
-                return new CompetitionOBJ(competition_year,
-                        note, var_fatness_m, var_weight_m, var_mfatness_sd, var_mweight_sd, var_fatness_f,
-                        var_weight_f, var_ffatness_sd, var_fweight_sd, result_fatness, result_quality, result_taste);
+                return new CompetitionOBJ(competition_year, note, var_fatness_m, var_weight_m, var_mfatness_sd, var_mweight_sd,
+                        var_fatness_f, var_weight_f, var_ffatness_sd, var_fweight_sd, result_fatness, result_quality, result_taste);
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -94,6 +94,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         competition_OBJ.setCompetition_id(competition_id);
         competition_OBJ.setCompetition_year(Fun_QueryCompetitionYear.http_QueryCompetitionYear(competition_id));
         competition_OBJ = JsonConvert.convert_CompetitionOBJ(Fun_QueryCompetitionProperty.http_QueryCompetitionProperty(competition_OBJ.getCompetition_year()));
+        competition_OBJ.setCompetition_id(competition_id);
         Tyear_note.setText(competition_OBJ.getCompetition_year() + " " + competition_OBJ.getNote());
         Tvar_fatness_m.setText(String.valueOf(competition_OBJ.getVar_fatness_m()));
         Tvar_weight_m.setText(String.valueOf(competition_OBJ.getVar_weight_m()));

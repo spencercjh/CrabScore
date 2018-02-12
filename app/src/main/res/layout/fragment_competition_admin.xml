@@ -265,7 +265,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:text="雄蟹肥满度参数"
+            android:text="雌蟹肥满度参数"
             android:textColor="#353535"
             android:textSize="16sp" />
 
