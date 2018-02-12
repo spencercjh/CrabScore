@@ -115,9 +115,9 @@ public class QualityPrizeFragment extends Fragment {
                 }
                 GroupOBJ groupOBJ = ScoreList.get(position);
                 TextView Tindex = view.findViewById(R.id.tv_index);
-                Tindex.setText(position);
+                Tindex.setText(String.valueOf(position));
                 TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
-                Tgroup_id.setText(groupOBJ.getGroup_id());
+                Tgroup_id.setText(String.valueOf(groupOBJ.getGroup_id()));
                 TextView Tcompany_name = view.findViewById(R.id.tv_company_name);
                 try {
                     Tcompany_name.setText(Fun_QueryCompanyName.http_QueryCompanyName(groupOBJ.getCompany_id()));

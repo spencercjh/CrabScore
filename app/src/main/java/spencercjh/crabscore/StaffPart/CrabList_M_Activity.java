@@ -98,7 +98,7 @@ public class CrabList_M_Activity extends AppCompatActivity {
                 CrabOBJ crabOBJ = CrabList.get(position);
                 TextView text_index = view.findViewById(R.id.text_index);
                 TextView text_carb_id = view.findViewById(R.id.text_crab_id);
-                text_index.setText(position);
+                text_index.setText(String.valueOf(position));
                 text_carb_id.setText(crabOBJ.getCrab_id());
                 return view;
             }

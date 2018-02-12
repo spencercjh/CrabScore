@@ -89,8 +89,9 @@ public class JsonConvert {
             JSONArray jsonArray = new JSONArray(json_string);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject list_item = jsonArray.getJSONObject(i);
+                int company_id = list_item.getInt("company_id");
                 String company_name = list_item.getString("company_name");
-                CompanyOBJ companyOBJ = new CompanyOBJ(company_name);
+                CompanyOBJ companyOBJ = new CompanyOBJ(company_id,company_name);
                 list.add(companyOBJ);
             }
         } catch (JSONException e) {

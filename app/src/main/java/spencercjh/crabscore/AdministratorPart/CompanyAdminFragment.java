@@ -109,9 +109,9 @@ public class CompanyAdminFragment extends Fragment {
                     view = convertView;
                 }
                 CompanyOBJ companyOBJ = CompanyList.get(position);
-                TextView Tindex = view.findViewById(R.id.tv_index);
-                TextView Tcompany_name = view.findViewById(R.id.tv_display_name);
-                Tindex.setText(position);
+                TextView Tcompany_id = view.findViewById(R.id.tv_company_id);
+                TextView Tcompany_name = view.findViewById(R.id.tv_company_name);
+                Tcompany_id.setText(String.valueOf(companyOBJ.getCompany_id()));
                 Tcompany_name.setText(companyOBJ.getCompany_name());
                 return view;
             }

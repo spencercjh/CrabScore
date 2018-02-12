@@ -110,7 +110,7 @@ public class GradeFragment extends Fragment {
                 }
                 GroupOBJ groupOBJ = GroupList.get(position);
                 TextView Tindex = view.findViewById(R.id.text_index);
-                Tindex.setText(position);
+                Tindex.setText(String.valueOf(position));
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
                 Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;

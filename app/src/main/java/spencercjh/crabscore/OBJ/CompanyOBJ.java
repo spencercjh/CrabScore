@@ -16,13 +16,9 @@ public class CompanyOBJ implements Serializable {
 
     }
 
-    public CompanyOBJ(String company_name) {
-        this.company_name = company_name;
-    }
-
     //    管理员参选单位列表
-    public CompanyOBJ(int group_id, String company_name) {
-        this.group_id = group_id;
+    public CompanyOBJ(int company_id, String company_name) {
+        this.company_id = company_id;
         this.company_name = company_name;
     }
 
