@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,13 +25,12 @@ import spencercjh.crabscore.OBJ.CrabOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressWarnings("deprecation")
 public class GenerateExcelActivity extends AppCompatActivity implements View.OnClickListener {
     private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
-    private UserOBJ userOBJ = new UserOBJ();
+    private boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class GenerateExcelActivity extends AppCompatActivity implements View.OnC
         button.setOnClickListener(this);
         Intent intent = getIntent();
         competitionOBJ = (CompetitionOBJ) intent.getSerializableExtra("COMPETITIONOBJ");
-        userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
     }
 
     private void goback() {
@@ -106,10 +104,10 @@ public class GenerateExcelActivity extends AppCompatActivity implements View.OnC
                         ArrayList<TasteScoreOBJ> AllTasteScore = JsonConvert.convert_TasteScore_List(Fun_QueryAllTasteScoreInfo.http_QueryAllTasteScoreInfo(competition_id));
                         if (Fun_CreateExcelFile.http_CreateExcelFile(this, AllGroup, AllCrab, AllQualityScore, AllTasteScore, competitionOBJ.getCompetition_year())) {
                             dialog.dismiss();
-                            dialog_generate_success();
+                            flag = true;
                         } else {
                             dialog.dismiss();
-                            dialog_generate_failed();
+                            flag = false;
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -117,6 +115,11 @@ public class GenerateExcelActivity extends AppCompatActivity implements View.OnC
                 } else {
                     dialog_null();
                 }
+            }
+            if (flag) {
+                dialog_generate_success();
+            } else {
+                dialog_generate_failed();
             }
         }
     }
@@ -132,7 +135,7 @@ public class GenerateExcelActivity extends AppCompatActivity implements View.OnC
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         Intent intent = new Intent(GenerateExcelActivity.this, CheckExcelActivity.class);
-                        intent.putExtra("COMPETITIONOBJ",competitionOBJ);
+                        intent.putExtra("COMPETITIONOBJ", competitionOBJ);
                         startActivity(intent);
                     }
                 }

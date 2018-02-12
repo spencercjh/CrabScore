@@ -208,7 +208,6 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
             startActivity(intent);
         } else if (id == R.id.menu_excel_generate) {
             intent = new Intent(getContext(), GenerateExcelActivity.class);
-            intent.putExtra("USEROBJ", userOBJ);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);
         } else if (id == R.id.menu_change_competition) {

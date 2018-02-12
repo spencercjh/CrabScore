@@ -29,6 +29,7 @@ import spencercjh.crabscore.R;
 public class GenerateScoreActivity extends AppCompatActivity implements View.OnClickListener {
     private CompetitionOBJ competitionOBJ = new CompetitionOBJ();
     private UserOBJ userOBJ = new UserOBJ();
+    private boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,10 +169,10 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
                                 }
                                 if (all_f_crab_fatness && all_m_crab_fatness && all_group_fatness_quality_taste_score) {
                                     dialog.dismiss();
-                                    dialog_generate_success();
+                                    flag = true;
                                 } else {
                                     dialog.dismiss();
-                                    dialog_generate_failed();
+                                    flag=false;
                                 }
                             } catch (InterruptedException e) {
                                 // TODO Auto-generated catch block
@@ -215,6 +216,11 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
                 }
             } else {
                 dialog_null();
+            }
+            if(flag){
+                dialog_generate_success();
+            }else{
+                dialog_generate_failed();
             }
         }
     }
