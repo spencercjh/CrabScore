@@ -35,7 +35,7 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
             if (back == 1) {
                 userOBJ = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty_Common.http_QueryUserProperty(userOBJ));
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Tuser_name = (TextView) findViewById(R.id.text_user_name);

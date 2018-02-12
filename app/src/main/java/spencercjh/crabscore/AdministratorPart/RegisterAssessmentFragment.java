@@ -131,57 +131,53 @@ public class RegisterAssessmentFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, final long id) {
                 final UserOBJ userOBJ = UserList.get(position);
-                if (userOBJ.getUser_name() != null) {
-                    PopupMenu popup = new PopupMenu(getContext(), view);
-                    final MenuInflater inflater = popup.getMenuInflater();
-                    if (userOBJ.getCompetition_id() != 0) {
-                        inflater.inflate(R.menu.pop_menu_register_assessment, popup.getMenu());
-                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            Intent intent;
+                PopupMenu popup = new PopupMenu(getContext(), view);
+                final MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.pop_menu_register_assessment, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    Intent intent;
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case R.id.menu_edit_info:
-                                        intent = new Intent(getContext(), UpdateUserInfoActivity.class);
-                                        intent.putExtra("ADMIN", admin);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_enable:
-                                        userOBJ.setStatus(1);
-                                        try {
-                                            if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
-                                                dialog_enable_success();
-                                                Fill_RegisterList();
-                                            } else {
-                                                dialog_fail();
-                                            }
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        break;
-                                    case R.id.menu_delete:
-                                        try {
-                                            if (Fun_DeleteUserInfo.http_DeleteUserInfo(userOBJ, admin)) {
-                                                dialog_delete_success();
-                                                Fill_RegisterList();
-                                            } else {
-                                                dialog_fail();
-                                            }
-                                            break;
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    default:
-                                        break;
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_edit_info:
+                                intent = new Intent(getContext(), UpdateUserInfoActivity.class);
+                                intent.putExtra("ADMIN", admin);
+                                intent.putExtra("USEROBJ", userOBJ);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_enable:
+                                userOBJ.setStatus(1);
+                                try {
+                                    if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
+                                        dialog_enable_success();
+                                        Fill_RegisterList();
+                                    } else {
+                                        dialog_fail();
+                                    }
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
                                 }
-                                return false;
-                            }
-                        });
+                                break;
+                            case R.id.menu_delete:
+                                try {
+                                    if (Fun_DeleteUserInfo.http_DeleteUserInfo(userOBJ, admin)) {
+                                        dialog_delete_success();
+                                        Fill_RegisterList();
+                                    } else {
+                                        dialog_fail();
+                                    }
+                                    break;
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            default:
+                                break;
+                        }
+                        return false;
                     }
-                    popup.show();
-                }
+                });
+                popup.show();
             }
         });
     }

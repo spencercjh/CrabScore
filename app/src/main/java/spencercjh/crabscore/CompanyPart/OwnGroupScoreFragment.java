@@ -24,6 +24,7 @@ import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryCompa
 import spencercjh.crabscore.HttpRequst.Function.AdministratorPart.Fun_QueryPresentCompetitionID;
 import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryOneCompanyAllGroup;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.PersonCenterPart.Fun_QueryUserProperty_Common;
 import spencercjh.crabscore.OBJ.CompanyOBJ;
 import spencercjh.crabscore.OBJ.GroupOBJ;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
@@ -77,6 +78,7 @@ public class OwnGroupScoreFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
+            userOBJ = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty_Common.http_QueryUserProperty(userOBJ));
             Fill_GroupList();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -115,7 +117,7 @@ public class OwnGroupScoreFragment extends Fragment {
                 }
                 GroupOBJ groupOBJ = GroupList.get(position);
                 TextView Tindex = view.findViewById(R.id.text_index);
-                Tindex.setText(position);
+                Tindex.setText(String.valueOf(position));
                 TextView Tgroup_id = view.findViewById(R.id.text_group_id);
                 Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;
