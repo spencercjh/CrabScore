@@ -30,6 +30,14 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_person_center);
         Intent intent = getIntent();
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
+        try {   //从修改属性方法回来以后刷新界面
+            int back = (int) intent.getSerializableExtra("BACK");
+            if (back == 1) {
+                userOBJ = JsonConvert.convert_UserOBJ(Fun_QueryUserProperty_Common.http_QueryUserProperty(userOBJ));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Tuser_name = (TextView) findViewById(R.id.text_user_name);
         Tdisplay_name = (TextView) findViewById(R.id.text_display_name);
         Temail = (TextView) findViewById(R.id.text_email);
@@ -68,16 +76,19 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
                 intent = new Intent(this, UpdateUserPasswordActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.re_display_name:
                 intent = new Intent(this, UpdateUserDisplayNameActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.re_email:
                 intent = new Intent(this, UpdateUserEmailActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 break;

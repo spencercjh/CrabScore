@@ -43,6 +43,10 @@ public class UpdateUserEmailActivity extends AppCompatActivity implements View.O
     }
 
     private void goback() {
+        Intent intent = new Intent(UpdateUserEmailActivity.this, PersonCenterActivity.class);
+        intent.putExtra("USEROBJ", userOBJ);
+        intent.putExtra("BACK", 1);
+        startActivity(intent);
         finish();
     }
 

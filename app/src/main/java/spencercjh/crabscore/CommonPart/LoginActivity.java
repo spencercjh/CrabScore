@@ -159,7 +159,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("USEROBJ", userOBJ);
-                        intent.putExtra("USER", choice);
                         LoginActivity.this.startActivity(intent);
                         finish();
                     } else if (login_status == 0) {

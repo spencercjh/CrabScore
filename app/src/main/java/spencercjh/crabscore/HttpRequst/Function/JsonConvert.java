@@ -70,11 +70,12 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 String user_name = list_item.getString("user_name");
                 String display_name = list_item.getString("display_name");
+                String password = list_item.getString("password");
                 int role_id = list_item.getInt("role_id");
                 int status = list_item.getInt("status");
                 String email = list_item.getString("email");
                 int competition_id = list_item.getInt("competition_id");
-                return new UserOBJ(user_name, display_name, role_id, status, email, competition_id);
+                return new UserOBJ(user_name, display_name, password, role_id, status, email, competition_id);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -91,7 +92,7 @@ public class JsonConvert {
                 JSONObject list_item = jsonArray.getJSONObject(i);
                 int company_id = list_item.getInt("company_id");
                 String company_name = list_item.getString("company_name");
-                CompanyOBJ companyOBJ = new CompanyOBJ(company_id,company_name);
+                CompanyOBJ companyOBJ = new CompanyOBJ(company_id, company_name);
                 list.add(companyOBJ);
             }
         } catch (JSONException e) {

@@ -43,6 +43,10 @@ public class UpdateUserDisplayNameActivity extends AppCompatActivity implements 
     }
 
     private void goback() {
+        Intent intent = new Intent(UpdateUserDisplayNameActivity.this, PersonCenterActivity.class);
+        intent.putExtra("USEROBJ", userOBJ);
+        intent.putExtra("BACK", 1);
+        startActivity(intent);
         finish();
     }
 

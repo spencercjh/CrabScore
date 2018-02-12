@@ -41,18 +41,20 @@ public class UserOBJ implements Serializable {
     }
 
     //    管理员用户列表1
-    public UserOBJ(String user_name, String display_name, int role_id, int status, int competition_id) {
+    public UserOBJ(String user_name, String display_name, int role_id, int status, String email, int competition_id) {
         this.user_name = user_name;
         this.display_name = display_name;
         this.role_id = role_id;
         this.status = status;
+        this.email = email;
         this.competition_id = competition_id;
     }
 
     //    管理员用户列表2
-    public UserOBJ(String user_name, String display_name, int role_id, int status, String email, int competition_id) {
+    public UserOBJ(String user_name, String display_name, String password, int role_id, int status, String email, int competition_id) {
         this.user_name = user_name;
         this.display_name = display_name;
+        this.password = password;
         this.role_id = role_id;
         this.status = status;
         this.email = email;

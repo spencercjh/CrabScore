@@ -45,6 +45,10 @@ public class UpdateUserPasswordActivity extends AppCompatActivity implements Vie
     }
 
     private void goback() {
+        Intent intent = new Intent(UpdateUserPasswordActivity.this, PersonCenterActivity.class);
+        intent.putExtra("USEROBJ", userOBJ);
+        intent.putExtra("BACK", 1);
+        startActivity(intent);
         finish();
     }
 

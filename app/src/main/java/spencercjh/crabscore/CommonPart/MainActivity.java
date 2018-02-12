@@ -81,7 +81,6 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
     private void toActivity(String label, Class<?> cls) {
         Intent intent = new Intent(this, cls);
         intent.putExtra("USEROBJ", userOBJ);
-        intent.putExtra("USER", choice);
         ll_container.removeAllViews();
         View v = getLocalActivityManager().startActivity(label, intent).getDecorView();
         v.setLayoutParams(new ViewGroup.LayoutParams(
