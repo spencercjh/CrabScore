@@ -13,7 +13,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 public class Fun_InsertTasteScoreInfo {
     public static boolean http_InsertTasteScoreInfo(TasteScoreOBJ tasteScoreOBJ, UserOBJ create_user) throws InterruptedException {
         String url = ServerURL.sever_url + "InsertTasteScoreInfo";
-        InsertTasteScoreInfo thread = new InsertTasteScoreInfo(url, create_user.getUser_name(), tasteScoreOBJ);
+        InsertTasteScoreInfo thread = new InsertTasteScoreInfo(url, create_user, tasteScoreOBJ);
         thread.start();
         thread.join();
         return thread.getFlag();

@@ -8,42 +8,25 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
-import spencercjh.crabscore.OBJ.TasteScoreOBJ;
-import spencercjh.crabscore.OBJ.UserOBJ;
-
 /**
  * Created by spencercjh on 2018/2/12.
  * iClass
  */
 
-public class InsertTasteScoreInfo extends Thread {
+public class QueryUserID extends Thread{
     private boolean flag;
     private String url;
-    private UserOBJ create_user;
-    private String insert_status;
-    private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
+    private String user_name;
+    private String user_id;
 
-    public InsertTasteScoreInfo(String url, UserOBJ create_user, TasteScoreOBJ tasteScoreOBJ) {
+    public QueryUserID(String url, String user_name) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.create_user = create_user;
-        this.tasteScoreOBJ = tasteScoreOBJ;
+        this.user_name = user_name;
     }
 
     private void doGet() throws IOException {
-        url = url + "?group_id=" + tasteScoreOBJ.getGroup_id() +
-                "&competition_id=" + tasteScoreOBJ.getCompetition_id() +
-                "&crab_sex=" + tasteScoreOBJ.getCrab_sex() +
-                "&user_id=" + create_user.getUser_id() +
-                "&score_fin=" + tasteScoreOBJ.getScore_fin() +
-                "&score_ygys=" + tasteScoreOBJ.getScore_ygys() +
-                "&score_sys=" + tasteScoreOBJ.getScore_sys() +
-                "&score_ghys=" + tasteScoreOBJ.getScore_ghys() +
-                "&score_xwxw=" + tasteScoreOBJ.getScore_xwxw() +
-                "&score_gh=" + tasteScoreOBJ.getScore_gh() +
-                "&score_fbjr=" + tasteScoreOBJ.getScore_fbjr() +
-                "&score_bzjr=" + tasteScoreOBJ.getScore_bzjr() +
-                "&create_user=" + create_user.getUser_name();
+        url = url + "?user_name=" + user_name;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -60,11 +43,11 @@ public class InsertTasteScoreInfo extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                insert_status = buffer.toString();
-                insert_status = URLDecoder.decode(insert_status, "UTF-8");
+                user_id = buffer.toString();
+                user_id = URLDecoder.decode(user_id, "UTF-8");
             }
-            System.out.println("result:" + insert_status);
-            if (insert_status.equals("insert taste score failed")) {
+            System.out.println("result:" + user_id);
+            if (user_id.equals("query user id failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -80,6 +63,10 @@ public class InsertTasteScoreInfo extends Thread {
 
     private void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 
     @Override

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryQualityScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_InsertQualityScoreInfo;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_QueryUserID;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_UpdateQualityScoreInfo;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -130,6 +131,7 @@ public class QualityGrade_F_Fragment extends Fragment {
 
     private void InitialInfo() throws InterruptedException {
         text_crab_sex.setText("雌蟹");
+        userOBJ.setUser_id(Fun_QueryUserID.http_QueryUserID(userOBJ));
         qualityScoreOBJ_F.setGroup_id(qualityScoreOBJ.getGroup_id());
         qualityScoreOBJ_F.setCompetition_id(qualityScoreOBJ.getCompetition_id());
         qualityScoreOBJ_F.setCrab_sex(0);

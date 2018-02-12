@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
+import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
  * Created by spencercjh on 2018/2/8.
@@ -19,10 +20,10 @@ public class UpdateQualityScoreInfo extends Thread {
     private boolean flag;
     private String url;
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
-    private String update_user;
+    private UserOBJ update_user;
     private String update_status;
 
-    public UpdateQualityScoreInfo(String url, QualityScoreOBJ qualityScoreOBJ, String update_user) {
+    public UpdateQualityScoreInfo(String url, QualityScoreOBJ qualityScoreOBJ, UserOBJ update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.qualityScoreOBJ = qualityScoreOBJ;
@@ -33,14 +34,14 @@ public class UpdateQualityScoreInfo extends Thread {
         url = url + "?group_id=" + qualityScoreOBJ.getGroup_id() +
                 "&competition_id=" + qualityScoreOBJ.getCompetition_id() +
                 "&crab_sex=" + qualityScoreOBJ.getCrab_sex() +
-                "&user_id=" + update_user +
+                "&user_id=" + update_user.getUser_id() +
                 "&score_fin=" + qualityScoreOBJ.getScore_fin() +
                 "&score_bts=" + qualityScoreOBJ.getScore_bts() +
                 "&score_fts=" + qualityScoreOBJ.getScore_fts() +
                 "&score_ec=" + qualityScoreOBJ.getScore_ec() +
                 "&score_dscc=" + qualityScoreOBJ.getScore_dscc() +
                 "&score_bbyzt=" + qualityScoreOBJ.getScore_bbyzt() +
-                "&update_user=" + update_user;
+                "&update_user=" + update_user.getUser_name();
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

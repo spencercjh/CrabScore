@@ -9,38 +9,39 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
+import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
  * Created by spencercjh on 2018/2/12.
  * iClass
  */
 
-public class InsertQualityScoreInfo extends Thread{
+public class InsertQualityScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private String create_user;
+    private UserOBJ create_user;
     private String insert_status;
-    private QualityScoreOBJ qualityScoreOBJ=new QualityScoreOBJ();
+    private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
 
-    public InsertQualityScoreInfo(String url, String create_user,QualityScoreOBJ qualityScoreOBJ) {
+    public InsertQualityScoreInfo(String url, UserOBJ create_user, QualityScoreOBJ qualityScoreOBJ) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.create_user = create_user;
-        this.qualityScoreOBJ=qualityScoreOBJ;
+        this.qualityScoreOBJ = qualityScoreOBJ;
     }
 
     private void doGet() throws IOException {
         url = url + "?group_id=" + qualityScoreOBJ.getGroup_id() +
                 "&competition_id=" + qualityScoreOBJ.getCompetition_id() +
                 "&crab_sex=" + qualityScoreOBJ.getCrab_sex() +
-                "&user_id=" + create_user +
+                "&user_id=" + create_user.getUser_id() +
                 "&score_fin=" + qualityScoreOBJ.getScore_fin() +
                 "&score_bts=" + qualityScoreOBJ.getScore_bts() +
                 "&score_fts=" + qualityScoreOBJ.getScore_fts() +
                 "&score_ec=" + qualityScoreOBJ.getScore_ec() +
                 "&score_dscc=" + qualityScoreOBJ.getScore_dscc() +
                 "&score_bbyzt=" + qualityScoreOBJ.getScore_bbyzt() +
-                "&create_user=" + create_user;
+                "&create_user=" + create_user.getUser_name();
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

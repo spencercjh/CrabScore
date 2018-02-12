@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
+import spencercjh.crabscore.OBJ.UserOBJ;
 
 /**
  * Created by spencercjh on 2018/2/8.
@@ -18,11 +19,11 @@ import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 public class UpdateTasteScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private String update_user;
+    private UserOBJ update_user;
     private String update_status;
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    public UpdateTasteScoreInfo(String url, TasteScoreOBJ tasteScoreOBJ, String update_user) {
+    public UpdateTasteScoreInfo(String url, TasteScoreOBJ tasteScoreOBJ, UserOBJ update_user) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.update_user = update_user;
@@ -33,7 +34,7 @@ public class UpdateTasteScoreInfo extends Thread {
         url = url + "?group_id=" + tasteScoreOBJ.getGroup_id() +
                 "&competition_id=" + tasteScoreOBJ.getCompetition_id() +
                 "&crab_sex=" + tasteScoreOBJ.getCrab_sex() +
-                "&user_id=" + update_user +
+                "&user_id=" + update_user.getUser_id() +
                 "&score_fin=" + tasteScoreOBJ.getScore_fin() +
                 "&score_ygys=" + tasteScoreOBJ.getScore_ygys() +
                 "&score_sys=" + tasteScoreOBJ.getScore_sys() +
@@ -42,7 +43,7 @@ public class UpdateTasteScoreInfo extends Thread {
                 "&score_gh=" + tasteScoreOBJ.getScore_gh() +
                 "&score_fbjr=" + tasteScoreOBJ.getScore_fbjr() +
                 "&score_bzjr=" + tasteScoreOBJ.getScore_bzjr() +
-                "&update_user=" + update_user;
+                "&update_user=" + update_user.getUser_name();
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();

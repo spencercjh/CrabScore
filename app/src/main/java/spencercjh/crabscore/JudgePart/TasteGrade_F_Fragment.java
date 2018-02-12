@@ -21,6 +21,7 @@ import android.widget.TextView;
 import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryTasteScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_InsertTasteScoreInfo;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_QueryUserID;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_UpdateTasteScoreInfo;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -142,6 +143,7 @@ public class TasteGrade_F_Fragment extends Fragment {
 
     private void InitialInfo() throws InterruptedException {
         text_crab_sex.setText("雌蟹");
+        userOBJ.setUser_id(Fun_QueryUserID.http_QueryUserID(userOBJ));
         tasteScoreOBJ_F.setGroup_id(tasteScoreOBJ.getGroup_id());
         tasteScoreOBJ_F.setCompetition_id(tasteScoreOBJ.getCompetition_id());
         tasteScoreOBJ_F.setCrab_sex(0);
