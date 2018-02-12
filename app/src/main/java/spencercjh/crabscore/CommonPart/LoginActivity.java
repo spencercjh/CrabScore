@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import java.util.Date;
 
+import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_Login;
+import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_QueryUserStatus;
 import spencercjh.crabscore.HttpRequst.Function.CommonPart.Fun_isNetworkAvailable;
 import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
@@ -137,21 +139,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 /*
                   自动登陆
                  */
-/*                UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), MD5andKL.MD5(pwd.getText().toString().trim()), choice);
-                int user_status ;
+                UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), MD5andKL.MD5(pwd.getText().toString().trim()), choice);
+                int user_status;
                 try {
                     user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    user_status=-1;
+                    user_status = -1;
                 }
                 if (user_status == 1) {
-                    int login_status ;
+                    int login_status;
                     try {
                         login_status = Fun_Login.http_login(userOBJ);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        login_status=-1;
+                        login_status = -1;
                     }
                     if (login_status == 1) {
                         Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
@@ -169,7 +171,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "账号被禁用！", Toast.LENGTH_SHORT).show();
                 } else if (user_status == -1) {
                     Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
-                }*/
+                }
             }
         }
         //监听自动登录多选框按钮事件
@@ -254,7 +256,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             /*
               登陆
              */
-/*            UserOBJ userOBJ = new UserOBJ(user_name, MD5andKL.MD5(passowrd), choice);
+            UserOBJ userOBJ = new UserOBJ(user_name, MD5andKL.MD5(passowrd), choice);
             int user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
             if (user_status == 1) {
                 int login_status = Fun_Login.http_login(userOBJ);
@@ -280,11 +282,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "账号被禁用！", Toast.LENGTH_SHORT).show();
             } else if (user_status == -1) {
                 Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
-            }*/
+            }
             /*
               测试登陆 直接进入
              */
-            UserOBJ userOBJ_test = new UserOBJ("123", "123", choice);
+         /*   UserOBJ userOBJ_test = new UserOBJ("123", "123", choice);
             if (rem_pw.isChecked()) {
                 //记住用户名、密码、
                 SharedPreferences.Editor editor = sp.edit();
@@ -295,7 +297,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("USEROBJ", userOBJ_test);
             LoginActivity.this.startActivity(intent);
-            finish();
+            finish();*/
         }
     }
 
