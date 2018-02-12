@@ -266,7 +266,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         //记住用户名、密码、
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("USER_ID", userOBJ.getUser_name());
-                        editor.putString("PASSWORD", userOBJ.getPassword());
+                        editor.putString("PASSWORD",passowrd);
                         editor.apply();
                     }
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
