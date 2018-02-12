@@ -12,13 +12,13 @@ import spencercjh.crabscore.OBJ.CompanyOBJ;
 public class Fun_QueryCompanyID {
     public static int http_QueryCompanyID(CompanyOBJ companyOBJ) throws InterruptedException {
         String url = ServerURL.sever_url + "QueryCompanyID";
-        QueryCompanyID thread = new QueryCompanyID(url, companyOBJ.getCompany_name());
+        QueryCompanyID thread = new QueryCompanyID(url, companyOBJ.getCompany_name(), companyOBJ.getCompetition_id());
         thread.start();
         thread.join();
         if (thread.getFlag()) {
             int company_id;
             try {
-                company_id = Integer.parseInt(thread.getCompetition_id());
+                company_id = Integer.parseInt(thread.getCompany_id());
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 company_id = -1;

@@ -17,19 +17,21 @@ import java.net.URLEncoder;
 public class QueryCompanyID extends Thread {
     private boolean flag;
     private String url;
-    private String competition_id;
+    private int competition_id;
+    private String company_id;
     private String company_name;
 
-    public QueryCompanyID(String url, String company_name) {
+    public QueryCompanyID(String url, String company_name, int competition_id) {
         // TODO Auto-generated constructor stub
         this.url = url;
         this.company_name = company_name;
+        this.competition_id = competition_id;
     }
 
     private void doGet() throws IOException {
         company_name = URLEncoder.encode(company_name, "utf-8");
         company_name = URLEncoder.encode(company_name, "utf-8");
-        url=url+"?company_name="+company_name;
+        url = url + "?company_name=" + company_name + "&competition_id=" + competition_id;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -46,11 +48,11 @@ public class QueryCompanyID extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                competition_id = buffer.toString();
-                competition_id = URLDecoder.decode(competition_id, "UTF-8");
+                company_id = buffer.toString();
+                company_id = URLDecoder.decode(company_id, "UTF-8");
             }
-            System.out.println("result:" + competition_id);
-            if (competition_id.equals("query company id failed")) {
+            System.out.println("result:" + company_id);
+            if (company_id.equals("query company id failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -68,8 +70,8 @@ public class QueryCompanyID extends Thread {
         this.flag = flag;
     }
 
-    public String getCompetition_id() {
-        return competition_id;
+    public String getCompany_id() {
+        return company_id;
     }
 
     @Override
