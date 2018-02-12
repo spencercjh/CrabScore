@@ -114,7 +114,7 @@ public class FatnessPrizeFragment extends Fragment {
                 }
                 GroupOBJ groupOBJ = ScoreList.get(position);
                 TextView Tindex = view.findViewById(R.id.tv_index);
-                Tindex.setText(String.valueOf(position));
+                Tindex.setText(String.valueOf(position+1));
                 TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
                 Tgroup_id.setText(String.valueOf(groupOBJ.getGroup_id()));
                 TextView Tcompany_name = view.findViewById(R.id.tv_company_name);
