@@ -11,21 +11,21 @@ import java.net.URLDecoder;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 
 /**
- * Created by spencercjh on 2018/2/8.
+ * Created by spencercjh on 2018/2/12.
  * iClass
  */
 
-public class UpdateTasteScoreInfo extends Thread {
+public class InsertTasteScoreInfo extends Thread {
     private boolean flag;
     private String url;
-    private String update_user;
-    private String update_status;
+    private String create_user;
+    private String insert_status;
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
 
-    public UpdateTasteScoreInfo(String url, TasteScoreOBJ tasteScoreOBJ, String update_user) {
+    public InsertTasteScoreInfo(String url, String create_user, TasteScoreOBJ tasteScoreOBJ) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.update_user = update_user;
+        this.create_user = create_user;
         this.tasteScoreOBJ = tasteScoreOBJ;
     }
 
@@ -33,7 +33,7 @@ public class UpdateTasteScoreInfo extends Thread {
         url = url + "?group_id=" + tasteScoreOBJ.getGroup_id() +
                 "&competition_id=" + tasteScoreOBJ.getCompetition_id() +
                 "&crab_sex=" + tasteScoreOBJ.getCrab_sex() +
-                "&user_id=" + update_user +
+                "&user_id=" + create_user +
                 "&score_fin=" + tasteScoreOBJ.getScore_fin() +
                 "&score_ygys=" + tasteScoreOBJ.getScore_ygys() +
                 "&score_sys=" + tasteScoreOBJ.getScore_sys() +
@@ -42,7 +42,7 @@ public class UpdateTasteScoreInfo extends Thread {
                 "&score_gh=" + tasteScoreOBJ.getScore_gh() +
                 "&score_fbjr=" + tasteScoreOBJ.getScore_fbjr() +
                 "&score_bzjr=" + tasteScoreOBJ.getScore_bzjr() +
-                "&update_user=" + update_user;
+                "&create_user=" + create_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -59,11 +59,11 @@ public class UpdateTasteScoreInfo extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                update_status = buffer.toString();
-                update_status = URLDecoder.decode(update_status, "UTF-8");
+                insert_status = buffer.toString();
+                insert_status = URLDecoder.decode(insert_status, "UTF-8");
             }
-            System.out.println("result:" + update_status);
-            if (update_status.equals("update taste score failed")) {
+            System.out.println("result:" + insert_status);
+            if (insert_status.equals("insert taste score failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);

@@ -8,41 +8,39 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
-import spencercjh.crabscore.OBJ.TasteScoreOBJ;
+import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 
 /**
- * Created by spencercjh on 2018/2/8.
+ * Created by spencercjh on 2018/2/12.
  * iClass
  */
 
-public class UpdateTasteScoreInfo extends Thread {
+public class InsertQualityScoreInfo extends Thread{
     private boolean flag;
     private String url;
-    private String update_user;
-    private String update_status;
-    private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
+    private String create_user;
+    private String insert_status;
+    private QualityScoreOBJ qualityScoreOBJ=new QualityScoreOBJ();
 
-    public UpdateTasteScoreInfo(String url, TasteScoreOBJ tasteScoreOBJ, String update_user) {
+    public InsertQualityScoreInfo(String url, String create_user,QualityScoreOBJ qualityScoreOBJ) {
         // TODO Auto-generated constructor stub
         this.url = url;
-        this.update_user = update_user;
-        this.tasteScoreOBJ = tasteScoreOBJ;
+        this.create_user = create_user;
+        this.qualityScoreOBJ=qualityScoreOBJ;
     }
 
     private void doGet() throws IOException {
-        url = url + "?group_id=" + tasteScoreOBJ.getGroup_id() +
-                "&competition_id=" + tasteScoreOBJ.getCompetition_id() +
-                "&crab_sex=" + tasteScoreOBJ.getCrab_sex() +
-                "&user_id=" + update_user +
-                "&score_fin=" + tasteScoreOBJ.getScore_fin() +
-                "&score_ygys=" + tasteScoreOBJ.getScore_ygys() +
-                "&score_sys=" + tasteScoreOBJ.getScore_sys() +
-                "&score_ghys=" + tasteScoreOBJ.getScore_ghys() +
-                "&score_xwxw=" + tasteScoreOBJ.getScore_xwxw() +
-                "&score_gh=" + tasteScoreOBJ.getScore_gh() +
-                "&score_fbjr=" + tasteScoreOBJ.getScore_fbjr() +
-                "&score_bzjr=" + tasteScoreOBJ.getScore_bzjr() +
-                "&update_user=" + update_user;
+        url = url + "?group_id=" + qualityScoreOBJ.getGroup_id() +
+                "&competition_id=" + qualityScoreOBJ.getCompetition_id() +
+                "&crab_sex=" + qualityScoreOBJ.getCrab_sex() +
+                "&user_id=" + create_user +
+                "&score_fin=" + qualityScoreOBJ.getScore_fin() +
+                "&score_bts=" + qualityScoreOBJ.getScore_bts() +
+                "&score_fts=" + qualityScoreOBJ.getScore_fts() +
+                "&score_ec=" + qualityScoreOBJ.getScore_ec() +
+                "&score_dscc=" + qualityScoreOBJ.getScore_dscc() +
+                "&score_bbyzt=" + qualityScoreOBJ.getScore_bbyzt() +
+                "&create_user=" + create_user;
         try {
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
@@ -59,11 +57,11 @@ public class UpdateTasteScoreInfo extends Thread {
                 while ((line = in.readLine()) != null) {
                     buffer.append(line);
                 }
-                update_status = buffer.toString();
-                update_status = URLDecoder.decode(update_status, "UTF-8");
+                insert_status = buffer.toString();
+                insert_status = URLDecoder.decode(insert_status, "UTF-8");
             }
-            System.out.println("result:" + update_status);
-            if (update_status.equals("update taste score failed")) {
+            System.out.println("result:" + insert_status);
+            if (insert_status.equals("insert quality score failed")) {
                 setFlag(false);
             } else {
                 setFlag(true);
@@ -71,6 +69,7 @@ public class UpdateTasteScoreInfo extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public boolean getFlag() {

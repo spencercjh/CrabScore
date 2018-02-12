@@ -139,4 +139,12 @@ public class QualityScoreOBJ implements Serializable {
         this.user_id = user_id;
     }
 
+    public int getScore_id() {
+        return score_id;
+    }
+
+    public void setScore_id(int score_id) {
+        this.score_id = score_id;
+    }
+
 }

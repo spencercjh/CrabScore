@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryQualityScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_InsertQualityScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_UpdateQualityScoreInfo;
 import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -45,6 +46,7 @@ public class QualityGrade_F_Fragment extends Fragment {
     private RadioButton radio_unable1;
     private UserOBJ userOBJ = new UserOBJ();
     private QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ();
+    private boolean need_insert = false;
 
     public QualityGrade_F_Fragment() {
     }
@@ -127,16 +129,30 @@ public class QualityGrade_F_Fragment extends Fragment {
     }
 
     private void InitialInfo() throws InterruptedException {
-        qualityScoreOBJ_F = qualityScoreOBJ;
+        text_crab_sex.setText("雌蟹");
+        qualityScoreOBJ_F.setGroup_id(qualityScoreOBJ.getGroup_id());
+        qualityScoreOBJ_F.setCompetition_id(qualityScoreOBJ.getCompetition_id());
         qualityScoreOBJ_F.setCrab_sex(0);
         qualityScoreOBJ_F = JsonConvert.convert_QualityScoreOBJ(Fun_QueryQualityScoreInfo.http_QueryQualityScoreInfo(qualityScoreOBJ_F));
-        text_crab_sex.setText("雌蟹");
-        text_score_fin.setText(String.valueOf(qualityScoreOBJ_F.getScore_fin()));
-        text_score_bts.setText(String.valueOf(qualityScoreOBJ_F.getScore_bts()));
-        text_score_fts.setText(String.valueOf(qualityScoreOBJ_F.getScore_fts()));
-        text_score_ec.setText(String.valueOf(qualityScoreOBJ_F.getScore_ec()));
-        text_score_dscc.setText(String.valueOf(qualityScoreOBJ_F.getScore_dscc()));
-        text_score_bbyzt.setText(String.valueOf(qualityScoreOBJ_F.getScore_bbyzt()));
+        if (qualityScoreOBJ_F.getGroup_id() == 0) {     //原本没有scoreOBJ，后面不能update要insert
+            need_insert = true;
+            qualityScoreOBJ_F.setGroup_id(qualityScoreOBJ.getGroup_id());
+            qualityScoreOBJ_F.setCompetition_id(qualityScoreOBJ.getCompetition_id());
+            qualityScoreOBJ_F.setCrab_sex(0);
+            text_score_fin.setText("");
+            text_score_bts.setText("");
+            text_score_fts.setText("");
+            text_score_ec.setText("");
+            text_score_dscc.setText("");
+            text_score_bbyzt.setText("");
+        } else {
+            text_score_fin.setText(String.valueOf(qualityScoreOBJ_F.getScore_fin()));
+            text_score_bts.setText(String.valueOf(qualityScoreOBJ_F.getScore_bts()));
+            text_score_fts.setText(String.valueOf(qualityScoreOBJ_F.getScore_fts()));
+            text_score_ec.setText(String.valueOf(qualityScoreOBJ_F.getScore_ec()));
+            text_score_dscc.setText(String.valueOf(qualityScoreOBJ_F.getScore_dscc()));
+            text_score_bbyzt.setText(String.valueOf(qualityScoreOBJ_F.getScore_bbyzt()));
+        }
     }
 
     private boolean updateInfo() {
@@ -175,10 +191,18 @@ public class QualityGrade_F_Fragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdateQualityScoreInfo.http_UpdateQualityScoreInfo(qualityScoreOBJ_F, userOBJ)) {
-                                dialog_update_success();
+                            if (need_insert) {
+                                if (Fun_InsertQualityScoreInfo.http_InsertQualityScoreInfo(qualityScoreOBJ_F, userOBJ)) {
+                                    dialog_update_success();
+                                } else {
+                                    dialog_update_fail();
+                                }
                             } else {
-                                dialog_update_fail();
+                                if (Fun_UpdateQualityScoreInfo.http_UpdateQualityScoreInfo(qualityScoreOBJ_F, userOBJ)) {
+                                    dialog_update_success();
+                                } else {
+                                    dialog_update_fail();
+                                }
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();

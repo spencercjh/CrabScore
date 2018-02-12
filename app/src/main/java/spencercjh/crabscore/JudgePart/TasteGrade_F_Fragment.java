@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import spencercjh.crabscore.HttpRequst.Function.CompanyPart.Fun_QueryTasteScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
+import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_InsertTasteScoreInfo;
 import spencercjh.crabscore.HttpRequst.Function.JudgePart.Fun_UpdateTasteScoreInfo;
 import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 import spencercjh.crabscore.OBJ.UserOBJ;
@@ -47,6 +48,7 @@ public class TasteGrade_F_Fragment extends Fragment {
     private UserOBJ userOBJ = new UserOBJ();
     private TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ();
     private TasteScoreOBJ tasteScoreOBJ_F = new TasteScoreOBJ();
+    private boolean need_insert = false;
 
     public TasteGrade_F_Fragment() {
     }
@@ -139,18 +141,35 @@ public class TasteGrade_F_Fragment extends Fragment {
     }
 
     private void InitialInfo() throws InterruptedException {
-        tasteScoreOBJ_F = tasteScoreOBJ;
+        text_crab_sex.setText("雌蟹");
+        tasteScoreOBJ_F.setGroup_id(tasteScoreOBJ.getGroup_id());
+        tasteScoreOBJ_F.setCompetition_id(tasteScoreOBJ.getCompetition_id());
         tasteScoreOBJ_F.setCrab_sex(0);
         tasteScoreOBJ_F = JsonConvert.convert_TasteScoreOBJ(Fun_QueryTasteScoreInfo.http_QueryTasteScoreInfo(tasteScoreOBJ_F));
-        text_crab_sex.setText("雌蟹");
-        text_score_fin.setText(String.valueOf(tasteScoreOBJ_F.getScore_fin()));
-        text_score_ygys.setText(String.valueOf(tasteScoreOBJ_F.getScore_ygys()));
-        text_score_sys.setText(String.valueOf(tasteScoreOBJ_F.getScore_sys()));
-        text_score_ghys.setText(String.valueOf(tasteScoreOBJ_F.getScore_ghys()));
-        text_score_xwxw.setText(String.valueOf(tasteScoreOBJ_F.getScore_xwxw()));
-        text_score_gh.setText(String.valueOf(tasteScoreOBJ_F.getScore_gh()));
-        text_score_fbjr.setText(String.valueOf(tasteScoreOBJ_F.getScore_fbjr()));
-        text_score_bzjr.setText(String.valueOf(tasteScoreOBJ_F.getScore_bzjr()));
+        if (tasteScoreOBJ_F.getGroup_id() == 0) {   //原本没有scoreOBJ，后面不能update要insert
+            need_insert = true;
+            tasteScoreOBJ_F.setGroup_id(tasteScoreOBJ.getGroup_id());
+            tasteScoreOBJ_F.setCompetition_id(tasteScoreOBJ.getCompetition_id());
+            tasteScoreOBJ_F.setCrab_sex(0);
+            text_score_fin.setText("");
+            text_score_ygys.setText("");
+            text_score_sys.setText("");
+            text_score_ghys.setText("");
+            text_score_xwxw.setText("");
+            text_score_gh.setText("");
+            text_score_fbjr.setText("");
+            text_score_bzjr.setText("");
+        } else {
+            text_score_fin.setText(String.valueOf(tasteScoreOBJ_F.getScore_fin()));
+            text_score_ygys.setText(String.valueOf(tasteScoreOBJ_F.getScore_ygys()));
+            text_score_sys.setText(String.valueOf(tasteScoreOBJ_F.getScore_sys()));
+            text_score_ghys.setText(String.valueOf(tasteScoreOBJ_F.getScore_ghys()));
+            text_score_xwxw.setText(String.valueOf(tasteScoreOBJ_F.getScore_xwxw()));
+            text_score_gh.setText(String.valueOf(tasteScoreOBJ_F.getScore_gh()));
+            text_score_fbjr.setText(String.valueOf(tasteScoreOBJ_F.getScore_fbjr()));
+            text_score_bzjr.setText(String.valueOf(tasteScoreOBJ_F.getScore_bzjr()));
+        }
+
     }
 
     private boolean updateInfo() {
@@ -193,10 +212,18 @@ public class TasteGrade_F_Fragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//关闭对话框
                         try {
-                            if (Fun_UpdateTasteScoreInfo.http_UpdateTasteScoreInfo(tasteScoreOBJ_F, userOBJ)) {
-                                dialog_update_success();
+                            if (need_insert) {
+                                if (Fun_InsertTasteScoreInfo.http_InsertTasteScoreInfo(tasteScoreOBJ, userOBJ)) {
+                                    dialog_update_success();
+                                } else {
+                                    dialog_update_fail();
+                                }
                             } else {
-                                dialog_update_fail();
+                                if (Fun_UpdateTasteScoreInfo.http_UpdateTasteScoreInfo(tasteScoreOBJ_F, userOBJ)) {
+                                    dialog_update_success();
+                                } else {
+                                    dialog_update_fail();
+                                }
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
