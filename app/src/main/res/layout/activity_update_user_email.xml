@@ -52,15 +52,16 @@
             android:id="@+id/text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="textEmailAddress"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_DeleteCompanyInfo {
     public static boolean http_DeleteCompanyInfo(UserOBJ update_user, CompanyOBJ companyOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_DeleteCompanyInfo;
+        String url = ServerURL.sever_url + "DeleteCompanyInfo";
         DeleteCompanyInfo thread = new DeleteCompanyInfo(url, companyOBJ.getCompany_id(),update_user.getUser_name());
         thread.start();
         thread.join();

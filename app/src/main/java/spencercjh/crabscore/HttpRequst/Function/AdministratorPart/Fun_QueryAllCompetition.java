@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryAllCompetit
 
 public class Fun_QueryAllCompetition {
     public static String http_QueryAllCompetition() throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllCompetition;
+        String url = ServerURL.sever_url + "QueryAllCompetition";
         QueryAllCompetition thread = new QueryAllCompetition(url);
         thread.start();
         thread.join();

@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part.QueryQuali
 
 public class Fun_QueryQualityScore {
     public static String http_QueryQualityScore(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryQualityScore;
+        String url = ServerURL.sever_url + "QueryQualityScore";
         QueryQualityScore thread = new QueryQualityScore(url, competition_id);
         thread.start();
         thread.join();

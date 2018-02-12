@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryAllCompany;
 
 public class Fun_QueryAllCompany {
     public static String http_QueryAllUnit() throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllCompany;
+        String url = ServerURL.sever_url + "QueryAllCompany";
         QueryAllCompany thread = new QueryAllCompany(url);
         thread.start();
         thread.join();

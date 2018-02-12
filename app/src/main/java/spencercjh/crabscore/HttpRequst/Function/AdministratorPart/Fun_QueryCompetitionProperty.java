@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryCompetition
 
 public class Fun_QueryCompetitionProperty {
     public static String http_QueryCompetitionProperty(String competition_year) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryCompetitionProperty;
+        String url = ServerURL.sever_url + "QueryCompetitionProperty";
         QueryCompetitionProperty thread = new QueryCompetitionProperty(url,competition_year);
         thread.start();
         thread.join();

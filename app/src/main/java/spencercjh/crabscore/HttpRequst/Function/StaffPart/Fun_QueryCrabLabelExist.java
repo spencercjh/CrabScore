@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.CrabOBJ;
 
 public class Fun_QueryCrabLabelExist {
     public static boolean http_QueryCrabLabelExist(CrabOBJ crabOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryCrabLabelExist;
+        String url = ServerURL.sever_url + "QueryCrabLabelExist";
         QueryCrabLabelExist thread = new QueryCrabLabelExist(url, crabOBJ.getCrab_label());
         thread.start();
         thread.join();

@@ -28,6 +28,7 @@ public class QueryUserStatus extends Thread {
     private void doGet() throws IOException {
         url = url + "?user_name=" + user_name;
         try {
+            System.out.println(url);
             URL httpUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
             conn.setRequestMethod("GET");

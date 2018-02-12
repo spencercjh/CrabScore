@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateUserEmail {
     public static boolean http_UpdateUserEmail(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserEmail;
+        String url = ServerURL.sever_url + "UpdateUserEmail";
         UpdateUserEmail thread = new UpdateUserEmail(url, userOBJ.getUser_name(), userOBJ.getPassword(), userOBJ.getEmail(), userOBJ.getUser_name());
         thread.start();
         thread.join();

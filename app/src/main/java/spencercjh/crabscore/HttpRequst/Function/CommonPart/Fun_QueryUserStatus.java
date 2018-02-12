@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_QueryUserStatus {
     public static int http_QueryUserStatus(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryUserStatus;
+        String url = ServerURL.sever_url + "QueryUserStatus";
         QueryUserStatus thread = new QueryUserStatus(url, userOBJ.getUser_name());
         thread.start();
         thread.join();

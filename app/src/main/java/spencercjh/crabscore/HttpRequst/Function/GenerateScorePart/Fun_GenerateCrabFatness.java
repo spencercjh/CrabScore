@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.GenerateScorePart.GenerateCrabFatn
 
 public class Fun_GenerateCrabFatness {
     public static boolean http_GenerateCrabFatness(float var_fatness, int crab_sex, int competition_id, String update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_GenerateCrabFatness;
+        String url = ServerURL.sever_url + "GenerateCrabFatness";
         GenerateCrabFatness thread = new GenerateCrabFatness(url, var_fatness, crab_sex, competition_id, update_user);
         thread.start();
         thread.join();

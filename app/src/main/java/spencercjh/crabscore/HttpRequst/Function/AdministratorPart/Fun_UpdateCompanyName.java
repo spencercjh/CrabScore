@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateCompanyName {
     public static boolean http_UpdateCompanyName(CompanyOBJ companyOBJ, UserOBJ userOBJ,String new_name) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateCompanyName;
+        String url = ServerURL.sever_url + "UpdateCompanyName";
         UpdateCompanyName thread = new UpdateCompanyName(url, userOBJ.getUser_name(), companyOBJ.getCompany_name(),new_name);
         thread.start();
         thread.join();

@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateUserCompetitionID {
     public static boolean http_UpdateUserCompetitionID(UserOBJ userOBJ, UserOBJ update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserCompetitionID;
+        String url = ServerURL.sever_url + "UpdateUserCompetitionID";
         UpdateUserCompetitionID thread = new UpdateUserCompetitionID(url, userOBJ.getUser_name(), userOBJ.getCompetition_id(), update_user.getUser_name());
         thread.start();
         thread.join();

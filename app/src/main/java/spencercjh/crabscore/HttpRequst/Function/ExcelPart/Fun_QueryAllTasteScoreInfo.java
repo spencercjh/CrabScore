@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.ExcelPart.QueryAllTasteScoreInfo;
 
 public class Fun_QueryAllTasteScoreInfo {
     public static String http_QueryAllTasteScoreInfo(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllTasteScoreInfo;
+        String url = ServerURL.sever_url + "QueryAllTasteScoreInfo";
         QueryAllTasteScoreInfo thread = new QueryAllTasteScoreInfo(url, competition_id);
         thread.start();
         thread.join();

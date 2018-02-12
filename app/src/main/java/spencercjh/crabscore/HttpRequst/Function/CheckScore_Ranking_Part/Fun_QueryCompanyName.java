@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part.QueryCompa
 
 public class Fun_QueryCompanyName {
     public static String http_QueryCompanyName(int company_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryCompanyName;
+        String url = ServerURL.sever_url + "QueryCompanyName";
         QueryCompanyName thread = new QueryCompanyName(url, company_id);
         thread.start();
         thread.join();

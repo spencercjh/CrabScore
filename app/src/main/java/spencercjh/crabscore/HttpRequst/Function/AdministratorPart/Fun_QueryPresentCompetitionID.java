@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryPresentComp
 
 public class Fun_QueryPresentCompetitionID {
     public static int http_QueryPresentCompetitionID() throws InterruptedException {
-        String url= ServerURL.sever_url+ServerURL.servlet_QueryPresentCompetitionID;
+        String url= ServerURL.sever_url+"QueryPresentCompetitionID";
         QueryPresentCompetitionID thread=new QueryPresentCompetitionID(url);
         thread.start();
         thread.join();

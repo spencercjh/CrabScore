@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.ExcelPart.QueryAllQualityScoreInfo
 
 public class Fun_QueryAllQualityScoreInfo {
     public static String http_QueryAllQualityScoreInfo(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllQualityScoreInfo;
+        String url = ServerURL.sever_url + "QueryAllQualityScoreInfo";
         QueryAllQualityScoreInfo thread = new QueryAllQualityScoreInfo(url, competition_id);
         thread.start();
         thread.join();

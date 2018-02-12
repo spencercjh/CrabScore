@@ -74,6 +74,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toStartOf="@+id/radioGroup"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="总分" />
 
             <RadioButton
@@ -165,15 +166,16 @@
             android:id="@+id/text_score_fin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -207,15 +209,16 @@
             android:id="@+id/text_score_ygys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
@@ -250,15 +253,16 @@
             android:id="@+id/text_score_sys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
@@ -291,15 +295,16 @@
             android:id="@+id/text_score_ghys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv5"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignTop="@+id/tv5"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -331,15 +336,16 @@
             android:id="@+id/text_score_xwxw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -371,15 +377,16 @@
             android:id="@+id/text_score_gh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -411,15 +418,16 @@
             android:id="@+id/text_score_fbjr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -451,15 +459,16 @@
             android:id="@+id/text_score_bzjr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 

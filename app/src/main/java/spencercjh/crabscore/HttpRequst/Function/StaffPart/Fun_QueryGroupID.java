@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.StaffPart.QueryGroupID;
 
 public class Fun_QueryGroupID {
     public static String http_QueryGroupID(String crab_label) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryGroupID;
+        String url = ServerURL.sever_url + "QueryGroupID";
         QueryGroupID thread = new QueryGroupID(url, crab_label);
         thread.start();
         thread.join();

@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryAllUser;
 
 public class Fun_QueryAllUser {
     public static String http_QueryAllUser() throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllUser;
+        String url = ServerURL.sever_url + "QueryAllUser";
         QueryAllUser thread = new QueryAllUser(url);
         thread.start();
         thread.join();

@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryAllUnchecke
 
 public class Fun_QueryAllUncheckedUser {
     public static String http_QueryAllUncheckedUser() throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllUncheckedUser;
+        String url = ServerURL.sever_url + "QueryAllUncheckedUser";
         QueryAllUncheckedUser thread = new QueryAllUncheckedUser(url);
         thread.start();
         thread.join();

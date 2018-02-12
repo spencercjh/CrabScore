@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_InsertCrabInfo {
     public static boolean http_InsertCrabInfo(CrabOBJ crabOBJ, UserOBJ create_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_InsertCrabInfo;
+        String url = ServerURL.sever_url + "InsertCrabInfo";
         InsertCrabInfo thread = new InsertCrabInfo(url, create_user.getUser_name(), crabOBJ.getCrab_sex(), crabOBJ.getGroup_id(), crabOBJ.getCompetition_id());
         thread.start();
         thread.join();

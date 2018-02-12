@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.ExcelPart.QueryAllCrabList;
 
 public class Fun_QueryAllCrabList {
     public static String http_QueryAllCrabList(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllCrabList;
+        String url = ServerURL.sever_url + "QueryAllCrabList";
         QueryAllCrabList thread = new QueryAllCrabList(url, competition_id);
         thread.start();
         thread.join();

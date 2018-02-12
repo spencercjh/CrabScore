@@ -61,6 +61,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toStartOf="@+id/radioGroup"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="总分" />
 
             <RadioButton
@@ -68,7 +69,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="小分" />
         </RadioGroup>
 
@@ -166,15 +166,16 @@
             android:id="@+id/text_score_fin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv3"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignTop="@+id/tv3"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -208,15 +209,16 @@
             android:id="@+id/text_score_bts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
@@ -251,15 +253,16 @@
             android:id="@+id/text_score_fts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv2"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignTop="@+id/tv2"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
@@ -292,15 +295,16 @@
             android:id="@+id/text_score_ec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -332,15 +336,16 @@
             android:id="@+id/text_score_dscc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -377,6 +382,7 @@
             android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:gravity="right"
+            android:inputType="number"
             android:singleLine="true"
             android:text="123"
             android:textColor="#AAAAAA"

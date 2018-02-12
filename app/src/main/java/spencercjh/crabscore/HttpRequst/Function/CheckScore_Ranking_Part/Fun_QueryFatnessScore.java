@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.CheckScore_Ranking_Part.QueryFatne
 
 public class Fun_QueryFatnessScore {
     public static String http_QueryHighQualityScore(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryFatnessScore;
+        String url = ServerURL.sever_url + "QueryFatnessScore";
         QueryFatnessScore thread = new QueryFatnessScore(url, competition_id);
         thread.start();
         thread.join();

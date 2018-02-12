@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateUserDisplayName {
     public static boolean http_UpdateUserDisplayName(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserDisplayName;
+        String url = ServerURL.sever_url + "UpdateUserDisplayName";
         UpdateUserDisplayName thread = new UpdateUserDisplayName(url, userOBJ.getUser_name(), userOBJ.getPassword(), userOBJ.getDisplay_name(), userOBJ.getUser_name());
         thread.start();
         thread.join();

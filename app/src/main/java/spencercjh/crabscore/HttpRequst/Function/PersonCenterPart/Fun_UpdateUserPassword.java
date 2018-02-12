@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateUserPassword {
     public static boolean http_UpdateUserPassword(UserOBJ userOBJ, String new_password) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserPassword;
+        String url = ServerURL.sever_url + "UpdateUserPassword";
         UpdateUserPassword thread = new UpdateUserPassword(url, userOBJ.getUser_name(), userOBJ.getPassword(), new_password, userOBJ.getUser_name());
         thread.start();
         thread.join();

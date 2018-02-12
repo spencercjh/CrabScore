@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.TasteScoreOBJ;
 
 public class Fun_QueryTasteScoreInfo {
     public static String http_QueryTasteScoreInfo(TasteScoreOBJ tasteScoreOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryTasteScoreInfo;
+        String url = ServerURL.sever_url + "QueryTasteScoreInfo";
         QueryTasteScoreInfo thread = new QueryTasteScoreInfo(url, tasteScoreOBJ.getGroup_id(), tasteScoreOBJ.getCompetition_id(), tasteScoreOBJ.getCrab_sex());
         thread.start();
         thread.join();

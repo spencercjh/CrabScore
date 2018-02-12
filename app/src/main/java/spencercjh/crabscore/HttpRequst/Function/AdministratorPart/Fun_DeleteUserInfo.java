@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_DeleteUserInfo {
     public static boolean http_DeleteUserInfo(UserOBJ userOBJ, UserOBJ update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_DeleteUserInfo;
+        String url = ServerURL.sever_url + "DeleteUserInfo";
         DeleteUserInfo thread = new DeleteUserInfo(url, userOBJ.getUser_name(), userOBJ.getDisplay_name(), update_user.getUser_name());
         thread.start();
         thread.join();

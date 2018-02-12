@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.CompanyOBJ;
 
 public class Fun_QueryOneCompanyAllGroup {
     public static String http_QueryAllGroup(CompanyOBJ companyOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryOneCompanyAllGroup;
+        String url = ServerURL.sever_url + "QueryOneCompanyAllGroup";
         QueryOneCompanyAllGroup thread = new QueryOneCompanyAllGroup(url, companyOBJ.getCompany_id(), companyOBJ.getCompetition_id());
         thread.start();
         thread.join();

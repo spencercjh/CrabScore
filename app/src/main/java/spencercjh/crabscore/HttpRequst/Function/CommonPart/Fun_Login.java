@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_Login {
     public static int http_login(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_Login;
+        String url = ServerURL.sever_url + "Login";
         Login thread = new Login(url, userOBJ.getUser_name(), userOBJ.getPassword(), userOBJ.getRole_id());
         thread.start();
         thread.join();

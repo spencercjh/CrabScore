@@ -27,7 +27,7 @@
         android:background="@drawable/qq_edit_login"
         android:ems="10"
         android:hint="请输入标识号"
-        android:inputType="none"
+        android:inputType="none|number"
         android:maxLines="1"
         android:selectAllOnFocus="false"
         android:textSize="17sp"

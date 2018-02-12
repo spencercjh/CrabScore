@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.AdministratorPart.QueryCompetition
 
 public class Fun_QueryCompetitionYear {
     public static String http_QueryCompetitionYear(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryCompetitionYear;
+        String url = ServerURL.sever_url + "QueryCompetitionYear";
         QueryCompetitionYear thread = new QueryCompetitionYear(url, competition_id);
         thread.start();
         thread.join();

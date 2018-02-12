@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.GenerateScorePart.GenerateCrabTast
 
 public class Fun_GenerateCrabTasteScore {
     public static boolean http_GenerateCrabTasteScore(int crab_sex, int group_id, int competition_id, String update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_GenerateCrabTasteScore;
+        String url = ServerURL.sever_url + "GenerateCrabTasteScore";
         GenerateCrabTasteScore thread = new GenerateCrabTasteScore(url, competition_id, group_id, crab_sex, update_user);
         thread.start();
         thread.join();

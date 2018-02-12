@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateUserProperty {
     public static boolean http_UpdateUserProperty(UserOBJ userobj, UserOBJ update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateUserProperty;
+        String url = ServerURL.sever_url + "UpdateUserProperty";
         UpdateUserProperty thread = new UpdateUserProperty(url, userobj.getUser_name(), userobj.getDisplay_name(), userobj.getEmail(), userobj.getRole_id(), update_user.getUser_name());
         thread.start();
         thread.join();

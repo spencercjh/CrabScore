@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.CompanyOBJ;
 
 public class Fun_QueryCompanyID {
     public static int http_QueryCompanyID(CompanyOBJ companyOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryCompanyID;
+        String url = ServerURL.sever_url + "QueryCompanyID";
         QueryCompanyID thread = new QueryCompanyID(url, companyOBJ.getCompany_name());
         thread.start();
         thread.join();

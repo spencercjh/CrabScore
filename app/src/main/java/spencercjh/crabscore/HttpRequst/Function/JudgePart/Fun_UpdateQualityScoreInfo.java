@@ -12,7 +12,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_UpdateQualityScoreInfo {
     public static boolean http_UpdateQualityScoreInfo(QualityScoreOBJ qualityScoreOBJ, UserOBJ update_user) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_UpdateQualityScoreInfo;
+        String url = ServerURL.sever_url + "UpdateQualityScoreInfo";
         UpdateQualityScoreInfo thread = new UpdateQualityScoreInfo(url, qualityScoreOBJ, update_user.getUser_name());
         thread.start();
         thread.join();

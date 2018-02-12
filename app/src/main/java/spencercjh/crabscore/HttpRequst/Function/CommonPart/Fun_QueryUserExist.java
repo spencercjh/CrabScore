@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.CommonPart.QueryUserExist;
 
 public class Fun_QueryUserExist {
     public static boolean http_QueryUserExist(String user_name) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryUserExist;
+        String url = ServerURL.sever_url + "QueryUserExist";
         QueryUserExist thread = new QueryUserExist(url, user_name);
         thread.start();
         thread.join();

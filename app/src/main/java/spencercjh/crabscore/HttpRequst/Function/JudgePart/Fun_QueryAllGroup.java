@@ -10,7 +10,7 @@ import spencercjh.crabscore.HttpRequst.Thread.JudgePart.QueryAllGroup;
 
 public class Fun_QueryAllGroup {
     public static String http_QueryAllGroup(int competition_id) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryAllGroup;
+        String url = ServerURL.sever_url + "QueryAllGroup";
         QueryAllGroup thread = new QueryAllGroup(url, competition_id);
         thread.start();
         thread.join();

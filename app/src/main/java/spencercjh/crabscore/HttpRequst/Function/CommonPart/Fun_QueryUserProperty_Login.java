@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 
 public class Fun_QueryUserProperty_Login {
     public static String http_QueryUserProperty(UserOBJ userOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryUserProperty_Login;
+        String url = ServerURL.sever_url + "QueryUserProperty_Login";
         QueryUserProperty_Login thread = new QueryUserProperty_Login(url, userOBJ.getUser_name(), userOBJ.getDisplay_name());
         thread.start();
         thread.join();

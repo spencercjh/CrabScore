@@ -11,7 +11,7 @@ import spencercjh.crabscore.OBJ.QualityScoreOBJ;
 
 public class Fun_QueryQualityScoreInfo {
     public static String http_QueryQualityScoreInfo(QualityScoreOBJ qualityScoreOBJ) throws InterruptedException {
-        String url = ServerURL.sever_url + ServerURL.servlet_QueryQualityScoreInfo;
+        String url = ServerURL.sever_url + "QueryQualityScoreInfo";
         QueryQualityScoreInfo thread = new QueryQualityScoreInfo(url, qualityScoreOBJ.getGroup_id(), qualityScoreOBJ.getCompetition_id(), qualityScoreOBJ.getCrab_sex());
         thread.start();
         thread.join();
