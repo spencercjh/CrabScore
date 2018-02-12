@@ -68,19 +68,16 @@ public class PersonCenterActivity extends AppCompatActivity implements View.OnCl
                 intent = new Intent(this, UpdateUserPasswordActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.re_display_name:
                 intent = new Intent(this, UpdateUserDisplayNameActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.re_email:
                 intent = new Intent(this, UpdateUserEmailActivity.class);
                 intent.putExtra("USEROBJ", userOBJ);
                 startActivity(intent);
-                finish();
                 break;
             default:
                 break;
