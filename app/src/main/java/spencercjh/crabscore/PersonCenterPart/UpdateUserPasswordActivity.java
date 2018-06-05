@@ -29,7 +29,7 @@ public class UpdateUserPasswordActivity extends AppCompatActivity implements Vie
         userOBJ = (UserOBJ) intent.getSerializableExtra("USEROBJ");
         text_old_password = (EditText) findViewById(R.id.text_input_old_password);
         text_new_password = (EditText) findViewById(R.id.text_input_new_password);
-        Button update = (Button) findViewById(R.id.button1);
+        Button update = (Button) findViewById(R.id.button);
         update.setOnClickListener(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.tl_head);
         toolbar.setTitle("修改密码");

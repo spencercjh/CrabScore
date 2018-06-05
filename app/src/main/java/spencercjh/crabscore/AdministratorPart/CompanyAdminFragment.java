@@ -119,60 +119,56 @@ public class CompanyAdminFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 final CompanyOBJ companyOBJ = CompanyList.get(position);
-                if (userOBJ.getUser_name() != null) {
-                    PopupMenu popup = new PopupMenu(getContext(), view);
-                    final MenuInflater inflater = popup.getMenuInflater();
-                    if (userOBJ.getCompetition_id() != 0) {
-                        inflater.inflate(R.menu.pop_menu_company, popup.getMenu());
-                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            Intent intent;
+                PopupMenu popup = new PopupMenu(getContext(), view);
+                final MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.pop_menu_company, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    Intent intent;
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case R.id.menu_check_score:
-                                        try {
-                                            companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        intent = new Intent(getContext(), CheckCompanyScoreActivity.class);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("COMPANYOBJ", companyOBJ);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_edit_info:
-                                        try {
-                                            companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        Intent intent = new Intent(getContext(), UpdateCompanyInfoActivity.class);
-                                        intent.putExtra("COMPANYOBJ", companyOBJ);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_delete:
-                                        try {
-                                            if (Fun_DeleteCompanyInfo.http_DeleteCompanyInfo(userOBJ, companyOBJ)) {
-                                                dialog_delete_success();
-                                                Fill_CompanyList();
-                                            } else {
-                                                dialog_delete_fail();
-                                            }
-                                            break;
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    default:
-                                        break;
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_check_score:
+                                try {
+                                    companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
                                 }
-                                return false;
-                            }
-                        });
+                                intent = new Intent(getContext(), CheckCompanyScoreActivity.class);
+                                intent.putExtra("USEROBJ", userOBJ);
+                                intent.putExtra("COMPANYOBJ", companyOBJ);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_edit_info:
+                                try {
+                                    companyOBJ.setCompetition_id(Fun_QueryCompanyID.http_QueryCompanyID(companyOBJ));
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                Intent intent = new Intent(getContext(), UpdateCompanyInfoActivity.class);
+                                intent.putExtra("COMPANYOBJ", companyOBJ);
+                                intent.putExtra("USEROBJ", userOBJ);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_delete:
+                                try {
+                                    if (Fun_DeleteCompanyInfo.http_DeleteCompanyInfo(userOBJ, companyOBJ)) {
+                                        dialog_delete_success();
+                                        Fill_CompanyList();
+                                    } else {
+                                        dialog_delete_fail();
+                                    }
+                                    break;
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            default:
+                                break;
+                        }
+                        return false;
                     }
-                    popup.show();
-                }
+                });
+                popup.show();
             }
         });
     }

@@ -9,31 +9,32 @@ import java.util.ArrayList;
 import spencercjh.crabscore.OBJ.UserOBJ;
 
 class StaffPageAdapter extends FragmentPagerAdapter {
-	private ArrayList<String> mTitleArray;
-	private UserOBJ userOBJ = new UserOBJ();
-	StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
-		super(fm);
-		mTitleArray = titleArray;
-		this.userOBJ=userOBJ;
-	}
+    private ArrayList<String> mTitleArray;
+    private UserOBJ userOBJ = new UserOBJ();
 
-	@Override
-	public Fragment getItem(int position) {
-		if (position == 0) {
-			return new DataEntryFragment(userOBJ);
-		} else if (position == 1) {
-			return new FindIdentificationFragment();
-		}
-		return new DataEntryFragment(userOBJ);
-	}
+    StaffPageAdapter(FragmentManager fm, ArrayList<String> titleArray, UserOBJ userOBJ) {
+        super(fm);
+        mTitleArray = titleArray;
+        this.userOBJ = userOBJ;
+    }
 
-	@Override
-	public int getCount() {
-		return mTitleArray.size();
-	}
+    @Override
+    public Fragment getItem(int position) {
+        if (position == 0) {
+            return new DataEntryFragment(userOBJ);
+        } else if (position == 1) {
+            return new FindIdentificationFragment(userOBJ);
+        }
+        return new FindIdentificationFragment(userOBJ);
+    }
 
-	@Override
-	public CharSequence getPageTitle(int position) {
-		return mTitleArray.get(position);
-	}
+    @Override
+    public int getCount() {
+        return mTitleArray.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mTitleArray.get(position);
+    }
 }

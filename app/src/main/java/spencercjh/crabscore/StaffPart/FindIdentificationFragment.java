@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import spencercjh.crabscore.HttpRequst.Function.JsonConvert;
 import spencercjh.crabscore.HttpRequst.Function.StaffPart.Fun_QueryGroupID;
 import spencercjh.crabscore.OBJ.GroupOBJ;
+import spencercjh.crabscore.OBJ.UserOBJ;
 import spencercjh.crabscore.R;
 
 @SuppressLint("ValidFragment")
@@ -26,7 +27,7 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
     private EditText Eidentification;
     private TextView text_group_id;
 
-    public FindIdentificationFragment() {
+    public FindIdentificationFragment(UserOBJ userOBJ) {
     }
 
     @Override
@@ -49,7 +50,7 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        System.err.println("#################");
     }
 
     @Override

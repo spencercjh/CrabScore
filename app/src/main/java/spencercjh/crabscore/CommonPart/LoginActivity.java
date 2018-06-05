@@ -130,6 +130,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             spinner.setSelection(4);
             choice = 4;
         }
+        try {
+            choice = sp.getInt("CHOICE", choice);
+            spinner.setSelection(choice);
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+        }
         if (sp.getBoolean("ISCHECK", false)) {  //设置默认是记录密码状态
             rem_pw.setChecked(true);
             id.setText(sp.getString("USER_ID", ""));
@@ -265,7 +271,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         //记住用户名、密码、
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putString("USER_ID", userOBJ.getUser_name());
-                        editor.putString("PASSWORD",passowrd);
+                        editor.putString("PASSWORD", passowrd);
+                        editor.putInt("CHOICE", choice);
                         editor.apply();
                     }
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

@@ -37,7 +37,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
         Tuser_name = (TextView) findViewById(R.id.text_user_name);
         Tdisplay_name = (EditText) findViewById(R.id.text_display_name);
         Temail = (EditText) findViewById(R.id.text_email);
-        Button button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         String[] Items = getResources().getStringArray(R.array.roles2);
@@ -72,7 +72,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.button) {
+        if (view.getId() == R.id.button2) {
             updateCompetition_info();
         }
     }

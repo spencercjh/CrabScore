@@ -114,13 +114,13 @@ public class UserAdminFragment extends Fragment {
                 TextView Tuser_name = view.findViewById(R.id.tv_user_name);
                 TextView Tdisplay_name = view.findViewById(R.id.tv_display_name);
                 TextView Trole = view.findViewById(R.id.tv_role);
-                TextView Tconpetition_status = view.findViewById(R.id.tv_conpetition_status);
+                TextView Tcompetition_status = view.findViewById(R.id.tv_conpetition_status);
                 Tuser_name.setText(userOBJ.getUser_name());
                 Tdisplay_name.setText(userOBJ.getDisplay_name());
                 if (userOBJ.getCompetition_id() == 0) {
-                    Tconpetition_status.setText("所有赛事有效");
+                    Tcompetition_status.setText("所有赛事有效");
                 } else if (userOBJ.getStatus() != 0) {
-                    Tconpetition_status.setText("仅当前赛事有效");
+                    Tcompetition_status.setText("仅当前赛事有效");
                 }
                 if (userOBJ.getRole_id() == 1) {
                     Trole.setText("管理员");
@@ -140,66 +140,64 @@ public class UserAdminFragment extends Fragment {
                 if (userOBJ.getUser_name() != null) {
                     PopupMenu popup = new PopupMenu(getContext(), view);
                     final MenuInflater inflater = popup.getMenuInflater();
-                    if (userOBJ.getCompetition_id() != 0) {
-                        inflater.inflate(R.menu.pop_menu_user_admin, popup.getMenu());
-                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            Intent intent;
+                    inflater.inflate(R.menu.pop_menu_user_admin, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        Intent intent;
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case R.id.menu_edit_info:
-                                        intent = new Intent(getContext(), UpdateUserInfoActivity.class);
-                                        intent.putExtra("ADMIN", admin);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_ban:
-                                        userOBJ.setStatus(0);
-                                        try {
-                                            if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
-                                                dialog_ban_success();
-                                                Fill_AllUserList();
-                                            } else {
-                                                dialog_fail();
-                                            }
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu_edit_info:
+                                    intent = new Intent(getContext(), UpdateUserInfoActivity.class);
+                                    intent.putExtra("ADMIN", admin);
+                                    intent.putExtra("USEROBJ", userOBJ);
+                                    startActivity(intent);
+                                    break;
+                                case R.id.menu_ban:
+                                    userOBJ.setStatus(0);
+                                    try {
+                                        if (Fun_UpdateUserStatus.http_UpdateUserStatus(userOBJ, admin)) {
+                                            dialog_ban_success();
+                                            Fill_AllUserList();
+                                        } else {
+                                            dialog_fail();
                                         }
-                                        break;
-                                    case R.id.menu_all_competition:
-                                        userOBJ.setCompetition_id(0);
-                                        try {
-                                            if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
-                                                dialog_updatecompetition_success();
-                                                Fill_AllUserList();
-                                            } else {
-                                                dialog_fail();
-                                            }
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case R.id.menu_all_competition:
+                                    userOBJ.setCompetition_id(0);
+                                    try {
+                                        if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
+                                            dialog_updatecompetition_success();
+                                            Fill_AllUserList();
+                                        } else {
+                                            dialog_fail();
                                         }
-                                        break;
-                                    case R.id.menu_only_present_competition:
-                                        try {
-                                            userOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
-                                            if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
-                                                dialog_updatecompetition_success();
-                                                Fill_AllUserList();
-                                            } else {
-                                                dialog_fail();
-                                            }
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case R.id.menu_only_present_competition:
+                                    try {
+                                        userOBJ.setCompetition_id(Fun_QueryPresentCompetitionID.http_QueryPresentCompetitionID());
+                                        if (Fun_UpdateUserCompetitionID.http_UpdateUserCompetitionID(userOBJ, admin)) {
+                                            dialog_updatecompetition_success();
+                                            Fill_AllUserList();
+                                        } else {
+                                            dialog_fail();
                                         }
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                return false;
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                default:
+                                    break;
                             }
-                        });
-                    }
+                            return false;
+                        }
+                    });
                     popup.show();
                 }
             }

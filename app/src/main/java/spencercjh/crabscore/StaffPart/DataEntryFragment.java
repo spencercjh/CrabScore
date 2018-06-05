@@ -107,9 +107,9 @@ public class DataEntryFragment extends Fragment {
                     view = convertView;
                 }
                 GroupOBJ groupOBJ = GroupList.get(position);
-                TextView Tindex = view.findViewById(R.id.text_index);
-                Tindex.setText(position);
-                TextView Tgroup_id = view.findViewById(R.id.text_group_id);
+                TextView Tindex = view.findViewById(R.id.tv_index);
+                Tindex.setText(String.valueOf(position));
+                TextView Tgroup_id = view.findViewById(R.id.tv_group_id);
                 Tgroup_id.setText("第 " + groupOBJ.getGroup_id() + " 组");
                 return view;
             }
@@ -120,42 +120,40 @@ public class DataEntryFragment extends Fragment {
                 if (userOBJ.getUser_name() != null) {
                     PopupMenu popup = new PopupMenu(getContext(), view);
                     final MenuInflater inflater = popup.getMenuInflater();
-                    if (userOBJ.getCompetition_id() != 0) {
-                        inflater.inflate(R.menu.pop_menu_data_entry, popup.getMenu());
-                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            Intent intent;
+                    inflater.inflate(R.menu.pop_menu_data_entry, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        Intent intent;
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                switch (item.getItemId()) {
-                                    case R.id.menu_crab_info_f:
-                                        intent = new Intent(getContext(), CrabList_F_Activity.class);
-                                        intent.putExtra("GROUPOBJ", groupOBJ);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("COMPETITIONID", competition_id);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_crab_info_m:
-                                        intent = new Intent(getContext(), CrabList_M_Activity.class);
-                                        intent.putExtra("GROUPOBJ", groupOBJ);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("COMPETITIONID", competition_id);
-                                        startActivity(intent);
-                                        break;
-                                    case R.id.menu_add_crab:
-                                        intent = new Intent(getContext(), AddCrabActivity.class);
-                                        intent.putExtra("GROUPOBJ", groupOBJ);
-                                        intent.putExtra("USEROBJ", userOBJ);
-                                        intent.putExtra("COMPETITIONID", competition_id);
-                                        startActivity(intent);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                return false;
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.menu_crab_info_f:
+                                    intent = new Intent(getContext(), CrabList_F_Activity.class);
+                                    intent.putExtra("GROUPOBJ", groupOBJ);
+                                    intent.putExtra("USEROBJ", userOBJ);
+                                    intent.putExtra("COMPETITIONID", competition_id);
+                                    startActivity(intent);
+                                    break;
+                                case R.id.menu_crab_info_m:
+                                    intent = new Intent(getContext(), CrabList_M_Activity.class);
+                                    intent.putExtra("GROUPOBJ", groupOBJ);
+                                    intent.putExtra("USEROBJ", userOBJ);
+                                    intent.putExtra("COMPETITIONID", competition_id);
+                                    startActivity(intent);
+                                    break;
+                                case R.id.menu_add_crab:
+                                    intent = new Intent(getContext(), AddCrabActivity.class);
+                                    intent.putExtra("GROUPOBJ", groupOBJ);
+                                    intent.putExtra("USEROBJ", userOBJ);
+                                    intent.putExtra("COMPETITIONID", competition_id);
+                                    startActivity(intent);
+                                    break;
+                                default:
+                                    break;
                             }
-                        });
-                    }
+                            return false;
+                        }
+                    });
                     popup.show();
                 }
             }

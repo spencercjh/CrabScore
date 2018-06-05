@@ -10,7 +10,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
  */
 
 public class Fun_Register {
-    public static boolean http_register(UserOBJ userOBJ) throws InterruptedException {
+    public static boolean http_Register(UserOBJ userOBJ) throws InterruptedException {
         String url = ServerURL.sever_url + "Register";
         Register thread = new Register(url, userOBJ.getUser_name(), userOBJ.getPassword(), userOBJ.getDisplay_name(), userOBJ.getEmail(), userOBJ.getRole_id());
         thread.start();

@@ -118,38 +118,36 @@ public class CheckCompanyScoreActivity extends AppCompatActivity {
                 final GroupOBJ groupOBJ = GroupList.get(position);
                 PopupMenu popup = new PopupMenu(CheckCompanyScoreActivity.this, view);
                 final MenuInflater inflater = popup.getMenuInflater();
-                if (userOBJ.getCompetition_id() != 0) {
-                    inflater.inflate(R.menu.pop_menu_company_group_score, popup.getMenu());
-                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        Intent intent;
+                inflater.inflate(R.menu.pop_menu_company_group_score, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    Intent intent;
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
-                            switch (menuItem.getItemId()) {
-                                case R.id.menu_overall_score:
-                                    intent = new Intent(CheckCompanyScoreActivity.this, OverallScoreActivity.class);
-                                    intent.putExtra("GROUPOBJ", groupOBJ);
-                                    startActivity(intent);
-                                    break;
-                                case R.id.menu_detail_quality_score:
-                                    QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(),companyOBJ.getCompetition_id());
-                                    intent = new Intent(CheckCompanyScoreActivity.this, QualityScoreActivity.class);
-                                    intent.putExtra("QUALITYSCOREOBJ", qualityScoreOBJ);
-                                    startActivity(intent);
-                                    break;
-                                case R.id.menu_detail_taste_score:
-                                    TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id(),companyOBJ.getCompetition_id());
-                                    intent = new Intent(CheckCompanyScoreActivity.this, TasteScoreActivity.class);
-                                    intent.putExtra("TASTESCOREACTIVITY", tasteScoreOBJ);
-                                    startActivity(intent);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            return false;
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_overall_score:
+                                intent = new Intent(CheckCompanyScoreActivity.this, OverallScoreActivity.class);
+                                intent.putExtra("GROUPOBJ", groupOBJ);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_detail_quality_score:
+                                QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(), companyOBJ.getCompetition_id());
+                                intent = new Intent(CheckCompanyScoreActivity.this, QualityScoreActivity.class);
+                                intent.putExtra("QUALITYSCOREOBJ", qualityScoreOBJ);
+                                startActivity(intent);
+                                break;
+                            case R.id.menu_detail_taste_score:
+                                TasteScoreOBJ tasteScoreOBJ = new TasteScoreOBJ(groupOBJ.getGroup_id(), companyOBJ.getCompetition_id());
+                                intent = new Intent(CheckCompanyScoreActivity.this, TasteScoreActivity.class);
+                                intent.putExtra("TASTESCOREACTIVITY", tasteScoreOBJ);
+                                startActivity(intent);
+                                break;
+                            default:
+                                break;
                         }
-                    });
-                }
+                        return false;
+                    }
+                });
             }
         });
     }

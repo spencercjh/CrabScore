@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         dialog.dismiss();//关闭对话框
                         try {
                             if (!Fun_QueryUserExist.http_QueryUserExist(userOBJ.getUser_name())) {
-                                if (Fun_Register.http_register(userOBJ)) {
+                                if (Fun_Register.http_Register(userOBJ)) {
                                     dialog_register_success();
                                 } else {
                                     dialog_register_fail();
