@@ -70,7 +70,7 @@ public class UserOBJ implements Serializable {
         this.email = email;
     }
 
-    //    登陆用
+    //    登录用
     public UserOBJ(String user_name, String password, int role_id) {
         this.user_name = user_name;
         this.password = password;

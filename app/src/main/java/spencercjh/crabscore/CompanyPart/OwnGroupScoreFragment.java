@@ -124,6 +124,7 @@ public class OwnGroupScoreFragment extends Fragment {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 final GroupOBJ groupOBJ = GroupList.get(position);
                 PopupMenu popup = new PopupMenu(getContext(), view);

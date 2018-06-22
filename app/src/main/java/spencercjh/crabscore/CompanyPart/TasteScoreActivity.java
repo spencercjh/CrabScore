@@ -93,6 +93,7 @@ public class TasteScoreActivity extends AppCompatActivity implements TabLayout.O
 
     }
 
+    @Override
     public void onBackPressed() {
         finish();
     }

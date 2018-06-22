@@ -128,6 +128,7 @@ public class RegisterAssessmentFragment extends Fragment {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, final long id) {
                 final UserOBJ userOBJ = UserList.get(position);

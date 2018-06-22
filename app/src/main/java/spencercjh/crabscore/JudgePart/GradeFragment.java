@@ -117,6 +117,7 @@ public class GradeFragment extends Fragment {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 GroupOBJ groupOBJ = GroupList.get(position);
                 final QualityScoreOBJ qualityScoreOBJ = new QualityScoreOBJ(groupOBJ.getGroup_id(), competition_id);

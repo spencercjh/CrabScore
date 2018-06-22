@@ -89,6 +89,7 @@ public class QualityScoreActivity extends AppCompatActivity implements TabLayout
 
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

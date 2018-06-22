@@ -90,11 +90,11 @@ public class MainActivity extends ActivityGroup implements View.OnClickListener 
 
     //重写返回键
     public void onBackPressed() {
-        if (new Date().getTime() - lastPressTime < 1000) {
+        if (System.currentTimeMillis() - lastPressTime < 1000) {
             finish();
             Runtime.getRuntime().exit(0);//结束程序
         } else {
-            lastPressTime = new Date().getTime();//重置lastPressTime
+            lastPressTime = System.currentTimeMillis();//重置lastPressTime
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }

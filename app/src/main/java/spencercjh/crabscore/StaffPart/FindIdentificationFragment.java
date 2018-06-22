@@ -27,17 +27,17 @@ public class FindIdentificationFragment extends Fragment implements View.OnClick
     private EditText Eidentification;
     private TextView text_group_id;
 
-    public FindIdentificationFragment(UserOBJ userOBJ) {
+    public FindIdentificationFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = getActivity();
         mView = inflater.inflate(R.layout.fragment_find_identification, container, false);
-        Button button = mView.findViewById(R.id.button);
+        /*Button button = mView.findViewById(R.id.button);
         button.setOnClickListener(this);
         Eidentification = mView.findViewById(R.id.edit_identification);
-        text_group_id = mView.findViewById(R.id.text_group_id);
+        text_group_id = mView.findViewById(R.id.text_group_id);*/
         return mView;
     }
 

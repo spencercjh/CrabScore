@@ -60,6 +60,7 @@ public class UpdatePasswordActivity extends AppCompatActivity implements OnClick
         });
     }
 
+    @Override
     public void onBackPressed() {
         finish();
     }

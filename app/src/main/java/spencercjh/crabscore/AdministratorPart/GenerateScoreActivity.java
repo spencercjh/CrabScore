@@ -60,6 +60,7 @@ public class GenerateScoreActivity extends AppCompatActivity implements View.OnC
         finish();
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

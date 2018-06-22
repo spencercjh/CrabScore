@@ -7,7 +7,7 @@ import spencercjh.crabscore.OBJ.UserOBJ;
 /**
  * Created by spencercjh on 2018/2/4.
  * iClass
- * 登陆
+ * 登录
  */
 
 public class Fun_Login {

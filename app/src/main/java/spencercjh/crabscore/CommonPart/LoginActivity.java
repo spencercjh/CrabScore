@@ -140,10 +140,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             rem_pw.setChecked(true);
             id.setText(sp.getString("USER_ID", ""));
             pwd.setText(sp.getString("PASSWORD", ""));
-            if (sp.getBoolean("AUTO_ISCHECK", false)) { //判断自动登陆多选框状态
+            if (sp.getBoolean("AUTO_ISCHECK", false)) { //判断自动登录多选框状态
                 auto_login.setChecked(true);          //设置默认是自动登录状态
                 /*
-                  自动登陆
+                  自动登录
                  */
                 UserOBJ userOBJ = new UserOBJ(id.getText().toString().trim(), MD5andKL.MD5(pwd.getText().toString().trim()), choice);
                 int user_status;
@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         login_status = -1;
                     }
                     if (login_status == 1) {
-                        Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("USEROBJ", userOBJ);
                         LoginActivity.this.startActivity(intent);
@@ -241,7 +241,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         register.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    //登陆按钮
+    //登录按钮
     public void Login(View view) throws InterruptedException {
         String user_name = id.getText().toString().trim();
         String passowrd = pwd.getText().toString().trim();
@@ -259,14 +259,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .show();
             }
             /*
-              登陆
+              登录
              */
             UserOBJ userOBJ = new UserOBJ(user_name, MD5andKL.MD5(passowrd), choice);
             int user_status = Fun_QueryUserStatus.http_QueryUserStatus(userOBJ);
             if (user_status == 1) {
                 int login_status = Fun_Login.http_login(userOBJ);
                 if (login_status == 1) {
-                    Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
                     if (rem_pw.isChecked()) {
                         //记住用户名、密码、
                         SharedPreferences.Editor editor = sp.edit();
@@ -290,7 +290,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "连接服务器失败！", Toast.LENGTH_SHORT).show();
             }
             /*
-              测试登陆 直接进入
+              测试登录 直接进入
              */
          /*   UserOBJ userOBJ_test = new UserOBJ("123", "123", choice);
             if (rem_pw.isChecked()) {
@@ -313,11 +313,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //重写返回键
     public void onBackPressed() {
-        if (new Date().getTime() - lastPressTime < 1000) {
+        if (System.currentTimeMillis() - lastPressTime < 1000) {
             finish();
             Runtime.getRuntime().exit(0);//结束程序
         } else {
-            lastPressTime = new Date().getTime();//重置lastPressTime
+            lastPressTime = System.currentTimeMillis();//重置lastPressTime
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }

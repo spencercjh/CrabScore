@@ -106,6 +106,7 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 final CompetitionOBJ competitionOBJ = CompetitionList.get(position);
                 PopupMenu popup = new PopupMenu(UpdatePresentCompetitionActivity.this, view);
@@ -204,6 +205,7 @@ public class UpdatePresentCompetitionActivity extends AppCompatActivity {
         builder.create().show();////显示对话框
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

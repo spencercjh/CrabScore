@@ -50,6 +50,7 @@ public class UpdateUserEmailActivity extends AppCompatActivity implements View.O
         finish();
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

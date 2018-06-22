@@ -64,6 +64,7 @@ public class OverallScoreActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

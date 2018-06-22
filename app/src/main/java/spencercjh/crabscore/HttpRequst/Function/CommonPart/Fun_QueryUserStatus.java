@@ -17,7 +17,7 @@ public class Fun_QueryUserStatus {
         thread.join();
         if (thread.getFlag()) {
             if (thread.getUser_status().contains("1")) {
-                return 1;   //账户开启 能登陆
+                return 1;   //账户开启 能登录
             } else {
                 return 0;   //账户被禁用
             }

@@ -174,6 +174,7 @@ public class UpdateMoreSettingActivity extends AppCompatActivity implements View
         builder.create().show();////显示对话框
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

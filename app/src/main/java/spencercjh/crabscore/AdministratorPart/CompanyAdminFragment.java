@@ -117,6 +117,7 @@ public class CompanyAdminFragment extends Fragment {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 final CompanyOBJ companyOBJ = CompanyList.get(position);
                 PopupMenu popup = new PopupMenu(getContext(), view);

@@ -58,6 +58,7 @@ public class OpenAppActivity extends AppCompatActivity implements OnClickListene
         relativeLayout.setOnClickListener(this);
     }
 
+    @SuppressWarnings("AlibabaAvoidUseTimer")
     private void gotonextactivity() {
         final Intent it = new Intent(this, LoginActivity.class);
         Timer timer = new Timer();
@@ -71,19 +72,22 @@ public class OpenAppActivity extends AppCompatActivity implements OnClickListene
         timer.schedule(task, 500);
     }
 
+    @Override
     public void onBackPressed() {
-        if (new Date().getTime() - lastPressTime < 1000) {
+        if (System.currentTimeMillis() - lastPressTime < 1000) {
             finish();
             Runtime.getRuntime().exit(0);//结束程序
             finish();
         } else {
-            lastPressTime = new Date().getTime();//重置lastPressTime
+            lastPressTime = System.currentTimeMillis();//重置lastPressTime
             Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void setFullScreen() {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.wholeview) {

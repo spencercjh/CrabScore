@@ -50,6 +50,7 @@ public class UpdateUserDisplayNameActivity extends AppCompatActivity implements 
         finish();
     }
 
+    @Override
     public void onBackPressed() {
         goback();
     }

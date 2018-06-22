@@ -115,6 +115,7 @@ public class DataEntryFragment extends Fragment {
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, final long id) {
                 final GroupOBJ groupOBJ = GroupList.get(position);
                 if (userOBJ.getUser_name() != null) {
