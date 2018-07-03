@@ -35,9 +35,30 @@ public class CompetitionOBJ implements Serializable {
         this.note = note;
     }
 
+    public CompetitionOBJ(int competition_id, String competition_year, String note, float var_fatness_m,
+                          float var_weight_m, float var_mfatness_sd, float var_mweight_sd, float var_fatness_f,
+                          float var_weight_f, float var_ffatness_sd, float var_fweight_sd, int result_fatness,
+                          int result_quality, int result_taste) {
+        this.competition_id = competition_id;
+        this.competition_year = competition_year;
+        this.var_fatness_m = var_fatness_m;
+        this.var_fatness_f = var_fatness_f;
+        this.var_weight_m = var_weight_m;
+        this.var_mfatness_sd = var_mfatness_sd;
+        this.var_mweight_sd = var_mweight_sd;
+        this.var_weight_f = var_weight_f;
+        this.var_ffatness_sd = var_ffatness_sd;
+        this.var_fweight_sd = var_fweight_sd;
+        this.result_fatness = result_fatness;
+        this.result_quality = result_quality;
+        this.result_taste = result_taste;
+        this.note = note;
+    }
+
     public CompetitionOBJ(String competition_year, String note, float var_fatness_m,
                           float var_weight_m, float var_mfatness_sd, float var_mweight_sd, float var_fatness_f,
-                          float var_weight_f, float var_ffatness_sd, float var_fweight_sd, int result_fatness, int result_quality, int result_taste) {
+                          float var_weight_f, float var_ffatness_sd, float var_fweight_sd, int result_fatness,
+                          int result_quality, int result_taste) {
         this.competition_year = competition_year;
         this.var_fatness_m = var_fatness_m;
         this.var_fatness_f = var_fatness_f;

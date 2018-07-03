@@ -136,6 +136,7 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
     }
 
     private void updateCompetition_info() throws InterruptedException {
+        int competition_id = competition_OBJ.getCompetition_id();
         String year = competition_OBJ.getCompetition_year();
         String note = competition_OBJ.getNote();
         float var_fatness_m = Float.parseFloat(Tvar_fatness_m.getText().toString().trim());
@@ -149,12 +150,12 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
         int result_fatness = competition_OBJ.getResult_fatness();
         int result_quality = competition_OBJ.getResult_quality();
         int result_taste = competition_OBJ.getResult_taste();
-        competition_OBJ = new CompetitionOBJ(year, note, var_fatness_m, var_fatness_f,
-                var_weight_m, var_mfatness_sd, var_mweight_sd, var_weight_f, var_ffatness_sd,
+        competition_OBJ = new CompetitionOBJ(competition_id, year, note, var_fatness_m,
+                var_weight_m, var_mfatness_sd, var_mweight_sd, var_fatness_f, var_weight_f, var_ffatness_sd,
                 var_fweight_sd, result_fatness, result_quality, result_taste);
         if (Fun_UpdateCompetitionProperty.http_UpdateCompetitionProperty(competition_OBJ, userOBJ)) {
             dialog_update_success();
-            InitialInfo();
+//            InitialInfo();
         } else {
             dialog_update_fail();
         }
@@ -216,6 +217,12 @@ public class CompetitionAdminFragment extends Fragment implements View.OnClickLi
             intent.putExtra("USEROBJ", userOBJ);
             intent.putExtra("COMPETITIONOBJ", competition_OBJ);
             startActivity(intent);
+        } else if (id == R.id.menu_fresh) {
+            try {
+                InitialInfo();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

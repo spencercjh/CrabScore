@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_calculate_score"
-        android:title="成绩生成" />
+            android:id="@+id/menu_calculate_score"
+            android:title="成绩生成"/>
     <item
-        android:id="@+id/menu_excel_generate"
-        android:title="导出EXCEL" />
+            android:id="@+id/menu_excel_generate"
+            android:title="导出EXCEL"/>
     <item
-        android:id="@+id/menu_change_competition"
-        android:title="大赛切换" />
+            android:id="@+id/menu_change_competition"
+            android:title="大赛切换"/>
+    <item
+            android:id="@+id/menu_fresh"
+            android:title="刷新"/>
+
 </menu>
