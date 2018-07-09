@@ -9,3 +9,22 @@
 # 2018年2月10日12:15:35 完成客户端和服务端的成绩生成代码；
 # 2018年2月11日16:45:44 完成客户端和服务端的Excel文件导出代码；
 # 2018年2月12日 开始本地测试
+
+
+	拿到我这里的源代码，你需要：
+	
+		1、在你的数据库上执行.sql文件，建立数据库关系模型
+		
+		2、修改App代码中的spencercjh.crabscore.HttpRequst.Function.ServerURL的server_ip和port
+		
+		3、修改Server代码中的database.DataBase的数据库信息（账号，密码，链接）
+		
+		4、修改App代码中的业务逻辑
+	
+		5、服务端使用JSP+Servlet架构，没有使用Maven，需要自行导入Jar包
+		
+		6、服务端代码改完后打war包部署到你的服务器（本地或者远程）的tomcat上
+		
+		7、App代码改完后安装到手机上
+		
+		8、开始使用
